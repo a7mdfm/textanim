@@ -1,0 +1,15 @@
+---
+default:
+    - debug: true
+      open: example/textanim_test.swf
+
+applications:
+    - class: example/textanim_test.as
+      output: example/textanim_test.swf
+
+source-path:
+    - source
+
+library-path:
+    - source
+
