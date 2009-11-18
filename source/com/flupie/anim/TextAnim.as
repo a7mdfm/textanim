@@ -78,6 +78,7 @@ package com.flupie.anim
 			y = source.y;
 			
 			if (autoReplace) {
+				trace("source.parent", source.parent);
 				if (source.parent != null) {
 					source.parent.addChild(this);
 					source.parent.removeChild(source);
