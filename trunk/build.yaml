@@ -13,3 +13,11 @@ source-path:
 library-path:
     - source
 
+asdoc:
+    - title: "TextAnim Documentation"
+      footer: "2009-2010 - MIT"
+      output: doc
+      exclude-dirs:
+          - source/caurina/
+      source-path:
+          - source
