@@ -24,7 +24,7 @@
 	http://code.google.com/p/textanim/
 */
 
-package com.flupie.textAnim
+package com.flupie.anim
 {
 	/**
 	 * textAnim.TextAnim

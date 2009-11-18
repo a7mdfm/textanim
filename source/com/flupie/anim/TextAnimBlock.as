@@ -1,4 +1,4 @@
-package com.flupie.textAnim
+package com.flupie.anim
 {
 	/**
 	 * textAnim.TextAnim
