@@ -11,6 +11,7 @@ package
 	
 	import com.flupie.anim.TextAnim;
 	import com.flupie.anim.TextAnimBlock;
+	import caurina.transitions.Tweener;
 	
 	[SWF(width='550', height='400', backgroundColor='0x333333', frameRate='60')]
 	
@@ -33,27 +34,25 @@ package
 		public function init(e:Event):void
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			
-			fmt = new TextFormat();
-			fmt.font = new MyriadProCnd().fontName;
-			fmt.color = 0xFFFFFF;
-			fmt.size = 32;
 
 			label = new TextField();
-			label.defaultTextFormat = fmt;
+			label.defaultTextFormat = new TextFormat(new MyriadProCnd().fontName, 32, 0xFFFFFF);
 			label.embedFonts = true;
-			label.text = "Chupacabra";
+			label.text = "Lorem ipsum \n se eu tenho um feijão";
 			addChild(label);
 			
 			anim = new TextAnim(label);
-			anim.interval = 500;
-			anim.effects = eff;
+			anim.interval = 100;
+			//anim.effects = eff;
+			//anim.setBlocksVisibility(false);
 			anim.start();
 		}
 		
 		public function eff(block:TextAnimBlock):void
 		{
-			block.x = 0;
+			block.alpha = 0;
+			block.x = block.posX - 10;
+			Tweener.addTween(block, {alpha:1, x:block.posX, time:.5, transition:"easeoutquart"});
 		}
 	}
 }
