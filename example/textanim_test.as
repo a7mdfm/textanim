@@ -2,57 +2,64 @@ package
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
-	import flash.display.StageScaleMode;
-	import flash.display.StageAlign;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFormat;
-	import flash.text.AntiAliasType;
+	
+	import caurina.transitions.Tweener;
 	
 	import com.flupie.anim.TextAnim;
 	import com.flupie.anim.TextAnimBlock;
-	import caurina.transitions.Tweener;
 	
 	[SWF(width='550', height='400', backgroundColor='0x333333', frameRate='60')]
 	
 	public class textanim_test extends Sprite
 	{
 		public var label:TextField;
-		public var fmt:TextFormat;
-		
 		public var anim:TextAnim;
 		
 		public function textanim_test()
 		{
-			stage.align = StageAlign.TOP_LEFT;
-			stage.scaleMode = StageScaleMode.NO_SCALE;
-			stage.showDefaultContextMenu = false;
-			
-			addEventListener(Event.ADDED_TO_STAGE, init, false, 0, true);
-		}
-		
-		public function init(e:Event):void
-		{
-			removeEventListener(Event.ADDED_TO_STAGE, init);
-
+			/**
+			 * That's just a textField, this could be on Flash IDE or SWC, whatever
+			 */
 			label = new TextField();
 			label.defaultTextFormat = new TextFormat(new MyriadProCnd().fontName, 32, 0xFFFFFF);
 			label.embedFonts = true;
-			label.text = "Lorem ipsum \n se eu tenho um feijão";
-			addChild(label);
+			label.text = "Lorem ipsum \nse eu tenho um feijão";
 			
+			
+			/**
+			 * Here is an instance of TextAnim, which receives the textField as parameter
+			 */
 			anim = new TextAnim(label);
-			anim.interval = 100;
-			//anim.effects = eff;
-			//anim.setBlocksVisibility(false);
+			anim.x = anim.y = 150;
+			anim.breakMode = TextAnim.BREAK_IN_LETTERS;
+			anim.animMode = TextAnim.ANIM_TO_LEFT;
+			anim.interval = 80;
+			anim.effects = [alphaEff, scaleEff];
+			anim.setBlocksVisibility(false);
+			addChild(anim);
+			
 			anim.start();
 		}
 		
-		public function eff(block:TextAnimBlock):void
+		
+		/**
+		* You can create as many functions of effect you want, just pass on the effects property [Array]. 
+		*/
+		public function alphaEff(block:TextAnimBlock):void
 		{
 			block.alpha = 0;
-			block.x = block.posX - 10;
+			block.x = block.posX - 40;
 			Tweener.addTween(block, {alpha:1, x:block.posX, time:.5, transition:"easeoutquart"});
 		}
+		
+		public function scaleEff(block:TextAnimBlock):void
+		{
+			block.scaleX = block.scaleY = 2;
+			Tweener.addTween(block, {scaleX:1, scaleY:1, time:.5, transition:"easeoutquart"});
+		}
+		
 	}
 }
