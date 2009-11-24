@@ -22,10 +22,17 @@
 	THE SOFTWARE.
 	
 	http://code.google.com/p/textanim/
+	http://flupie.net
 */       
 
 package com.flupie.anim
 {
+	/**
+	 * com.flupie.anim.TextAnim
+	 *	
+	 * TextAnim is a abstract and extensible Class to create text animations.
+	 */
+	
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
