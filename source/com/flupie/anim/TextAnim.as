@@ -22,16 +22,10 @@
 	THE SOFTWARE.
 	
 	http://code.google.com/p/textanim/
-*/
+*/       
 
 package com.flupie.anim
 {
-	/**
-	 * textAnim.TextAnim
-	 *	
-	 * @author		Guilherme Almeida, Mauro de Tarso
-	 */	
-	
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
@@ -49,64 +43,66 @@ package com.flupie.anim
 		public static const ANIM_TO_CENTER:String = ActionFlow.EDGES_TO_CENTER;
 		public static const ANIM_TO_EDGES:String = ActionFlow.CENTER_TO_EDGES;
 		public static const ANIM_RANDOM:String = ActionFlow.RANDOM;
-		
+
 		public var source:TextField;
 		public var effects:*;
-		
+
 		public var interval:Number = 100;
 		public var time:Number = 0;
-		
+
 		public var animMode:String = ActionFlow.FIRST_TO_LAST;
 		private var _breakMode:String = Breaker.BREAK_IN_LETTERS;
-		
+
 		private var _text:String;
 		public var blocks:Array;
-		
+
 		private var flow:ActionFlow;
-		
+		private var _blocksVisibility:Boolean = true;
+
 		public function TextAnim(source:TextField, autoReplace:Boolean = true)
 		{
 			super();
-			
+
 			this.source = source;
 			flow = new ActionFlow();
-			
+
 			blocks = [];
 			text = source.htmlText;
-			
+
 			x = source.x;
 			y = source.y;
-			
+
 			if (autoReplace) {
 				if (source.parent != null) {
 					source.parent.addChild(this);
-					if (source.parent.contains(source)) source.parent.removeChild(source);
+					source.parent.swapChildren(this, source);
+					source.parent.removeChild(source);
 				}
 			}
 		}
-		
+
 		public function set text(val:String):void
 		{
 			source.htmlText = val;
 			createBlocks();
 		}
-		
+
 		public function get text():String
 		{
 			return source.text;
 		}
-		
+
 		public function set breakMode(val:String):void
 		{
 			_breakMode = val;
 			createBlocks();
 		}
-		
+
 		public function get breakMode():String
 		{
 			return _breakMode;
 		}
-		
+
 		public function start(delay:Number = 0):void
 		{
 			if (delay == 0) {
@@ -119,19 +115,21 @@ package com.flupie.anim
 				}, delay);
 			}
 		}
-		
+
 		public function stop():void
 		{
 			flow.stop();
 		}
-		
+
 		public function dispose():void
 		{
+			if (flow == null) return;
+
 			stop();
-			
+
 			removeBlocks();
 			blocks = null;
-			
+
 			flow.clear();
 			flow = null;
 
@@ -144,6 +142,7 @@ package com.flupie.anim
 
 		public function setBlocksVisibility(visibility:Boolean):void
 		{
+			_blocksVisibility = visibility;
 			applyToAllBlocks(function(block:TextAnimBlock):void {
 				block.visible = visibility;
 			})
@@ -168,22 +167,22 @@ package com.flupie.anim
 		private function createBlocks():void
 		{
 			if (blocks.length > 0) removeBlocks();
-			
+
 			flow.clear();
 			blocks = Breaker.separeBlocks(this, _breakMode);
-			
+
 			for (var i:int = 0; i < blocks.length; i++) {
 				var block:TextAnimBlock = blocks[i];
 				addChild(block);
-				
+
 				blockSettings(block);
 			}
 		}
-		
+
 		private function removeBlocks():void
 		{
 			flow.clear();
-			
+
 			applyToAllBlocks(function(block:TextAnimBlock):void {
 				if (contains(block)) removeChild(block);
 				block.dispose();
@@ -191,14 +190,14 @@ package com.flupie.anim
 			});
 			blocks = [];
 		}
-		
+
 		public function applyToAllBlocks(act:Function):void
 		{
 			for (var i:int = 0; i < blocks.length; i++) {
 				act(blocks[i]);
 			}
 		}
-		
+
 		private function blockSettings(block:TextAnimBlock):void
 		{
 			var bounds:Rectangle = source.getCharBoundaries(block.index);
@@ -210,8 +209,10 @@ package com.flupie.anim
 			block.posX = block.x = bounds.x - 2 - modX;
 			block.posY = block.y = bounds.y - 2;
 			block.textField.setTextFormat(fmt);
+
+			block.visible = _blocksVisibility;
 		}
-		
+
 		private function flowSettings():void
 		{
 			var eff:Function;
@@ -233,4 +234,4 @@ package com.flupie.anim
 		}
 
 	}
-}
+} 
