@@ -23,24 +23,44 @@ package
 			/**
 			 * That's just a textField, this could be on Flash IDE or SWC, whatever
 			 */
+			
 			label = new TextField();
+			label.border = true;
+			label.autoSize = TextFieldAutoSize.LEFT;
 			label.defaultTextFormat = new TextFormat(new MyriadProCnd().fontName, 32, 0xFFFFFF);
 			label.embedFonts = true;
-			label.text = "Lorem ipsum \nse eu tenho um feijão";
+			label.text = "Lorem ipsum dolor sit amet\n consectetur adipiscing elit";
+			label.x = 138;
+			label.y = 166;
+			addChild(label);
 			
 			
 			/**
 			 * Here is an instance of TextAnim, which receives the textField as parameter
 			 */
 			anim = new TextAnim(label);
-			anim.x = anim.y = 150;
 			anim.breakMode = TextAnim.BREAK_IN_LETTERS;
 			anim.animMode = TextAnim.ANIM_TO_LEFT;
-			anim.interval = 80;
-			anim.effects = [alphaEff, scaleEff];
+			anim.interval = 40;
+			anim.effects = [eff0, eff1];
 			anim.setBlocksVisibility(false);
 			addChild(anim);
 			
+			anim.start();
+			
+			
+			/**
+			 * Delay to call changeAnimMode, modify anim setting and start again. 
+			 */
+			Tweener.addTween(this, {time:6, onComplete:changeAnimMode});
+		}
+		
+		public function changeAnimMode():void
+		{
+			anim.breakMode = TextAnim.BREAK_IN_WORDS;
+			anim.animMode = TextAnim.ANIM_TO_EDGES;
+			anim.interval = 80;
+			anim.effects = [eff2, eff3];
 			anim.start();
 		}
 		
@@ -48,17 +68,27 @@ package
 		/**
 		* You can create as many functions of effect you want, just pass on the effects property [Array]. 
 		*/
-		public function alphaEff(block:TextAnimBlock):void
+		public function eff0(block:TextAnimBlock):void
 		{
 			block.alpha = 0;
 			block.x = block.posX - 40;
 			Tweener.addTween(block, {alpha:1, x:block.posX, time:.5, transition:"easeoutquart"});
 		}
 		
-		public function scaleEff(block:TextAnimBlock):void
+		public function eff1(block:TextAnimBlock):void
 		{
 			block.scaleX = block.scaleY = 2;
 			Tweener.addTween(block, {scaleX:1, scaleY:1, time:.5, transition:"easeoutquart"});
+		}
+
+		public function eff2(block:TextAnimBlock):void
+		{
+			Tweener.addTween(block, {alpha:0, time:.5, transition:"easeinoutquart"});
+		}
+		
+		public function eff3(block:TextAnimBlock):void
+		{
+			Tweener.addTween(block, {x:block.index%2==0 ? block.posX - 20 : block.posX +20, time:.5, transition:"easeinoutquart"});
 		}
 		
 	}
