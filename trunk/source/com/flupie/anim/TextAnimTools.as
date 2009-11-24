@@ -98,7 +98,7 @@ package com.flupie.anim
 			});
 		}
 		
-		public static function setGradientLinear(textAnim:TextAnim, colors:Array, ratios:Array = null, angle:Number = 0):void
+		public static function setGradientLinear(textAnim:TextAnim, colors:Array, angle:Number = 0, alphas:Array = null, ratios:Array = null):void
 		{
 			textAnim.applyToAllBlocks(function (block:TextAnimBlock):void {
 				var dt:BitmapData = new BitmapData(block.textField.width * 4, block.textField.height * 4, true, 0x00000000);
@@ -110,7 +110,7 @@ package com.flupie.anim
 				block.shape = new Shape();
 				var mt:Matrix = new Matrix();
 				mt.createGradientBox(bounds.width+20, bounds.height+20, angle*Math.PI/360);
-				block.shape.graphics.beginGradientFill("linear", colors, [1, 1], ratios != null ? ratios : [0, 255], mt);
+				block.shape.graphics.beginGradientFill("linear", colors, alphas != null ? alphas : [1, 1], ratios != null ? ratios : [0, 255], mt);
 				block.shape.graphics.drawRect(bounds.x-10, bounds.y-10, bounds.width+20, bounds.height+20);
 				block.shape.graphics.endFill();
 				block.shape.mask = block.textField;
