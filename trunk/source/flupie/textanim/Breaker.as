@@ -25,10 +25,10 @@
 	http://flupie.net
 */       
 
-package com.flupie.anim
+package flupie.textanim
 {
 	/**
-	 * com.flupie.anim.TextAnim
+	 * flupie.textanim.TextAnim
 	 *	
 	 * @author		Guilherme Almeida, Mauro de Tarso
 	 * @private
