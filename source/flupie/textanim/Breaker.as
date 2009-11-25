@@ -27,15 +27,11 @@
 
 package flupie.textanim
 {
-	/**
-	 * flupie.textanim.TextAnim
-	 *	
-	 * @author		Guilherme Almeida, Mauro de Tarso
-	 * @private
-	 */ 
-
 	import flash.text.TextField;
 	
+	/**
+	 * Breaker description
+	 */	
 	internal class Breaker
 	{
 		public static const BREAK_IN_LETTERS:String = "breakInLetters";
