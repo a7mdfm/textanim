@@ -38,6 +38,7 @@ package com.flupie.anim
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.utils.setTimeout;
+	import flash.events.Event;
 
 	public class TextAnim extends Sprite
 	{
@@ -49,13 +50,21 @@ package com.flupie.anim
 		public static const ANIM_TO_LEFT:String = ActionFlow.LAST_TO_FIRST;
 		public static const ANIM_TO_CENTER:String = ActionFlow.EDGES_TO_CENTER;
 		public static const ANIM_TO_EDGES:String = ActionFlow.CENTER_TO_EDGES;
-		public static const ANIM_RANDOM:String = ActionFlow.RANDOM;
+		public static const ANIM_RANDOM:String = ActionFlow.RANDOM;  
 
 		public var source:TextField;
 		public var effects:*;
 
 		public var interval:Number = 100;
 		public var time:Number = 0;
+		
+		public var onStart:Function;
+		public var onProgress:Function;
+		public var onComplete:Function;
+		
+		private var evStart:Event;
+		private var evProgress:Event;
+		private var evComplete:Event;
 
 		public var animMode:String = ActionFlow.FIRST_TO_LAST;
 		private var _breakMode:String = Breaker.BREAK_IN_LETTERS;
@@ -71,7 +80,15 @@ package com.flupie.anim
 			super();
 
 			this.source = source;
+			
+			evStart = new Event(TextAnimEvent.START);
+			evProgress = new Event(TextAnimEvent.PROGRESS);
+			evComplete = new Event(TextAnimEvent.COMPLETE);
+			
 			flow = new ActionFlow();
+			flow.onStart = startHandler; 
+			flow.onProgress = progressHandler; 
+			flow.onComplete = completeHandler; 
 
 			blocks = [];
 			text = source.htmlText;
@@ -139,6 +156,10 @@ package com.flupie.anim
 
 			flow.clear();
 			flow = null;
+			
+			evStart = null;
+			evProgress = null;
+			evComplete = null;
 
 			if (parent != null) {
 				if (parent.contains(this)) parent.removeChild(this);
@@ -239,6 +260,24 @@ package com.flupie.anim
 				});
 			}
 		}
+		
+		private function completeHandler():void
+		{
+			if (onComplete != null) onComplete();
+			dispatchEvent(evComplete); 
+		}    
+		
+		private function progressHandler():void
+		{        
+			if (onProgress != null) onProgress();
+			dispatchEvent(evProgress); 
+		}
+		
+		private function startHandler():void
+		{         
+			if (onStart != null) onStart(); 
+			dispatchEvent(evStart); 
+		}
 
 	}
-} 
+}
