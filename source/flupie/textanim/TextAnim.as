@@ -26,11 +26,7 @@
 */       
 
 package flupie.textanim
-{
-	/**
-	 * <code>TextAnim</code> is a abstract and extensible Class to create text animations.
-	 */
-	
+{	
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
@@ -38,6 +34,9 @@ package flupie.textanim
 	import flash.utils.setTimeout;
 	import flash.events.Event;
 
+	/**
+	 * <code>TextAnim</code> is a abstract and extensible Class to create text animations.
+	 */
 	public class TextAnim extends Sprite
 	{
 		public static const BREAK_IN_LETTERS:String = Breaker.BREAK_IN_LETTERS;
@@ -50,10 +49,29 @@ package flupie.textanim
 		public static const ANIM_TO_EDGES:String = ActionFlow.CENTER_TO_EDGES;
 		public static const ANIM_RANDOM:String = ActionFlow.RANDOM;  
 
+		/**
+		* TextField
+		*/
 		public var source:TextField;
+		
+		/**
+		* effects array or function.
+		*/
 		public var effects:*;
-
+		
+		/**
+		* interval for dispatch blocks, the default.
+		* 
+		* @default 100
+		*/
 		public var interval:Number = 100;
+		
+		/**
+		* Time is to limit the time for dispatching blocks.
+		* <p>If it has a value different 0 that's overwrites the interval.</p>
+		*       
+		* @default 0
+		*/
 		public var time:Number = 0;
 		
 		public var onStart:Function;
@@ -63,8 +81,15 @@ package flupie.textanim
 		private var evStart:Event;
 		private var evProgress:Event;
 		private var evComplete:Event;
-
+		
+		/**
+		* animMode description.
+		*       
+		* @default ActionFlow.FIRST_TO_LAST
+		* @see breakMode
+		*/
 		public var animMode:String = ActionFlow.FIRST_TO_LAST;
+		
 		private var _breakMode:String = Breaker.BREAK_IN_LETTERS;
 
 		private var _text:String;
