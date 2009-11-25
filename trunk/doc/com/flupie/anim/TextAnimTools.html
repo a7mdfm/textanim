@@ -53,7 +53,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#setGradientLinear()">setGradientLinear</a>(textAnim:<a href="TextAnim.html">TextAnim</a>, colors:Array, ratios:Array = null, angle:Number = 0):void</div>
+<a class="signatureLink" href="#setGradientLinear()">setGradientLinear</a>(textAnim:<a href="TextAnim.html">TextAnim</a>, colors:Array, angle:Number = 0, alphas:Array = null, ratios:Array = null):void</div>
 <div class="summaryTableDescription">[static]</div>
 </td><td class="summaryTableOwnerCol">TextAnimTools</td>
 </tr>
@@ -94,7 +94,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static function setGradientLinear(textAnim:<a href="TextAnim.html">TextAnim</a>, colors:Array, ratios:Array = null, angle:Number = 0):void</code><span class="label">Parameters</span>
+<code>public static function setGradientLinear(textAnim:<a href="TextAnim.html">TextAnim</a>, colors:Array, angle:Number = 0, alphas:Array = null, ratios:Array = null):void</code><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">textAnim</span>:<a href="TextAnim.html">TextAnim</a></code></td>
@@ -109,13 +109,19 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">ratios</span>:Array</code> (default = <code>null</code>)<code></code></td>
+<td width="20px"></td><td><code><span class="label">angle</span>:Number</code> (default = <code>0</code>)<code></code></td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">angle</span>:Number</code> (default = <code>0</code>)<code></code></td>
+<td width="20px"></td><td><code><span class="label">alphas</span>:Array</code> (default = <code>null</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">ratios</span>:Array</code> (default = <code>null</code>)<code></code></td>
 </tr>
 </table>
 </div>
@@ -184,8 +190,8 @@ showHideInherited();
 <hr>
 <br>
 <p></p>
-<center class="copyright">2009-2010 - MIT</center>
+<center class="copyright">(c) Copyright 2009 - MIT LICENSE. All Rights Reserved. http://code.google.com/p/textanim</center>
 </div>
 </body>
 </html>
-<!--2009-2010 - MIT-->
+<!--(c) Copyright 2009 - MIT LICENSE. All Rights Reserved. http://code.google.com/p/textanim-->

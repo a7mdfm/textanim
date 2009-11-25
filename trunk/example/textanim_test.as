@@ -52,7 +52,7 @@ package
 			/**
 			 * Delay to call changeAnimMode, modify anim setting and start again. 
 			 */
-			Tweener.addTween(this, {time:6, onComplete:changeAnimMode});
+			Tweener.addTween(this, {time:5, onComplete:changeAnimMode});
 		}
 		
 		public function changeAnimMode():void
