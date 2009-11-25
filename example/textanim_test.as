@@ -8,8 +8,8 @@ package
 	
 	import caurina.transitions.Tweener;
 	
-	import com.flupie.anim.TextAnim;
-	import com.flupie.anim.TextAnimBlock;
+	import flupie.textanim.TextAnim;
+	import flupie.textanim.TextAnimBlock;
 	
 	[SWF(width='550', height='400', backgroundColor='0x333333', frameRate='60')]
 	

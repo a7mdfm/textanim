@@ -25,7 +25,7 @@
 	http://flupie.net
 */       
 
-package com.flupie.anim
+package flupie.textanim
 {
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
@@ -34,7 +34,7 @@ package com.flupie.anim
 	import flash.utils.setTimeout;
 	
 	/**
-	 * com.flupie.anim.TextAnim
+	 * flupie.textanim.TextAnim
 	 *	
 	 * TextAnim is a abstract and extensible Class to create text animations.
 	 */
