@@ -27,15 +27,17 @@
 
 package flupie.textanim
 {
+	/**
+	 * <code>TextAnim</code> is a abstract and extensible Class to create text animations.
+	 */
+	
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.utils.setTimeout;
-	
-	/**
-	 * <code>TextAnim</code> is a abstract and extensible Class to create text animations.
-	 */
+	import flash.events.Event;
+
 	public class TextAnim extends Sprite
 	{
 		public static const BREAK_IN_LETTERS:String = Breaker.BREAK_IN_LETTERS;
@@ -46,48 +48,28 @@ package flupie.textanim
 		public static const ANIM_TO_LEFT:String = ActionFlow.LAST_TO_FIRST;
 		public static const ANIM_TO_CENTER:String = ActionFlow.EDGES_TO_CENTER;
 		public static const ANIM_TO_EDGES:String = ActionFlow.CENTER_TO_EDGES;
-		public static const ANIM_RANDOM:String = ActionFlow.RANDOM;
+		public static const ANIM_RANDOM:String = ActionFlow.RANDOM;  
 
-		/**
-		* TextField
-		*/
 		public var source:TextField;
-		
-		/**
-		* effects array or function.
-		*/
 		public var effects:*;
 
-		/**
-		* interval for dispatch blocks, the default.
-		* 
-		* @default 100
-		*/
 		public var interval:Number = 100;
-		
-		/**
-		* Time is to limit the time for dispatching blocks.
-		* <p>If it has a value different 0 that's overwrites the interval.</p>
-		*	
-		* @default 0
-		*/
 		public var time:Number = 0;
 		
-		/**
-		* animMode description.
-		*	
-		* @default ActionFlow.FIRST_TO_LAST
-		* @see breakMode
-		*/
+		public var onStart:Function;
+		public var onProgress:Function;
+		public var onComplete:Function;
+		
+		private var evStart:Event;
+		private var evProgress:Event;
+		private var evComplete:Event;
+
 		public var animMode:String = ActionFlow.FIRST_TO_LAST;
-		
-		/**
-		* blocks array of blocks.
-		*/
-		public var blocks:Array;
-		
 		private var _breakMode:String = Breaker.BREAK_IN_LETTERS;
+
 		private var _text:String;
+		public var blocks:Array;
+
 		private var flow:ActionFlow;
 		private var _blocksVisibility:Boolean = true;
 
@@ -96,7 +78,15 @@ package flupie.textanim
 			super();
 
 			this.source = source;
+			
+			evStart = new Event(TextAnimEvent.START);
+			evProgress = new Event(TextAnimEvent.PROGRESS);
+			evComplete = new Event(TextAnimEvent.COMPLETE);
+			
 			flow = new ActionFlow();
+			flow.onStart = startHandler; 
+			flow.onProgress = progressHandler; 
+			flow.onComplete = completeHandler; 
 
 			blocks = [];
 			text = source.htmlText;
@@ -164,6 +154,10 @@ package flupie.textanim
 
 			flow.clear();
 			flow = null;
+			
+			evStart = null;
+			evProgress = null;
+			evComplete = null;
 
 			if (parent != null) {
 				if (parent.contains(this)) parent.removeChild(this);
@@ -195,7 +189,7 @@ package flupie.textanim
 				}
 			}
 		}
-		
+
 		private function createBlocks():void
 		{
 			if (blocks.length > 0) removeBlocks();
@@ -264,6 +258,24 @@ package flupie.textanim
 				});
 			}
 		}
+		
+		private function completeHandler():void
+		{
+			if (onComplete != null) onComplete();
+			dispatchEvent(evComplete); 
+		}    
+		
+		private function progressHandler():void
+		{        
+			if (onProgress != null) onProgress();
+			dispatchEvent(evProgress); 
+		}
+		
+		private function startHandler():void
+		{         
+			if (onStart != null) onStart(); 
+			dispatchEvent(evStart); 
+		}
 
 	}
-} 
+}
