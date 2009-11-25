@@ -38,6 +38,9 @@ package flupie.textanim
 	import flash.events.EventDispatcher;
 	import flash.events.Event;
 	
+	/**
+	 * ActionFlow description
+	 */
 	public class ActionFlow extends EventDispatcher
 	{
 		public static const FIRST_TO_LAST:String = "firstToLast";

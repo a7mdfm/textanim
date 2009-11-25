@@ -27,6 +27,9 @@
 
 package flupie.textanim 
 {
+	/**
+	 * TextAnimEvent description
+	 */
 	public class TextAnimEvent {
 
 		public static const COMPLETE:String = "complete";
