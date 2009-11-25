@@ -27,19 +27,16 @@
 
 package flupie.textanim
 {
-	/**
-	 * flupie.textanim
-	 *	
-	 * @author		Guilherme Almeida, Mauro de Tarso
-	 */
-
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.PixelSnapping;
 	import flash.display.Shape;
 	import flash.geom.Matrix;
 	import flash.geom.Rectangle;
-
+	
+	/**
+	 * TextAnimTools description
+	 */
 	public class TextAnimTools
 	{
 		public static function toBitmap(textAnim:TextAnim, smooth:Boolean = false):void

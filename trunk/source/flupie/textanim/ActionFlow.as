@@ -27,16 +27,12 @@
 
 package flupie.textanim
 {
-	/**
-	 * flupie.textanim.TextAnim
-	 *	
-	 * @author		Guilherme Almeida, Mauro de Tarso
-	 * @private
-	 */
- 
 	import flash.utils.clearInterval;
 	import flash.utils.setTimeout;
-	
+
+	/**
+	 * ActionFlow description
+	 */
 	public class ActionFlow
 	{
 		public static const FIRST_TO_LAST:String = "firstToLast";

@@ -34,9 +34,7 @@ package flupie.textanim
 	import flash.utils.setTimeout;
 	
 	/**
-	 * flupie.textanim.TextAnim
-	 *	
-	 * TextAnim is a abstract and extensible Class to create text animations.
+	 * <code>TextAnim</code> is a abstract and extensible Class to create text animations.
 	 */
 	public class TextAnim extends Sprite
 	{
@@ -68,14 +66,25 @@ package flupie.textanim
 		public var interval:Number = 100;
 		
 		/**
-		* Time is to limit the time for dispatching blocks, it overwrites the interval.
-		* 
+		* Time is to limit the time for dispatching blocks.
+		* <p>If it has a value different 0 that's overwrites the interval.</p>
+		*	
 		* @default 0
 		*/
 		public var time:Number = 0;
 		
-		public var blocks:Array;
+		/**
+		* animMode description.
+		*	
+		* @default ActionFlow.FIRST_TO_LAST
+		* @see breakMode
+		*/
 		public var animMode:String = ActionFlow.FIRST_TO_LAST;
+		
+		/**
+		* blocks array of blocks.
+		*/
+		public var blocks:Array;
 		
 		private var _breakMode:String = Breaker.BREAK_IN_LETTERS;
 		private var _text:String;
@@ -187,9 +196,6 @@ package flupie.textanim
 			}
 		}
 		
-		/**
-		* @private
-		*/
 		private function createBlocks():void
 		{
 			if (blocks.length > 0) removeBlocks();

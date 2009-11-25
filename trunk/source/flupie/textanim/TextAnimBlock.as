@@ -27,12 +27,6 @@
 
 package flupie.textanim
 {
-	/**
-	 * flupie.textanim.TextAnim
-	 *	
-	 * @author		Guilherme Almeida, Mauro de Tarso
-	 */
-	
 	import flash.display.Bitmap;
 	import flash.display.Shape;
 	import flash.display.Sprite;
@@ -40,6 +34,9 @@ package flupie.textanim
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFormat;
 
+	/**
+	 * TextAnimBlock description
+	 */
 	public class TextAnimBlock extends Sprite
 	{
 		public var textAnim:TextAnim;
