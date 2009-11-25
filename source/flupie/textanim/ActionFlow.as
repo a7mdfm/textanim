@@ -27,26 +27,36 @@
 
 package flupie.textanim
 {
-	import flash.utils.clearInterval;
-	import flash.utils.setTimeout;
-
 	/**
-	 * ActionFlow description
+	 * flupie.textanim.TextAnim
+	 *	
+	 * @author		Guilherme Almeida, Mauro de Tarso
 	 */
-	public class ActionFlow
+ 
+	import flash.utils.clearTimeout;
+	import flash.utils.setTimeout;
+	import flash.events.EventDispatcher;
+	import flash.events.Event;
+	
+	public class ActionFlow extends EventDispatcher
 	{
 		public static const FIRST_TO_LAST:String = "firstToLast";
 		public static const LAST_TO_FIRST:String = "lastToFirst";
 		public static const CENTER_TO_EDGES:String = "centerToEdges";
 		public static const EDGES_TO_CENTER:String = "edgesToCenter";
 		public static const RANDOM:String = "random";
-
+		
 		public var way:String = FIRST_TO_LAST;
 		public var time:Number = 1000;
 		public var ease:Number = 0;
+		
+		public var onStart:Function;
+		public var onProgress:Function;
+		public var onComplete:Function;
 
 		private var timeout:uint;
 		private var queue:Array = null;
+		private var lastIndex:int = 0;
 
 		public function ActionFlow()
 		{
@@ -79,12 +89,14 @@ package flupie.textanim
 				
 				default : processFirstToLast();
 			}
+			
+			if (onStart != null) onStart();
 		}
 		
 		public function stop():void
 		{
 			for(var i:Number=0; i<queue.length; i++){
-				clearInterval(queue[i].timer);
+				clearTimeout(queue[i].timer);
 			}
 		}
 		
@@ -97,7 +109,11 @@ package flupie.textanim
 		private function setTimer(i:Number, num:Number):void
 		{
 			var interv:Number = time/queue.length;
-			queue[i].timer = setTimeout(queue[i].funct, num*interv, [i]);
+			queue[i].timer = setTimeout(function():void {
+				queue[i].funct(i);
+				if (onProgress != null) onProgress();
+				if (i == lastIndex && onComplete != null) onComplete();
+			}, num*interv);
 		}
 		
 		private function processFirstToLast():void
@@ -105,6 +121,7 @@ package flupie.textanim
 			for(var i:Number=0; i<queue.length; i++){
 				setTimer(i, i);
 			}
+			lastIndex = queue.length - 1;
 		}
 		
 		private function processLastToFirst():void
@@ -114,6 +131,7 @@ package flupie.textanim
 				num--;
 				setTimer(i, num);
 			}
+			lastIndex = 0;
 		}
 		
 		private function processCenterToEdges():void
@@ -122,7 +140,8 @@ package flupie.textanim
 			for(var i:Number=0; i<queue.length; i++){
 				var num:Number=Math.abs(i-middle);
 				setTimer(i, num);
-			}
+			} 
+			lastIndex = 0;
 		}
 		
 		private function processEdgesToCenter():void
@@ -132,6 +151,7 @@ package flupie.textanim
 				var num:Number=middle-Math.abs(middle-i);
 				setTimer(i, num);
 			}
+			lastIndex = middle;
 		}
 		
 		private function processRandom():void
@@ -153,6 +173,7 @@ package flupie.textanim
 							}
 						}
 					}
+					lastIndex = num;  
 					temp.push(num);
 					setTimer(i, num);
 				}
