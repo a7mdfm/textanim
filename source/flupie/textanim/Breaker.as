@@ -31,7 +31,8 @@ package com.flupie.anim
 	 * com.flupie.anim.TextAnim
 	 *	
 	 * @author		Guilherme Almeida, Mauro de Tarso
-	 */
+	 * @private
+	 */ 
 
 	import flash.text.TextField;
 	
