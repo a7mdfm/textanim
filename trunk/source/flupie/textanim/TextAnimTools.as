@@ -34,11 +34,19 @@ package flupie.textanim
 	import flash.geom.Matrix;
 	import flash.geom.Rectangle;
 	
+	
 	/**
 	 * TextAnimTools description
 	 */
 	public class TextAnimTools
 	{
+		public static const ANCHOR_TOP:String = "T";
+		public static const ANCHOR_MIDDLE:String = "M";
+		public static const ANCHOR_BOTTOM:String = "B";
+		public static const ANCHOR_LEFT:String = "L";
+		public static const ANCHOR_CENTER:String = "C";
+		public static const ANCHOR_RIGHT:String = "R";
+		
 		public static function toBitmap(textAnim:TextAnim, smooth:Boolean = false):void
 		{	
 			textAnim.applyToAllBlocks(function (block:TextAnimBlock):void {
@@ -141,6 +149,51 @@ package flupie.textanim
 				block.addChild(block.shape);
 				block.addChild(block.textField);
 			})
+		}
+		
+		public static function blocksAnchor(textAnim:TextAnim, posX:String, posY:String, ignoreVisualBounds:Boolean = false):void
+		{
+			textAnim.applyToAllBlocks(function (block:TextAnimBlock):void {
+				var rect:Rectangle = block.getBounds(block);
+				var bmpData:BitmapData;
+				if (!ignoreVisualBounds) {
+					bmpData = new BitmapData(block.width*2, block.height*2, true, 0x00000000);
+					bmpData.draw(block);
+				    rect = bmpData.getColorBoundsRect(0xFFFFFF00, 0x00000000, false);
+				}
+
+				switch (posX) {
+					case ANCHOR_LEFT :
+						block.textField.x = -rect.x;
+					break;
+					case ANCHOR_CENTER :
+						block.textField.x = -rect.x - rect.width/2;
+					break;
+					case ANCHOR_RIGHT :
+						block.textField.x = -rect.x - rect.width;
+					break;
+				}
+				
+				switch (posY) {
+					case ANCHOR_TOP :
+						block.textField.y = -rect.y;
+					break;
+					case ANCHOR_MIDDLE :
+						block.textField.y = -rect.y - rect.height/2;
+					break;
+					case ANCHOR_BOTTOM :
+						block.textField.y = -rect.y - rect.height;
+					break;
+				}
+				
+				block.x = block.posX = block.posX - block.textField.x;
+				block.y = block.posY = block.posY - block.textField.y;
+				
+				if (bmpData) {
+					bmpData.dispose();
+					bmpData = null;
+				}
+			});
 		}
 
 	}
