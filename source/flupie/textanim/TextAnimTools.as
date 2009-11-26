@@ -36,7 +36,7 @@ package flupie.textanim
 	
 	
 	/**
-	 * TextAnimTools description
+	 * TextAnimTools description...
 	 */
 	public class TextAnimTools
 	{
@@ -47,6 +47,17 @@ package flupie.textanim
 		public static const ANCHOR_CENTER:String = "C";
 		public static const ANCHOR_RIGHT:String = "R";
 		
+		
+		/**
+		* Convert blocks to Bitmap, for default all blocks contains
+		* one TextField inside, <code>toBitmap</code> tool convert 
+		* all TextFields to Bitmap.
+		*
+		* @param textAnim Instance of TextAnim.
+		* @param smooth Allow smooth bitmap.
+		* 
+		* @see toVector
+		*/
 		public static function toBitmap(textAnim:TextAnim, smooth:Boolean = false):void
 		{	
 			textAnim.applyToAllBlocks(function (block:TextAnimBlock):void {
@@ -78,6 +89,13 @@ package flupie.textanim
 			});
 		}
 		
+		/**
+		* toVector description...
+		*
+		* @param textAnim Instance of TextAnim.
+		* 
+		* @see setPattern
+		*/
 		public static function toVector(textAnim:TextAnim):void
 		{
 			textAnim.applyToAllBlocks(function (block:TextAnimBlock):void {
@@ -96,6 +114,15 @@ package flupie.textanim
 			});
 		}
 		
+		/**
+		* setPattern description...
+		*
+		* @param textAnim Instance of TextAnim.
+		* @param img The texture to apply pattern on blocks
+		* @param stretch To fixed size texture to black stretch
+		*
+		* @see setGradientLinear
+		*/
 		public static function setPattern(textAnim:TextAnim, img:*, stretch:Boolean = false):void
 		{
 			textAnim.applyToAllBlocks(function (block:TextAnimBlock):void {
@@ -130,6 +157,17 @@ package flupie.textanim
 			});
 		}
 		
+		/**
+		* setPattern description...
+		*
+		* @param textAnim Instance of TextAnim.
+		* @param colors description...
+		* @param angle description...
+		* @param alphas description...
+		* @param ratios description...
+		*
+		* @see setGradientLinear
+		*/
 		public static function setGradientLinear(textAnim:TextAnim, colors:Array, angle:Number = 0, alphas:Array = null, ratios:Array = null):void
 		{
 			textAnim.applyToAllBlocks(function (block:TextAnimBlock):void {
@@ -151,6 +189,16 @@ package flupie.textanim
 			})
 		}
 		
+		/**
+		* setPattern description...
+		*
+		* @param textAnim Instance of TextAnim.
+		* @param posX description...
+		* @param posY description...
+		* @param ignoreVisualBounds description...
+		*
+		* @see toBitmap
+		*/
 		public static function blocksAnchor(textAnim:TextAnim, posX:String, posY:String, ignoreVisualBounds:Boolean = false):void
 		{
 			textAnim.applyToAllBlocks(function (block:TextAnimBlock):void {

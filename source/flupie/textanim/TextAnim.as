@@ -36,6 +36,7 @@ package flupie.textanim
 
 	/**
 	 * <code>TextAnim</code> is a abstract and extensible Class to create text animations.
+	 *
 	 */
 	public class TextAnim extends Sprite
 	{
@@ -48,19 +49,21 @@ package flupie.textanim
 		public static const ANIM_TO_CENTER:String = ActionFlow.EDGES_TO_CENTER;
 		public static const ANIM_TO_EDGES:String = ActionFlow.CENTER_TO_EDGES;
 		public static const ANIM_RANDOM:String = ActionFlow.RANDOM;  
-
+		
 		/**
-		* TextField
+		* The original TextField instance.
+		* <p>That's can be whatever TextField instance, but you need to make sure to embed font</p>
 		*/
 		public var source:TextField;
 		
 		/**
-		* effects array or function.
+		* effects is a list <code>Array</code> of function. Will be called for all blocks
+		* according to the interval specified.
 		*/
 		public var effects:*;
 		
 		/**
-		* interval for dispatch blocks, the default.
+		* interval for dispatch blocks, description...
 		* 
 		* @default 100
 		*/
@@ -74,30 +77,50 @@ package flupie.textanim
 		*/
 		public var time:Number = 0;
 		
+		/**
+		* Callback function called when the TextAnim start
+		*/
 		public var onStart:Function;
-		public var onProgress:Function;
-		public var onComplete:Function;
-		
-		private var evStart:Event;
-		private var evProgress:Event;
-		private var evComplete:Event;
 		
 		/**
-		* animMode description.
+		* Callback function called during the blocks are dispatch
+		*/
+		public var onProgress:Function;
+		
+		/**
+		* Callback function called it's done, all the blocks was dispatch 
+		*/
+		public var onComplete:Function;
+		
+		/**
+		* animMode description...
 		*       
 		* @default ActionFlow.FIRST_TO_LAST
 		* @see breakMode
 		*/
 		public var animMode:String = ActionFlow.FIRST_TO_LAST;
 		
-		private var _breakMode:String = Breaker.BREAK_IN_LETTERS;
-
-		private var _text:String;
+		/**
+		* blocks is a public array contains all blocks
+		*/
 		public var blocks:Array;
-
-		private var flow:ActionFlow;
+		
+		private var _breakMode:String = Breaker.BREAK_IN_LETTERS;
+		private var _text:String;
 		private var _blocksVisibility:Boolean = true;
-
+		private var flow:ActionFlow;
+		private var evStart:Event;
+		private var evProgress:Event;
+		private var evComplete:Event;
+		
+		/**
+		* The constructor recive your TextField instance
+		*
+		* @param source The TextField instance
+		* @param autoReplace To make <code>swapChildren</code> of original TextField to TextAnim instance 
+		* 
+		* @see stop
+		*/
 		public function TextAnim(source:TextField, autoReplace:Boolean = true)
 		{
 			super();
@@ -128,28 +151,39 @@ package flupie.textanim
 			}
 		}
 
-		public function set text(val:String):void
+		/**
+		* To change text, that's will restart all.
+		*	
+		* @param value 
+		*/
+		public function set text(value:String):void
 		{
-			source.htmlText = val;
+			source.htmlText = value;
 			createBlocks();
 		}
 
-		public function get text():String
-		{
-			return source.text;
-		}
+		public function get text():String { return source.text; }
 
-		public function set breakMode(val:String):void
+		/**
+		* breakMode is a setter to specify how the TextAnim will breack the text block.
+		*	
+		* @param value 
+		*/
+		public function set breakMode(value:String):void
 		{
-			_breakMode = val;
+			_breakMode = value;
 			createBlocks();
 		}
 
-		public function get breakMode():String
-		{
-			return _breakMode;
-		}
+		public function get breakMode():String { return _breakMode; }
 
+		/**
+		* start is the go ahead function.
+		*
+		* @param delay Time to wait before start.
+		* 
+		* @see stop
+		*/
 		public function start(delay:Number = 0):void
 		{
 			if (delay == 0) {
@@ -163,11 +197,19 @@ package flupie.textanim
 			}
 		}
 
+		/**
+		* stop to dispatch blocks
+		* 
+		* @see dispose
+		*/
 		public function stop():void
 		{
 			flow.stop();
 		}
 
+		/**
+		* dispose method clear all internal reference and stop progress
+		*/
 		public function dispose():void
 		{
 			if (flow == null) return;
@@ -191,6 +233,9 @@ package flupie.textanim
 			source = null;
 		}
 
+		/**
+		* setBlocksVisibility description...
+		*/
 		public function setBlocksVisibility(visibility:Boolean):void
 		{
 			_blocksVisibility = visibility;
@@ -199,6 +244,9 @@ package flupie.textanim
 			})
 		}
 
+		/**
+		* setBlocksVisibility description...
+		*/
 		public function applyEffect(blockIndex:int):void
 		{
 			var effectList:Array = effects is Array ? effects : [effects];
@@ -212,6 +260,16 @@ package flupie.textanim
 						eff(bl);
 					}
 				}
+			}
+		}
+
+		/**
+		* applyToAllBlocks description...
+		*/
+		public function applyToAllBlocks(act:Function):void
+		{
+			for (var i:int = 0; i < blocks.length; i++) {
+				act(blocks[i]);
 			}
 		}
 
@@ -240,13 +298,6 @@ package flupie.textanim
 				block = null
 			});
 			blocks = [];
-		}
-
-		public function applyToAllBlocks(act:Function):void
-		{
-			for (var i:int = 0; i < blocks.length; i++) {
-				act(blocks[i]);
-			}
 		}
 
 		private function blockSettings(block:TextAnimBlock):void
