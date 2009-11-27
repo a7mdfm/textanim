@@ -27,6 +27,7 @@
 
 package flupie.textanim
 {	
+	import flash.display.BitmapData;
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
@@ -48,7 +49,13 @@ package flupie.textanim
 		public static const ANIM_TO_LEFT:String = ActionFlow.LAST_TO_FIRST;
 		public static const ANIM_TO_CENTER:String = ActionFlow.EDGES_TO_CENTER;
 		public static const ANIM_TO_EDGES:String = ActionFlow.CENTER_TO_EDGES;
-		public static const ANIM_RANDOM:String = ActionFlow.RANDOM;  
+		public static const ANIM_RANDOM:String = ActionFlow.RANDOM;
+		
+		public static const ANCHOR_TOP:String = "T";
+		public static const ANCHOR_BOTTOM:String = "B";
+		public static const ANCHOR_LEFT:String = "L";
+		public static const ANCHOR_CENTER:String = "C";
+		public static const ANCHOR_RIGHT:String = "R";  
 		
 		/**
 		* The original TextField instance.
@@ -105,6 +112,9 @@ package flupie.textanim
 		*/
 		public var blocks:Array;
 		
+		public var anchorX:String = ANCHOR_CENTER;
+		public var anchorY:String = ANCHOR_CENTER;
+		
 		private var _breakMode:String = Breaker.BREAK_IN_LETTERS;
 		private var _text:String;
 		private var _blocksVisibility:Boolean = true;
@@ -146,7 +156,8 @@ package flupie.textanim
 				if (source.parent != null) {
 					source.parent.addChild(this);
 					source.parent.swapChildren(this, source);
-					source.parent.removeChild(source);
+					//source.parent.removeChild(source);
+					source.alpha = .1;
 				}
 			}
 		}
@@ -272,6 +283,15 @@ package flupie.textanim
 				act(blocks[i]);
 			}
 		}
+		
+		public function setAnchor(anchorX:String, anchorY:String):void
+		{
+			this.anchorX = anchorX;
+			this.anchorY = anchorY;
+			applyToAllBlocks(function(block:TextAnimBlock):void{
+				blockSettings(block);
+			})
+		}
 
 		private function createBlocks():void
 		{
@@ -308,11 +328,43 @@ package flupie.textanim
 
 			var modX:Number = (fmt.indent as Number) + (fmt.leftMargin as Number);
 
+			block.textField.x = block.textField.y = block.texture.x = block.texture.y = 0;
 			block.posX = block.x = bounds.x - 2 - modX;
 			block.posY = block.y = bounds.y - 2;
 			block.textField.setTextFormat(fmt);
-
+			
 			block.visible = _blocksVisibility;
+			
+			bounds = TextAnimTools.getColorBounds(block);
+			
+			var px:Number;
+			var py:Number;
+			
+			switch (anchorX) {
+				case ANCHOR_LEFT :
+					px = -bounds.x;
+				break;
+				case ANCHOR_CENTER :
+					px = -bounds.x - bounds.width/2;
+				break;
+				case ANCHOR_RIGHT :
+					px = -bounds.x - bounds.width;
+				break;
+			}
+			
+			switch (anchorY) {
+				case ANCHOR_TOP :
+					py = -bounds.y;
+				break;
+				case ANCHOR_CENTER :
+					py = -bounds.y - bounds.height/2;
+				break;
+				case ANCHOR_BOTTOM :
+					py = -bounds.y - bounds.height;
+				break;
+			}
+
+			block.updateRegistration(px, py);
 		}
 
 		private function flowSettings():void

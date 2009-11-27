@@ -48,11 +48,13 @@ package flupie.textanim
 		public var posX:Number = 0;
 		public var posY:Number = 0;
 		
-		public var bmp:Bitmap;
-		public var shape:Shape;
+		public var texture:Sprite;
 		
 		public function TextAnimBlock(textAnim:TextAnim, index:int)
 		{
+			texture = new Sprite();
+			addChild(texture);
+			
 			this.textAnim = textAnim;
 			this.index = index;
 			
@@ -60,8 +62,6 @@ package flupie.textanim
 
 			textField.selectable = false;
 			textField.embedFonts = true;
-			textField.x = 0;
-			textField.y = 0;
 			textField.autoSize = TextFieldAutoSize.LEFT;
 			
 			addChild(textField);
@@ -88,21 +88,35 @@ package flupie.textanim
 		
 		public function dispose():void
 		{
-			removeChild(textField);
+			if (contains(textField)) removeChild(textField);
 			textField = null;
 			textFormat = null;
-			if (bmp != null) {
-				if (contains(bmp)) removeChild(bmp);
-				bmp.bitmapData.dispose();
-				bmp.bitmapData = null;
-				bmp = null;
-			}
-			
-			if (shape != null) {
-				if (contains(shape)) removeChild(shape);
-				shape.graphics.clear();
-				shape = null;
-			}
+			clearTexture();
+			if (contains(texture)) removeChild(texture);
+			texture = null;
 		}
+
+		public function updateRegistration(px:Number, py:Number):void
+		{
+			textField.x = px;
+			textField.y = py;
+			texture.x = textField.x;
+			texture.y = textField.y;
+			x = posX = posX - textField.x;
+			y = posY = posY - textField.y;
+		}
+		
+		public function clearTexture():void
+		{
+			for (var i:int = 0; i < texture.numChildren ; i++) {
+				var c:* = texture.getChildAt(i);
+				texture.removeChild(c);
+				c = null;
+				i--;
+			}
+			texture.mask = null;
+			if (textField != null) addChild(textField);
+		}
+		
 	}
 }
