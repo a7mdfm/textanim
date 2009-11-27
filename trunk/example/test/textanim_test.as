@@ -43,8 +43,7 @@ package
 			anim.animMode = TextAnim.ANIM_TO_LEFT;
 			anim.interval = 40;
 			anim.effects = [eff0, eff1];
-			anim.setBlocksVisibility(false);
-			addChild(anim);
+			anim.blocksVisible = false;
 			
 			anim.start();
 			

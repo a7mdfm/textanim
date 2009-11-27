@@ -122,7 +122,7 @@ package flupie.textanim
 		
 		private var _breakMode:String = Breaker.BREAK_IN_LETTERS;
 		private var _text:String;
-		private var _blocksVisibility:Boolean = true;
+		private var _blocksVisible:Boolean = true;
 		private var flow:ActionFlow;
 		private var evStart:Event;
 		private var evProgress:Event;
@@ -256,12 +256,17 @@ package flupie.textanim
 		* setBlocksVisibility This method is very useful when you need to control the visibility of the blocks. 
 		* Some animations require the blocks disappear to enter or already on the screen and do something after.
 		*/
-		public function setBlocksVisibility(visibility:Boolean):void
+		public function set blocksVisible(val:Boolean):void
 		{
-			_blocksVisibility = visibility;
+			_blocksVisible = val;
 			applyToAllBlocks(function(block:TextAnimBlock):void {
-				block.visible = visibility;
+				block.visible = val;
 			})
+		}
+		
+		public function get blocksVisible():Boolean
+		{
+			return _blocksVisible;
 		}
 
 		/**
@@ -349,7 +354,7 @@ package flupie.textanim
 			block.posY = block.y = bounds.y - 2;
 			block.textField.setTextFormat(fmt);
 			
-			block.visible = _blocksVisibility;
+			block.visible = _blocksVisible;
 			
 			bounds = TextAnimTools.getColorBounds(block);
 			
