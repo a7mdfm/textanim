@@ -27,13 +27,12 @@
 
 package flupie.textanim
 {	
-	import flash.display.BitmapData;
 	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.utils.setTimeout;
-	import flash.events.Event;
 
 	/**
 	 * <code>TextAnim</code> is a extensible Class to create text animations.
@@ -119,6 +118,8 @@ package flupie.textanim
 		public var anchorX:String = ANCHOR_CENTER;
 		public var anchorY:String = ANCHOR_CENTER;
 		
+		public var onBlocksCreated:Function;
+		
 		private var _breakMode:String = Breaker.BREAK_IN_LETTERS;
 		private var _text:String;
 		private var _blocksVisibility:Boolean = true;
@@ -163,7 +164,6 @@ package flupie.textanim
 					source.parent.addChild(this);
 					source.parent.swapChildren(this, source);
 					source.parent.removeChild(source);
-					//source.alpha = .1;
 				}
 			}
 		}
@@ -248,6 +248,8 @@ package flupie.textanim
 			}
 
 			source = null;
+			
+			onStart = onProgress = onComplete = onBlocksCreated = null;
 		}
 
 		/**
@@ -318,6 +320,8 @@ package flupie.textanim
 
 				blockSettings(block);
 			}
+			
+			if (onBlocksCreated != null) onBlocksCreated(); 
 		}
 
 		private function removeBlocks():void
@@ -377,6 +381,7 @@ package flupie.textanim
 			}
 
 			block.updateRegistration(px, py);
+			
 		}
 
 		private function flowSettings():void

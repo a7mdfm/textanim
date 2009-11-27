@@ -74,6 +74,10 @@ package flupie.textanim
 				if (block.contains(block.textField)) block.removeChild(block.textField);
 				
 			});
+			
+			textAnim.onBlocksCreated = function():void {
+				toBitmap(textAnim, smooth);
+			};
 		}
 		
 		/**
@@ -103,21 +107,24 @@ package flupie.textanim
 			textAnim.applyToAllBlocks(function (block:TextAnimBlock):void {
 				
 				var bounds:Rectangle = getColorBounds(block);
+				var pattern:BitmapData;
 				
 				block.clearTexture();
 				
 				if (stretch) {
-					img.width = bounds.width + 30;
-					img.height = bounds.height + 30;
+					pattern = new BitmapData(bounds.width, bounds.height, true, 0xffffff);
+					var scX:Number = img.scaleX;
+					var scY:Number = img.scaleY;
+					img.width = bounds.width;
+					img.height = bounds.height;
+					var mtx:Matrix = new Matrix(img.scaleX, 0, 0, img.scaleY, 0, 0);
+					pattern.draw(img, mtx);
+					img.width = scX;
+					img.height = scY;
+				} else {
+					pattern = new BitmapData(img.width, img.height, true, 0xffffff);
+					pattern.draw(img);
 				}
-				
-				block.addChild(img);
-				block.removeChild(block.textField);
-				
-				var pattern:BitmapData = new BitmapData(img.width, img.height, true, 0xffffff);
-				pattern.draw(block);
-				
-				block.removeChild(img);
 				
 				var shape:Shape = new Shape();
 				shape.graphics.beginBitmapFill(pattern);
@@ -125,8 +132,11 @@ package flupie.textanim
 				shape.graphics.endFill();
 				block.texture.mask = block.textField;
 				block.texture.addChild(shape);
-				block.addChild(block.textField);
 			});
+			
+			textAnim.onBlocksCreated = function():void {
+				setPattern(textAnim, img, stretch);
+			};
 		}
 		
 		/**
@@ -154,7 +164,11 @@ package flupie.textanim
 				block.texture.addChild(shape);
 				block.addChild(block.textField);
 				block.texture.mask = block.textField;
-			})
+			});
+			
+			textAnim.onBlocksCreated = function():void {
+				setGradientLinear(textAnim, colors, angle, alphas, ratios);
+			};
 		}
 		
 		/**
