@@ -163,7 +163,7 @@ package flupie.textanim
 					source.parent.addChild(this);
 					source.parent.swapChildren(this, source);
 					source.parent.removeChild(source);
-					source.alpha = .1;
+					//source.alpha = .1;
 				}
 			}
 		}
