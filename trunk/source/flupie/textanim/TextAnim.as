@@ -36,7 +36,7 @@ package flupie.textanim
 	import flash.events.Event;
 
 	/**
-	 * <code>TextAnim</code> is a abstract and extensible Class to create text animations.
+	 * <code>TextAnim</code> is a extensible Class to create text animations.
 	 *
 	 */
 	public class TextAnim extends Sprite
@@ -59,18 +59,20 @@ package flupie.textanim
 		
 		/**
 		* The original TextField instance.
-		* <p>That's can be whatever TextField instance, but you need to make sure to embed font</p>
+		* <p>That's can be whatever TextField instance, but you need to make sure to embed font. The textanim will preserve all 
+		* settings TextFormat of the TextField has.</p>
 		*/
 		public var source:TextField;
 		
 		/**
-		* effects is a list <code>Array</code> of function. Will be called for all blocks
-		* according to the interval specified.
+		* Are the methods that will be called for all blocks according to the interval specified.
+		* <p>It is an Array containing all the functions of effects that will be applied, or simply just a function.</p>
+		* <p>Every effect works as a call and must receive a TextAnimBlock as parameter in order to animate as you want.</p>
 		*/
 		public var effects:*;
 		
 		/**
-		* interval for dispatch blocks, description...
+		* It is the interval in which the blocks will be dispatched
 		* 
 		* @default 100
 		*/
@@ -100,15 +102,17 @@ package flupie.textanim
 		public var onComplete:Function;
 		
 		/**
-		* animMode description...
-		*       
+		* animMode Is the way that the blocks of text will be cut.
+		*	
+		* <p>Can be <code>ANIM_TO_RIGHT, ANIM_TO_LEFT, ANIM_TO_CENTER, ANIM_TO_EDGES and ANIM_RANDOM</code></p>
+		*	
 		* @default ActionFlow.FIRST_TO_LAST
 		* @see breakMode
 		*/
 		public var animMode:String = ActionFlow.FIRST_TO_LAST;
 		
 		/**
-		* blocks is a public array contains all blocks
+		* blocks is a public Array contains all blocks
 		*/
 		public var blocks:Array;
 		
@@ -124,7 +128,9 @@ package flupie.textanim
 		private var evComplete:Event;
 		
 		/**
-		* The constructor recive your TextField instance
+		* The constructor recive your TextField instance. The textanim will preserve all settings TextFormat of the TextField has.
+		*	
+		* <p>You can specify that the autoReplace to FALSE, so the TextAnim will not do the swapChildren between TextAnim and TextField</p>
 		*
 		* @param source The TextField instance
 		* @param autoReplace To make <code>swapChildren</code> of original TextField to TextAnim instance 
@@ -156,10 +162,16 @@ package flupie.textanim
 				if (source.parent != null) {
 					source.parent.addChild(this);
 					source.parent.swapChildren(this, source);
-					//source.parent.removeChild(source);
+					source.parent.removeChild(source);
 					source.alpha = .1;
 				}
 			}
+		}
+
+		public function set text(value:String):void
+		{
+			source.htmlText = value;
+			createBlocks();
 		}
 
 		/**
@@ -167,33 +179,26 @@ package flupie.textanim
 		*	
 		* @param value 
 		*/
-		public function set text(value:String):void
-		{
-			source.htmlText = value;
-			createBlocks();
-		}
-
 		public function get text():String { return source.text; }
 
-		/**
-		* breakMode is a setter to specify how the TextAnim will breack the text block.
-		*	
-		* @param value 
-		*/
 		public function set breakMode(value:String):void
 		{
 			_breakMode = value;
 			createBlocks();
 		}
 
+		/**
+		* breakMode is a setter to specify how the TextAnim will breack the text block.
+		*	
+		* @param value 
+		* @see animMode
+		*/
 		public function get breakMode():String { return _breakMode; }
 
 		/**
 		* start is the go ahead function.
 		*
 		* @param delay Time to wait before start.
-		* 
-		* @see stop
 		*/
 		public function start(delay:Number = 0):void
 		{
@@ -219,7 +224,8 @@ package flupie.textanim
 		}
 
 		/**
-		* dispose method clear all internal reference and stop progress
+		* dispose method clear all internal reference and stop progress.
+		* And also will try to do a removeChild the instance of TextAnim
 		*/
 		public function dispose():void
 		{
@@ -245,7 +251,8 @@ package flupie.textanim
 		}
 
 		/**
-		* setBlocksVisibility description...
+		* setBlocksVisibility This method is very useful when you need to control the visibility of the blocks. 
+		* Some animations require the blocks disappear to enter or already on the screen and do something after.
 		*/
 		public function setBlocksVisibility(visibility:Boolean):void
 		{
@@ -256,7 +263,7 @@ package flupie.textanim
 		}
 
 		/**
-		* setBlocksVisibility description...
+		* applyEffect You can apply the effects starting from any one block, for that all <code>TextAnimBlock</code> has the property <code>index</code>.
 		*/
 		public function applyEffect(blockIndex:int):void
 		{
@@ -275,7 +282,9 @@ package flupie.textanim
 		}
 
 		/**
-		* applyToAllBlocks description...
+		* applyToAllBlocks To get all the blocks of the list of blocks. 
+		* <p>This method takes a callback function and will call it according to the amount of blocks. 
+		* This must receive a callback object of type as a parameter <code>TextAnimBlock</code></p>
 		*/
 		public function applyToAllBlocks(act:Function):void
 		{
@@ -293,6 +302,9 @@ package flupie.textanim
 			})
 		}
 
+		/**
+		 *	@private
+		 */
 		private function createBlocks():void
 		{
 			if (blocks.length > 0) removeBlocks();

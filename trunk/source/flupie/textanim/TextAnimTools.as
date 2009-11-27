@@ -34,9 +34,8 @@ package flupie.textanim
 	import flash.geom.Matrix;
 	import flash.geom.Rectangle;
 	
-	
 	/**
-	 * TextAnimTools description...
+	 *  You can apply all the extra tools for the treatment of blocks of text, bitmap pattern, and gradient vector.
 	 */
 	public class TextAnimTools
 	{
@@ -78,11 +77,9 @@ package flupie.textanim
 		}
 		
 		/**
-		* toVector description...
+		* toVector
 		*
 		* @param textAnim Instance of TextAnim.
-		* 
-		* @see setPattern
 		*/
 		public static function toVector(textAnim:TextAnim):void
 		{
@@ -93,7 +90,7 @@ package flupie.textanim
 		}
 		
 		/**
-		* setPattern description...
+		* setPattern You can take any Bitmap, Sprite or MovieClip to be a texture in the text.
 		*
 		* @param textAnim Instance of TextAnim.
 		* @param img The texture to apply pattern on blocks
@@ -133,15 +130,13 @@ package flupie.textanim
 		}
 		
 		/**
-		* setPattern description...
+		* You can create a linear gradient in the text
 		*
 		* @param textAnim Instance of TextAnim.
-		* @param colors description...
-		* @param angle description...
-		* @param alphas description...
-		* @param ratios description...
-		*
-		* @see setGradientLinear
+		* @param colors 
+		* @param angle 
+		* @param alphas 
+		* @param ratios 
 		*/
 		public static function setGradientLinear(textAnim:TextAnim, colors:Array, angle:Number = 0, alphas:Array = null, ratios:Array = null):void
 		{
@@ -162,6 +157,11 @@ package flupie.textanim
 			})
 		}
 		
+		/**
+		* Get color bounds.
+		*
+		* @param block 
+		*/
 		public static function getColorBounds(block:TextAnimBlock):Rectangle
 		{
 			var bmpData:BitmapData = new BitmapData(block.textField.width * 4, block.textField.height * 4, true, 0x00000000);
