@@ -35,21 +35,55 @@ package flupie.textanim
 	import flash.text.TextFormat;
 
 	/**
-	 * TextAnimBlock description
+	 * Represents a cut piece of text which is actually just a Sprite that preserves all 
+	 * the original properties of the initial position of the TextField.
 	 */
 	public class TextAnimBlock extends Sprite
 	{
+		/**
+		* Represents an instance of TextAnim that the block belongs.
+		*/		
 		public var textAnim:TextAnim;
+		
+		/**
+		* A common textField containing the text that this block is.
+		*/
 		public var textField:TextField;
+		
+		/**
+		* The TextFormat of the original text.
+		*/
 		public var textFormat:TextFormat;
+		
+		/**
+		* Index is very useful, works as ID block is the sequential numbering of the blocks starting from 0. 
+		* It is a number that can serve as a reference for calculations, and delays as to manipulate the animation.
+		*/		
 		public var index:int;
+		
+		/**
+		* ...
+		*/
 		public var firstLetterIndex:int;
 		
+		/**
+		* The original X position of the block, very useful for creating animations, this value is generated after all blocks are 
+		* created and positioned. With this you always know where the original X position of text.
+		*/		
 		public var posX:Number = 0;
+		
+		/**
+		* The original Y position of the block, very useful for creating animations, this value is generated after all blocks are 
+		* created and positioned. With this you always know where the original Y position of text.
+		*/		
 		public var posY:Number = 0;
 		
 		public var texture:Sprite;
 		
+		/**
+		 * TextAnimBlock is the most important object to manipulate your animations. No matter what you specify 
+		 * breakMode every effect will receive a TextAnimBlock so you can animate it.
+		 */
 		public function TextAnimBlock(textAnim:TextAnim, index:int)
 		{
 			texture = new Sprite();
@@ -81,10 +115,10 @@ package flupie.textanim
 			textField.setTextFormat(textFormat);
 		}
 		
-		public function get text():String
-		{
-			return textField.text;
-		}
+		/**
+		* You can change the content of individual text of a block at any time
+		*/
+		public function get text():String { return textField.text; }
 		
 		public function dispose():void
 		{
