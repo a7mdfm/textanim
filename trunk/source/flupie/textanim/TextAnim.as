@@ -35,7 +35,7 @@ package flupie.textanim
 	import flash.utils.setTimeout;
 
 	/**
-	 * <code>TextAnim</code> is a extensible Class to create text animations.
+	 * <code>TextAnim</code> is an extensible class to create text animations.
 	 *
 	 */
 	public class TextAnim extends Sprite
@@ -64,21 +64,22 @@ package flupie.textanim
 		public var source:TextField;
 		
 		/**
-		* Are the methods that will be called for all blocks according to the interval specified.
-		* <p>It is an Array containing all the functions of effects that will be applied, or simply just a function.</p>
+		* Are the effect functions that will be called for all blocks, according to the interval specified.
+		* 
+		* <p>It can be an Array of functions or just one function.</p>
 		* <p>Every effect works as a call and must receive a TextAnimBlock as parameter in order to animate as you want.</p>
 		*/
 		public var effects:*;
 		
 		/**
-		* It is the interval in which the blocks will be dispatched
+		* It is the interval that effects will be dispatched for each block.
 		* 
 		* @default 100
 		*/
 		public var interval:Number = 100;
 		
 		/**
-		* Time is to limit the time for dispatching blocks.
+		* Indicates the totalTime of effects dispatches.
 		* <p>If it has a value different 0 that's overwrites the interval.</p>
 		*       
 		* @default 0
@@ -86,39 +87,60 @@ package flupie.textanim
 		public var time:Number = 0;
 		
 		/**
-		* Callback function called when the TextAnim start
+		* Callback function called when the TextAnim start.
 		*/
 		public var onStart:Function;
 		
 		/**
-		* Callback function called during the blocks are dispatch
+		* Callback function called when each effect dispatch.
 		*/
 		public var onProgress:Function;
 		
 		/**
-		* Callback function called it's done, all the blocks was dispatch 
+		* Callback function called when the last effect was dispatched .
 		*/
 		public var onComplete:Function;
 		
 		/**
-		* animMode Is the way that the blocks of text will be cut.
+		* Callback function called when the blocks are created, or recreated.
 		*	
-		* <p>Can be <code>ANIM_TO_RIGHT, ANIM_TO_LEFT, ANIM_TO_CENTER, ANIM_TO_EDGES and ANIM_RANDOM</code></p>
-		*	
-		* @default ActionFlow.FIRST_TO_LAST
-		* @see breakMode
+		* <p>It occurs when the <code>breakMode</code> or <code>text</code> changes.</p> 
 		*/
-		public var animMode:String = ActionFlow.FIRST_TO_LAST;
+		public var onBlocksCreated:Function;
 		
 		/**
-		* blocks is a public Array contains all blocks
+		* Is the way of the effects dispatches will be occurs.
+		*		
+		* <p>Can be <code>ANIM_TO_RIGHT, ANIM_TO_LEFT, ANIM_TO_CENTER, ANIM_TO_EDGES and ANIM_RANDOM</code></p>
+		*	
+		* @default TextAnim.ANIM_TO_RIGHT
+		* @see breakMode
+		*/
+		public var animMode:String = ANIM_TO_RIGHT;
+		
+		/**
+		* It stores the TextAnimBlocks.
 		*/
 		public var blocks:Array;
 		
+		/**
+		* The horizontal registration of each TextAnimBlock.
+		*
+		* <p>It can be <code>TextAnim.ANCHOR_CENTER, TextAnim.ANCHOR_LEFT, TextAnim.ANCHOR_RIGHT</code></p>	
+		* @default TextAnim.ANCHOR_CENTER;
+		* @see setAnchor	
+		*/
 		public var anchorX:String = ANCHOR_CENTER;
+		
+		/**
+		* The vertical registration of each TextAnimBlock.
+		*
+		* <p>It can be <code>TextAnim.ANCHOR_CENTER, TextAnim.ANCHOR_TOP, TextAnim.ANCHOR_BOTTOM</code></p>	
+		* @default TextAnim.ANCHOR_CENTER;
+		* @see setAnchor	
+		*/
 		public var anchorY:String = ANCHOR_CENTER;
 		
-		public var onBlocksCreated:Function;
 		
 		private var _breakMode:String = Breaker.BREAK_IN_LETTERS;
 		private var _text:String;
@@ -128,15 +150,16 @@ package flupie.textanim
 		private var evProgress:Event;
 		private var evComplete:Event;
 		
+		
 		/**
-		* The constructor recive your TextField instance. The textanim will preserve all settings TextFormat of the TextField has.
+		* Contrutor. Receives a TextField instance and instruction to replace that automatically.
 		*	
-		* <p>You can specify that the autoReplace to FALSE, so the TextAnim will not do the swapChildren between TextAnim and TextField</p>
+		* <p>Using <code>autoReplace = false</code>, you must add the TextAnim instance in the displayList manually.
+		* By default, autoReplace is <code>true</code>. It means that TextAnim will do the addChild and position settings job.</p>
 		*
-		* @param source The TextField instance
-		* @param autoReplace To make <code>swapChildren</code> of original TextField to TextAnim instance 
+		* @param source The TextField instance that TextAnim will be based.
+		* @param autoReplace Do a replacement, removing the source and placing this TextAnim instance in the same scope, with same positions. (works only if the source textfield was in display list). 
 		* 
-		* @see stop
 		*/
 		public function TextAnim(source:TextField, autoReplace:Boolean = true)
 		{
@@ -167,7 +190,7 @@ package flupie.textanim
 				}
 			}
 		}
-
+		
 		public function set text(value:String):void
 		{
 			source.htmlText = value;
@@ -175,9 +198,8 @@ package flupie.textanim
 		}
 
 		/**
-		* To change text, that's will restart all.
-		*	
-		* @param value 
+		* To change the text, then all the blocks will be recreated.
+		*
 		*/
 		public function get text():String { return source.text; }
 
@@ -188,17 +210,19 @@ package flupie.textanim
 		}
 
 		/**
-		* breakMode is a setter to specify how the TextAnim will breack the text block.
-		*	
-		* @param value 
-		* @see animMode
+		* To specify how the TextAnim will break the text.
+		*
+		* <p>The text can be broken in letter, word or line blocks.</p>	
+		*		
+		* @param value
 		*/
 		public function get breakMode():String { return _breakMode; }
 
 		/**
-		* start is the go ahead function.
+		* Starts the flow of effects dispatches.
 		*
-		* @param delay Time to wait before start.
+		* @param delay Time to wait before the first dispatch, in milliseconds.
+		* @see stop
 		*/
 		public function start(delay:Number = 0):void
 		{
@@ -214,9 +238,9 @@ package flupie.textanim
 		}
 
 		/**
-		* stop to dispatch blocks
+		* Stops the flow of effects dispatches.
 		* 
-		* @see dispose
+		* @see start
 		*/
 		public function stop():void
 		{
@@ -224,8 +248,7 @@ package flupie.textanim
 		}
 
 		/**
-		* dispose method clear all internal reference and stop progress.
-		* And also will try to do a removeChild the instance of TextAnim
+		* Clear all blocks, internal references, stops the progress and kill the TextAnim instance.
 		*/
 		public function dispose():void
 		{
@@ -252,10 +275,6 @@ package flupie.textanim
 			onStart = onProgress = onComplete = onBlocksCreated = null;
 		}
 
-		/**
-		* setBlocksVisibility This method is very useful when you need to control the visibility of the blocks. 
-		* Some animations require the blocks disappear to enter or already on the screen and do something after.
-		*/
 		public function set blocksVisible(val:Boolean):void
 		{
 			_blocksVisible = val;
@@ -264,13 +283,19 @@ package flupie.textanim
 			})
 		}
 		
+		/**
+		* Sets the visibility of all blocks. 
+		* In some animations the blocks must be hidden, to show them gradually.
+		*/		
 		public function get blocksVisible():Boolean
 		{
 			return _blocksVisible;
 		}
 
 		/**
-		* applyEffect You can apply the effects starting from any one block, for that all <code>TextAnimBlock</code> has the property <code>index</code>.
+		* To apply the effects to a single block, by the <code>index</code> of the <code>TextAnimBlock</code>.
+		*	
+		* @param blockIndex The index of the target block.
 		*/
 		public function applyEffect(blockIndex:int):void
 		{
@@ -289,9 +314,12 @@ package flupie.textanim
 		}
 
 		/**
-		* applyToAllBlocks To get all the blocks of the list of blocks. 
+		* Apply a function to all the blocks of this instance. 
+		* 
 		* <p>This method takes a callback function and will call it according to the amount of blocks. 
 		* This must receive a callback object of type as a parameter <code>TextAnimBlock</code></p>
+		*
+		* @param act The function that will be applied to blocks.		
 		*/
 		public function applyToAllBlocks(act:Function):void
 		{
@@ -300,6 +328,12 @@ package flupie.textanim
 			}
 		}
 		
+		/**
+		* Modify the registration x and y of all blocks.
+		*	
+		* @param anchorX The horizontal registration (textAnim.ANCHOR_LEFT, textAnim.ANCHOR_RIGHT and textAnim.CENTER).
+		* @param anchorX The vertical registration (textAnim.ANCHOR_TOP, textAnim.ANCHOR_BOTTOM and textAnim.CENTER). 
+		*/
 		public function setAnchor(anchorX:String, anchorY:String):void
 		{
 			this.anchorX = anchorX;

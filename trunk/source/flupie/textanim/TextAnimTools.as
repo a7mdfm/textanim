@@ -35,12 +35,12 @@ package flupie.textanim
 	import flash.geom.Rectangle;
 	
 	/**
-	 *  You can apply all the extra tools for the treatment of blocks of text, bitmap pattern, and gradient vector.
+	 *  Extra tools for special treatment of TextAnim instance. Can convert the blocks to bitmap, apply patterns, etc.
 	 */
 	public class TextAnimTools
 	{
 		/**
-		* Convert blocks to Bitmap, for default all blocks contains
+		* Convert blocks to Bitmap. By default, all blocks contains
 		* one TextField inside, <code>toBitmap</code> tool convert 
 		* all TextFields to Bitmap.
 		*
@@ -81,9 +81,11 @@ package flupie.textanim
 		}
 		
 		/**
-		* toVector
+		* If the textAnim instance was converted to bitmap, <code>toVector</code> can reverse it.
 		*
 		* @param textAnim Instance of TextAnim.
+		*	
+		* @see toBitmap
 		*/
 		public static function toVector(textAnim:TextAnim):void
 		{
@@ -94,13 +96,12 @@ package flupie.textanim
 		}
 		
 		/**
-		* setPattern You can take any Bitmap, Sprite or MovieClip to be a texture in the text.
+		* Takes a display object to draw a texture in each TextAnim block.
 		*
 		* @param textAnim Instance of TextAnim.
-		* @param img The texture to apply pattern on blocks
-		* @param stretch To fixed size texture to black stretch
+		* @param img The source off texture bitmap.
+		* @param stretch To extends the texture dimenions to fill up each block's area, without repetition.
 		*
-		* @see setGradientLinear
 		*/
 		public static function setPattern(textAnim:TextAnim, img:*, stretch:Boolean = false):void
 		{
@@ -140,13 +141,13 @@ package flupie.textanim
 		}
 		
 		/**
-		* You can create a linear gradient in the text
+		* A linear gradient as a color of the text.
 		*
 		* @param textAnim Instance of TextAnim.
-		* @param colors 
-		* @param angle 
-		* @param alphas 
-		* @param ratios 
+		* @param colors List of colors of the gradient.
+		* @param angle The direction of the gradient (in degrees).
+		* @param alphas The alpha of each color.
+		* @param ratios The ratio of each color.
 		*/
 		public static function setGradientLinear(textAnim:TextAnim, colors:Array, angle:Number = 0, alphas:Array = null, ratios:Array = null):void
 		{
@@ -172,9 +173,9 @@ package flupie.textanim
 		}
 		
 		/**
-		* Get color bounds.
+		* Get color boundsof a TextAnimBlock instance.
 		*
-		* @param block 
+		* @param block The block measured.
 		*/
 		public static function getColorBounds(block:TextAnimBlock):Rectangle
 		{
