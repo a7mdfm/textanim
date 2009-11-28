@@ -30,7 +30,7 @@ package flupie.textanim
 	import flash.text.TextField;
 	
 	/**
-	 * Breaker Separate blocks of text in line with the specified breakMode
+	 * Separate blocks of text in line with the specified breakMode
 	 *	
 	 *	@private
 	 */	

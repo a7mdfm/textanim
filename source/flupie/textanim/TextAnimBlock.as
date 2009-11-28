@@ -35,18 +35,17 @@ package flupie.textanim
 	import flash.text.TextFormat;
 
 	/**
-	 * Represents a cut piece of text which is actually just a Sprite that preserves all 
-	 * the original properties of the initial position of the TextField.
+	 * Represents a piece of TextAnim that contains a text slice. 
 	 */
 	public class TextAnimBlock extends Sprite
 	{
 		/**
-		* Represents an instance of TextAnim that the block belongs.
+		* The instance of TextAnim that the block belongs.
 		*/		
 		public var textAnim:TextAnim;
 		
 		/**
-		* A common textField containing the text that this block is.
+		* The textField containing the slice of original text.
 		*/
 		public var textField:TextField;
 		
@@ -56,15 +55,10 @@ package flupie.textanim
 		public var textFormat:TextFormat;
 		
 		/**
-		* Index is very useful, works as ID block is the sequential numbering of the blocks starting from 0. 
-		* It is a number that can serve as a reference for calculations, and delays as to manipulate the animation.
+		* Index works like a ID block in the TextAnim instance. Each block has a index, starting from 0 ascending to right. 
+		* It serves as a reference for actions, delays and whatever it needs.
 		*/		
 		public var index:int;
-		
-		/**
-		* ...
-		*/
-		public var firstLetterIndex:int;
 		
 		/**
 		* The original X position of the block, very useful for creating animations, this value is generated after all blocks are 
@@ -78,6 +72,9 @@ package flupie.textanim
 		*/		
 		public var posY:Number = 0;
 		
+		/**
+		* The container used for patterns, bitmaps, etc.
+		*/
 		public var texture:Sprite;
 		
 		/**
@@ -116,10 +113,13 @@ package flupie.textanim
 		}
 		
 		/**
-		* You can change the content of individual text of a block at any time
+		* You can change the text of a block at any time.
 		*/
 		public function get text():String { return textField.text; }
 		
+		/**
+		* Clear the references.
+		*/
 		public function dispose():void
 		{
 			if (contains(textField)) removeChild(textField);
@@ -130,6 +130,12 @@ package flupie.textanim
 			texture = null;
 		}
 
+		/**
+		* Sets the registration point of block;
+		*	
+		* @param px The horizontal registration.
+		* @param py The vertical registration.	
+		*/
 		public function updateRegistration(px:Number, py:Number):void
 		{
 			textField.x = px;
@@ -140,6 +146,9 @@ package flupie.textanim
 			y = posY = posY - textField.y;
 		}
 		
+		/**
+		* Clear the texture sprite that can contains any display objects, used in patterns, gradientColors, etc. 
+		*/
 		public function clearTexture():void
 		{
 			for (var i:int = 0; i < texture.numChildren ; i++) {

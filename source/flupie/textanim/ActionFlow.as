@@ -39,7 +39,7 @@ package flupie.textanim
 	import flash.events.Event;
 	
 	/**
-	 * ActionFlow description
+	 * Create an control a stream of functions dispatches.
 	 */
 	public class ActionFlow extends EventDispatcher
 	{
@@ -49,28 +49,56 @@ package flupie.textanim
 		public static const EDGES_TO_CENTER:String = "edgesToCenter";
 		public static const RANDOM:String = "random";
 		
+		/**
+		 * The way of stream will occurs, like FIRST_TO_LAST, CENTER_TO_EDGES, etc.
+		 */
 		public var way:String = FIRST_TO_LAST;
-		public var time:Number = 1000;
-		public var ease:Number = 0;
 		
+		/**
+		 * The total duration (in milliseconds) of the stream, from the first dispatch to the last.
+		 */
+		public var time:Number = 1000;
+		
+		/**
+		 * Callback function called when flow starts.
+		 */
 		public var onStart:Function;
+		
+		/**
+		 * Callback function called when each action dispatchs.
+		 */
 		public var onProgress:Function;
+		
+		/**
+		* Callback function called when the last action was dispatched .
+		*/
 		public var onComplete:Function;
 
 		private var timeout:uint;
 		private var queue:Array = null;
 		private var lastIndex:int = 0;
 
+		/**
+		 * Construtor. Only create the queue array.
+		 */
 		public function ActionFlow()
 		{
 			queue = [];
 		}
 		
+		/**
+		 * Add a function to stream.
+		 *	
+		 * @param funct Function added.
+		 */
 		public function addFunction(funct:Function):void
 		{
 			queue[queue.length] = {funct:funct, timer:null};
 		}
 		
+		/**
+		 * Starts the stream.
+		 */
 		public function start():void
 		{
 			switch (way){
@@ -96,6 +124,9 @@ package flupie.textanim
 			if (onStart != null) onStart();
 		}
 		
+		/**
+		* Stops the stream.
+		*/
 		public function stop():void
 		{
 			for(var i:Number=0; i<queue.length; i++){
@@ -103,6 +134,9 @@ package flupie.textanim
 			}
 		}
 		
+		/**
+		* Stops the stream and clear queue.
+		*/
 		public function clear():void
 		{
 			stop();
