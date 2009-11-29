@@ -1,4 +1,33 @@
 Extra tools for special treatment of TextAnim instance. 
 Can convert the blocks to bitmap, apply patterns, etc.
 
-==Example:==
+=Examples=
+
+===toBitmap===
+Converts each block of a TextAnim to bitmap, smoothed or not:
+{{{
+var txtanim:TextAnim = new TextAnim(bitmapTxt2);
+TextAnimTools.toBitmap(txtanim, true);
+txtanim.rotation = 5;
+txtanim.effects = jump;
+txtanim.start();
+}}}
+
+
+===setPattern===
+Applies an image (movieclip, bitmap, etc.) as texture:
+{{{
+var txtanim:TextAnim = new TextAnim(myTextField);
+TextAnimTools.setPattern(txtanim, new MyPattern());
+txtanim.effects = [alphaIn, scaleIn];
+txtanim.start();
+}}}
+
+===setGradientLinear===
+//TextAnimTools.setGradientLinear prints in text a linear gradient with many colors as you want.
+{{{
+var txtanim:TextAnim = new TextAnim(gradientTxt);
+TextAnimTools.setGradientLinear(txtanim, [0x000000, 0xFF0000], 180);
+txtanim.effects = [myEffect, otherEffect];
+txtanim.start(2000);
+}}}
