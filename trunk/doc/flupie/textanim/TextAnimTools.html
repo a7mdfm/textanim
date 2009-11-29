@@ -39,7 +39,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 </table>
 <p></p>
-   You can apply all the extra tools for the treatment of blocks of text, bitmap pattern, and gradient vector.
+   Extra tools for special treatment of TextAnim instance. Can convert the blocks to bitmap, apply patterns, etc.
   <p></p>
 <br>
 <hr>
@@ -56,7 +56,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getColorBounds()">getColorBounds</a>(block:<a href="TextAnimBlock.html">TextAnimBlock</a>):Rectangle</div>
 <div class="summaryTableDescription">[static]
-  Get color bounds.</div>
+  Get color boundsof a TextAnimBlock instance.</div>
 </td><td class="summaryTableOwnerCol">TextAnimTools</td>
 </tr>
 <tr class="">
@@ -64,8 +64,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#setGradientLinear()">setGradientLinear</a>(textAnim:<a href="TextAnim.html">TextAnim</a>, colors:Array, angle:Number = 0, alphas:Array = null, ratios:Array = null):void</div>
 <div class="summaryTableDescription">[static]
-  You can create a linear gradient in the text
-    </div>
+  A linear gradient as a color of the text.</div>
 </td><td class="summaryTableOwnerCol">TextAnimTools</td>
 </tr>
 <tr class="">
@@ -73,7 +72,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#setPattern()">setPattern</a>(textAnim:<a href="TextAnim.html">TextAnim</a>, img:Boolean, stretch:* = false):void</div>
 <div class="summaryTableDescription">[static]
-  setPattern You can take any Bitmap, Sprite or MovieClip to be a texture in the text.</div>
+  Takes a display object to draw a texture in each TextAnim block.</div>
 </td><td class="summaryTableOwnerCol">TextAnimTools</td>
 </tr>
 <tr class="">
@@ -81,9 +80,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#toBitmap()">toBitmap</a>(textAnim:<a href="TextAnim.html">TextAnim</a>, smooth:Boolean = false):void</div>
 <div class="summaryTableDescription">[static]
-  Convert blocks to Bitmap, for default all blocks contains
-  one TextField inside, <code>toBitmap</code> tool convert 
-  all TextFields to Bitmap.</div>
+  Convert blocks to Bitmap.</div>
 </td><td class="summaryTableOwnerCol">TextAnimTools</td>
 </tr>
 <tr class="">
@@ -91,8 +88,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#toVector()">toVector</a>(textAnim:<a href="TextAnim.html">TextAnim</a>):void</div>
 <div class="summaryTableDescription">[static]
-  toVector
-    </div>
+  If the textAnim instance was converted to bitmap, <code>toVector</code> can reverse it.</div>
 </td><td class="summaryTableOwnerCol">TextAnimTools</td>
 </tr>
 </table>
@@ -112,11 +108,12 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function getColorBounds(block:<a href="TextAnimBlock.html">TextAnimBlock</a>):Rectangle</code><p>
-  Get color bounds.
+  Get color boundsof a TextAnimBlock instance.
     </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">block</span>:<a href="TextAnimBlock.html">TextAnimBlock</a></code></td>
+<td width="20px"></td><td><code><span class="label">block</span>:<a href="TextAnimBlock.html">TextAnimBlock</a></code> &mdash; The block measured.
+  </td>
 </tr>
 </table>
 <p></p>
@@ -135,7 +132,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function setGradientLinear(textAnim:<a href="TextAnim.html">TextAnim</a>, colors:Array, angle:Number = 0, alphas:Array = null, ratios:Array = null):void</code><p>
-  You can create a linear gradient in the text
+  A linear gradient as a color of the text.
     </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -146,25 +143,29 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">colors</span>:Array</code></td>
+<td width="20px"></td><td><code><span class="label">colors</span>:Array</code> &mdash; List of colors of the gradient.
+  </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">angle</span>:Number</code> (default = <code>0</code>)<code></code></td>
+<td width="20px"></td><td><code><span class="label">angle</span>:Number</code> (default = <code>0</code>)<code></code> &mdash; The direction of the gradient (in degrees).
+  </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">alphas</span>:Array</code> (default = <code>null</code>)<code></code></td>
+<td width="20px"></td><td><code><span class="label">alphas</span>:Array</code> (default = <code>null</code>)<code></code> &mdash; The alpha of each color.
+  </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">ratios</span>:Array</code> (default = <code>null</code>)<code></code></td>
+<td width="20px"></td><td><code><span class="label">ratios</span>:Array</code> (default = <code>null</code>)<code></code> &mdash; The ratio of each color.
+  </td>
 </tr>
 </table>
 </div>
@@ -176,7 +177,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function setPattern(textAnim:<a href="TextAnim.html">TextAnim</a>, img:Boolean, stretch:* = false):void</code><p>
-  setPattern You can take any Bitmap, Sprite or MovieClip to be a texture in the text.
+  Takes a display object to draw a texture in each TextAnim block.
     </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -187,21 +188,17 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">img</span>:Boolean</code> &mdash; The texture to apply pattern on blocks
+<td width="20px"></td><td><code><span class="label">img</span>:Boolean</code> &mdash; The source off texture bitmap.
   </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">stretch</span>:*</code> (default = <code>false</code>)<code></code> &mdash; To fixed size texture to black stretch
+<td width="20px"></td><td><code><span class="label">stretch</span>:*</code> (default = <code>false</code>)<code></code> &mdash; To extends the texture dimenions to fill up each block's area, without repetition.
     </td>
 </tr>
 </table>
-<p>
-<span class="label">See also</span>
-</p>
-<div class="seeAlso">setGradientLinear</div>
 </div>
 <a name="toBitmap()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -211,7 +208,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function toBitmap(textAnim:<a href="TextAnim.html">TextAnim</a>, smooth:Boolean = false):void</code><p>
-  Convert blocks to Bitmap, for default all blocks contains
+  Convert blocks to Bitmap. By default, all blocks contains
   one TextField inside, <code>toBitmap</code> tool convert 
   all TextFields to Bitmap.
     </p><span class="label">Parameters</span>
@@ -242,14 +239,19 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function toVector(textAnim:<a href="TextAnim.html">TextAnim</a>):void</code><p>
-  toVector
+  If the textAnim instance was converted to bitmap, <code>toVector</code> can reverse it.
     </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">textAnim</span>:<a href="TextAnim.html">TextAnim</a></code> &mdash; Instance of TextAnim.
+  
   </td>
 </tr>
 </table>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">toBitmap</div>
 </div>
 <br>
 <br>
