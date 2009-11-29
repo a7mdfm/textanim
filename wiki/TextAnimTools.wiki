@@ -19,6 +19,7 @@ Applies an image (movieclip, bitmap, etc.) as texture. This sample spent more th
 {{{
 var txtanim:TextAnim = new TextAnim(myTextField);
 TextAnimTools.setPattern(txtanim, new MyPattern());
+anim.animMode = TextAnim.ANIM_TO_EDGES;
 txtanim.effects = [alphaIn, scaleIn];
 txtanim.start();
 }}}
