@@ -1,1 +1,5 @@
-bitmap vector, pattern, gradient linear...
+Extra tools for special treatment of TextAnim instance. Can convert the blocks to bitmap, apply patterns, etc.
+
+TextAnimBlock is the most important object to manipulate your animations. No matter what you specify breakMode every effect will receive a TextAnimBlock so you can animate it. 
+
+Example:
