@@ -24,7 +24,7 @@ txtanim.start();
 }}}
 
 ===setGradientLinear===
-//TextAnimTools.setGradientLinear prints in text a linear gradient with many colors as you want. This example is experiencing a delay to start the animation in the start method. And multiple effects.
+Prints in text a linear gradient with many colors as you want. This example is experiencing a delay to start the animation in the start method. And multiple effects.
 {{{
 var txtanim:TextAnim = new TextAnim(myTextField);
 TextAnimTools.setGradientLinear(txtanim, [0x000000, 0xFF0000], 180);
