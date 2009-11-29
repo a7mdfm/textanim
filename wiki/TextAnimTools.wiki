@@ -15,7 +15,7 @@ txtanim.start();
 
 
 ===setPattern===
-Applies an image (movieclip, bitmap, etc.) as texture. This sample spent more than a function like effect, you can pass an array with as many effects as you want
+Applies an image (movieclip, bitmap, etc.) as texture. This sample spent more than a function like effect, you can pass an array with as many effects as you want.
 {{{
 var txtanim:TextAnim = new TextAnim(myTextField);
 TextAnimTools.setPattern(txtanim, new MyPattern());
