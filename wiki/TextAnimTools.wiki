@@ -8,7 +8,7 @@ Converts each block of a TextAnim to bitmap, smoothed or not:
 {{{
 var txtanim:TextAnim = new TextAnim(myTextField);
 TextAnimTools.toBitmap(txtanim, true);
-txtanim.rotation = 5;
+txtanim.breakMode = TextAnim.BREAK_IN_LINES;
 txtanim.effects = jump;
 txtanim.start();
 }}}
