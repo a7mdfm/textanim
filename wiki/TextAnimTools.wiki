@@ -1,4 +1,4 @@
 Extra tools for special treatment of TextAnim instance. 
 Can convert the blocks to bitmap, apply patterns, etc.
 
-Example:
+==Example:==
