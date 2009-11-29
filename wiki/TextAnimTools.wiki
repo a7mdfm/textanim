@@ -1,3 +1,4 @@
+#labels Featured
 Extra tools for special treatment of TextAnim instance. 
 Can convert the blocks to bitmap, apply patterns, etc.
 
@@ -21,6 +22,7 @@ var txtanim:TextAnim = new TextAnim(myTextField);
 TextAnimTools.setPattern(txtanim, new MyPattern());
 anim.animMode = TextAnim.ANIM_TO_EDGES;
 txtanim.effects = [alphaIn, scaleIn];
+txtanim.interval = 200;
 txtanim.start();
 }}}
 
