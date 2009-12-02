@@ -417,7 +417,10 @@ package flupie.textanim
 			block.textField.x = block.textField.y = block.texture.x = block.texture.y = 0;
 			block.posX = block.x = bounds.x - 2 - modX;
 			block.posY = block.y = bounds.y - 2;
-			block.textField.setTextFormat(fmt);
+
+			var i:int = block.textField.text.length;
+			while(i--)
+				block.textField.setTextFormat(source.getTextFormat(block.index+i, block.index+i+1), i, i+1);
 			
 			block.visible = _blocksVisible;
 			
