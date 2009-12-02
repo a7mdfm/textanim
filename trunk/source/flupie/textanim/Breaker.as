@@ -70,8 +70,8 @@ package flupie.textanim
 			var txt:String = anim.source.text;
 			
 			for (var i:int = 0; i < txt.length; i++) {
-				if(txt.substr(i, 1) != String.fromCharCode(13)) {
-					var str:String = txt.substr(i, 1);
+				var str:String = txt.substr(i, 1);
+				if(str != String.fromCharCode(13)) {
 					if (stringTest(str)) temp.push(createBlock(anim, str, i));
 				}
 			}
@@ -89,12 +89,9 @@ package flupie.textanim
 				var s:String = txt.substr(i, 1);
 				
 				if (s != " " && s != null && s != String.fromCharCode(13)) {
-					if(str == ""){
-						firstIndex=i;
-					}
+					if(str == "") firstIndex = i;
 					str += s;
 				} else if (s != null) {
-					var bl:TextAnimBlock = createBlock(anim, str, firstIndex);
 					if (stringTest(str)) temp.push(createBlock(anim, str, firstIndex));
 					str = "";
 				}
@@ -117,7 +114,7 @@ package flupie.textanim
 			return temp;
 		}
 		
-		private static function stringTest(str:String):Boolean
+		internal static function stringTest(str:String):Boolean
 		{
 			if (str != "" && str != " " && str.length > 0) return true;
 			
