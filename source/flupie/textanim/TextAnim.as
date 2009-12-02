@@ -123,23 +123,9 @@ package flupie.textanim
 		*/
 		public var blocks:Array;
 		
-		/**
-		* The horizontal registration of each TextAnimBlock.
-		*
-		* <p>It can be <code>TextAnim.ANCHOR_CENTER, TextAnim.ANCHOR_LEFT, TextAnim.ANCHOR_RIGHT</code></p>	
-		* @default TextAnim.ANCHOR_CENTER;
-		* @see setAnchor	
-		*/
-		public var anchorX:String = ANCHOR_CENTER;
 		
-		/**
-		* The vertical registration of each TextAnimBlock.
-		*
-		* <p>It can be <code>TextAnim.ANCHOR_CENTER, TextAnim.ANCHOR_TOP, TextAnim.ANCHOR_BOTTOM</code></p>	
-		* @default TextAnim.ANCHOR_CENTER;
-		* @see setAnchor	
-		*/
-		public var anchorY:String = ANCHOR_CENTER;
+		private var _anchorX:String = ANCHOR_CENTER;
+		private var _anchorY:String = ANCHOR_CENTER;
 		
 		
 		private var _breakMode:String = Breaker.BREAK_IN_LETTERS;
@@ -336,13 +322,58 @@ package flupie.textanim
 		*/
 		public function setAnchor(anchorX:String, anchorY:String):void
 		{
-			this.anchorX = anchorX;
-			this.anchorY = anchorY;
+			if (anchorX == ANCHOR_LEFT || anchorX == ANCHOR_CENTER || anchorX == ANCHOR_RIGHT) _anchorX = anchorX;
+			if (anchorY == ANCHOR_TOP || anchorY == ANCHOR_CENTER || anchorY == ANCHOR_BOTTOM) _anchorY = anchorY;
 			applyToAllBlocks(function(block:TextAnimBlock):void{
-				blockSettings(block);
-			})
+				anchorConfig(block);
+			});
+		}
+		
+		public function set anchorX(val:String):void
+		{
+			if (val == ANCHOR_LEFT || val == ANCHOR_CENTER || val == ANCHOR_RIGHT) {
+				_anchorX = val;
+				applyToAllBlocks(function(block:TextAnimBlock):void{
+					anchorConfig(block);
+				});
+			}
+		}
+		/**
+		 * The horizontal registration of each TextAnimBlock.
+		 *
+		 * <p>It can be <code>TextAnim.ANCHOR_CENTER, TextAnim.ANCHOR_LEFT, TextAnim.ANCHOR_RIGHT</code></p>	
+		 * @default TextAnim.ANCHOR_CENTER;
+		 * @see setAnchor	
+		 */
+		public function get anchorX():String
+		{
+			return _anchorX;
+		}
+		
+		public function set anchorY(val:String):void
+		{
+			if (val == ANCHOR_TOP || val == ANCHOR_CENTER || val == ANCHOR_BOTTOM) {
+				_anchorX = val;
+				applyToAllBlocks(function(block:TextAnimBlock):void{
+					anchorConfig(block);
+				});
+			}
+		}
+		/**
+		 * The vertical registration of each TextAnimBlock.
+		 *
+		 * <p>It can be <code>TextAnim.ANCHOR_CENTER, TextAnim.ANCHOR_TOP, TextAnim.ANCHOR_BOTTOM</code></p>	
+		 * @default TextAnim.ANCHOR_CENTER;
+		 * @see setAnchor	
+		 */
+		public function get anchorY():String
+		{
+			return _anchorY;
 		}
 
+		
+		
+		
 		/**
 		 *	@private
 		 */
@@ -390,7 +421,12 @@ package flupie.textanim
 			
 			block.visible = _blocksVisible;
 			
-			bounds = TextAnimTools.getColorBounds(block);
+			anchorConfig(block);
+		}
+		
+		private function anchorConfig(block:TextAnimBlock):void
+		{
+			var bounds:Rectangle = TextAnimTools.getColorBounds(block);
 			
 			var px:Number;
 			var py:Number;
@@ -398,29 +434,28 @@ package flupie.textanim
 			switch (anchorX) {
 				case ANCHOR_LEFT :
 					px = -bounds.x;
-				break;
+					break;
 				case ANCHOR_CENTER :
 					px = -bounds.x - bounds.width/2;
-				break;
+					break;
 				case ANCHOR_RIGHT :
 					px = -bounds.x - bounds.width;
-				break;
+					break;
 			}
 			
 			switch (anchorY) {
 				case ANCHOR_TOP :
 					py = -bounds.y;
-				break;
+					break;
 				case ANCHOR_CENTER :
 					py = -bounds.y - bounds.height/2;
-				break;
+					break;
 				case ANCHOR_BOTTOM :
 					py = -bounds.y - bounds.height;
-				break;
+					break;
 			}
-
-			block.updateRegistration(px, py);
 			
+			block.updateRegistration(px, py);
 		}
 
 		private function flowSettings():void
