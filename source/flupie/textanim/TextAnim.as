@@ -338,6 +338,7 @@ package flupie.textanim
 				});
 			}
 		}
+		
 		/**
 		 * The horizontal registration of each TextAnimBlock.
 		 *
@@ -345,15 +346,12 @@ package flupie.textanim
 		 * @default TextAnim.ANCHOR_CENTER;
 		 * @see setAnchor	
 		 */
-		public function get anchorX():String
-		{
-			return _anchorX;
-		}
+		public function get anchorX():String { return _anchorX; }
 		
 		public function set anchorY(val:String):void
 		{
 			if (val == ANCHOR_TOP || val == ANCHOR_CENTER || val == ANCHOR_BOTTOM) {
-				_anchorX = val;
+				_anchorY = val;
 				applyToAllBlocks(function(block:TextAnimBlock):void{
 					blockSettings(block);
 				});
@@ -366,13 +364,7 @@ package flupie.textanim
 		 * @default TextAnim.ANCHOR_CENTER;
 		 * @see setAnchor	
 		 */
-		public function get anchorY():String
-		{
-			return _anchorY;
-		}
-
-		
-		
+		public function get anchorY():String { return _anchorY; }
 		
 		/**
 		 *	@private
