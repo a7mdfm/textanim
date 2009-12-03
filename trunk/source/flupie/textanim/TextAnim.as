@@ -27,6 +27,8 @@
 
 package flupie.textanim
 {	
+	import flash.display.BlendMode;
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.Rectangle;
@@ -55,6 +57,8 @@ package flupie.textanim
 		public static const ANCHOR_LEFT:String = "L";
 		public static const ANCHOR_CENTER:String = "C";
 		public static const ANCHOR_RIGHT:String = "R";  
+		
+		public static var debug:Boolean = false;
 		
 		/**
 		* The original TextField instance.
@@ -172,7 +176,7 @@ package flupie.textanim
 				if (source.parent != null) {
 					source.parent.addChild(this);
 					source.parent.swapChildren(this, source);
-					source.parent.removeChild(source);
+					if (!debug) source.parent.removeChild(source) else source.alpha = .3;
 				}
 			}
 		}
@@ -426,7 +430,7 @@ package flupie.textanim
 			var px:Number;
 			var py:Number;
 			
-			switch (anchorX) {
+			switch (_anchorX) {
 				case ANCHOR_LEFT :
 					px = -bounds.x;
 					break;
@@ -438,7 +442,7 @@ package flupie.textanim
 					break;
 			}
 			
-			switch (anchorY) {
+			switch (_anchorY) {
 				case ANCHOR_TOP :
 					py = -bounds.y;
 					break;
@@ -451,6 +455,18 @@ package flupie.textanim
 			}
 			
 			block.updateRegistration(px, py);
+			
+			if (debug && !block.getChildByName("regRef")) {
+				var regRef:Shape = new Shape();
+				regRef.name = "regRef";
+				regRef.graphics.beginFill(0xFF0000);
+				regRef.graphics.drawRect(0, 0, 2, 2);
+				regRef.graphics.endFill();
+				regRef.x = -1;
+				regRef.y = -1;
+				regRef.blendMode = "invert";
+				block.addChild(regRef);
+			}
 		}
 
 		private function flowSettings():void
