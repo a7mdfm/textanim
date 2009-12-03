@@ -325,7 +325,7 @@ package flupie.textanim
 			if (anchorX == ANCHOR_LEFT || anchorX == ANCHOR_CENTER || anchorX == ANCHOR_RIGHT) _anchorX = anchorX;
 			if (anchorY == ANCHOR_TOP || anchorY == ANCHOR_CENTER || anchorY == ANCHOR_BOTTOM) _anchorY = anchorY;
 			applyToAllBlocks(function(block:TextAnimBlock):void{
-				anchorConfig(block);
+				blockSettings(block);
 			});
 		}
 		
@@ -334,7 +334,7 @@ package flupie.textanim
 			if (val == ANCHOR_LEFT || val == ANCHOR_CENTER || val == ANCHOR_RIGHT) {
 				_anchorX = val;
 				applyToAllBlocks(function(block:TextAnimBlock):void{
-					anchorConfig(block);
+					blockSettings(block);
 				});
 			}
 		}
@@ -355,7 +355,7 @@ package flupie.textanim
 			if (val == ANCHOR_TOP || val == ANCHOR_CENTER || val == ANCHOR_BOTTOM) {
 				_anchorX = val;
 				applyToAllBlocks(function(block:TextAnimBlock):void{
-					anchorConfig(block);
+					blockSettings(block);
 				});
 			}
 		}
