@@ -491,6 +491,7 @@ package flupie.textanim
 		
 		private function completeHandler():void
 		{
+			_blocksVisible = true;
 			if (onComplete != null) onComplete();
 			dispatchEvent(evComplete); 
 		}    

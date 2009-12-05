@@ -1,15 +1,22 @@
 package
 {
 	import caurina.transitions.Tweener;
+	import caurina.transitions.properties.ColorShortcuts;
 	
 	import components.Btn;
-	import components.BtnGroup;
+	import components.InputText;
+	import components.MenuAnchor;
+	import components.MenuAnim;
+	import components.MenuBreak;
+	import components.MenuTools;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.text.TextFormat;
 	
 	import flupie.textanim.TextAnim;
 	import flupie.textanim.TextAnimBlock;
+	import flupie.textanim.TextAnimEvent;
 	
 	public class TextAnimRun extends Sprite
 	{
@@ -19,8 +26,13 @@ package
 		public var txtContainer:TextContainer;
 		public var anim:TextAnim;
 		
-		public var menuBreak:BtnGroup;
-		public var menuAnim:BtnGroup;
+		public var menuBreak:MenuBreak;
+		public var menuAnim:MenuAnim;
+		public var menuAnchor:MenuAnchor;
+		public var menuTools:MenuTools;
+		public var logo:FlupieLogoView;
+		public var inputText:InputText;
+		public var eventLog:InputText;
 		public var btnStart:Btn;
 		public var btnVisibility:Btn;
 		
@@ -29,6 +41,12 @@ package
 			stage.scaleMode = "noScale";
 			stage.align = "TL";
 			
+			
+			ColorShortcuts.init();
+			
+			logo = new FlupieLogoView();
+			addChild(logo);
+			
 			txtContainer = new TextContainer();
 			addChild(txtContainer);
 			
@@ -36,78 +54,44 @@ package
 			anim = new TextAnim(txtContainer.txt);
 			anim.effects = fxScale;
 			
-			createMenuBreak();
-			createMenuAnim();
+			createMenus();
 			createBtnStart();
 			createBtnVisibility();
+			createInputText();
+			createEventLog();
+			
+			anim.addEventListener(TextAnimEvent.START, function(e:*):void {
+				eventLog.text += <p>--------------------------</p>
+				eventLog.text += <p>### START</p>
+			});
+			anim.addEventListener(TextAnimEvent.PROGRESS, function(e:*):void {
+				eventLog.text += <p>progress</p>
+			});
+			anim.addEventListener(TextAnimEvent.COMPLETE, function(e:*):void {
+				eventLog.text += <p>### COMPLETE</p>
+			});
 			
 			stage.addEventListener(Event.RESIZE, resizeHandler);
 			resizeHandler();
 		}
 		
-		public function createMenuBreak():void
+		public function createMenus():void
 		{
-			menuBreak = new BtnGroup();
+			menuAnchor = new MenuAnchor();
+			addChild(menuAnchor);
+			menuAnchor.textAnim = anim;
+			
+			menuBreak = new MenuBreak();
 			addChild(menuBreak);
-			menuBreak.title.setText("Break Mode");
-			var btnLetters:Btn = menuBreak.addBtn();
-			btnLetters.setLabel("LETTERS");
-			btnLetters.onClick = function():void {
-				anim.breakMode = TextAnim.BREAK_IN_LETTERS;
-			}
-				
-			var btnWords:Btn = menuBreak.addBtn();
-			btnWords.setLabel("WORDS");
-			btnWords.onClick = function():void {
-				anim.breakMode = TextAnim.BREAK_IN_WORDS;
-			}
-				
-			var btnLines:Btn = menuBreak.addBtn();
-			btnLines.setLabel("LINES");
-			btnLines.onClick = function():void {
-				anim.breakMode = TextAnim.BREAK_IN_LINES;
-			}
-				
-			menuBreak.selectBtn(btnLetters);
-		}
-		
-		public function createMenuAnim():void
-		{
-			menuAnim = new BtnGroup();
+			menuBreak.textAnim = anim;
+			
+			menuAnim = new MenuAnim();
 			addChild(menuAnim);
-			menuAnim.title.setText("Anim Mode");
+			menuAnim.textAnim = anim;
 			
-			var btnToRight:Btn = menuAnim.addBtn();
-			btnToRight.setLabel("TO RIGHT");
-			btnToRight.onClick = function ():void {
-				anim.animMode = TextAnim.ANIM_TO_RIGHT;
-			}
-				
-			var btnToLeft:Btn = menuAnim.addBtn();
-			btnToLeft.setLabel("TO LEFT");
-			btnToLeft.onClick = function ():void {
-				anim.animMode = TextAnim.ANIM_TO_LEFT;
-			}
-				
-			var btnToEdges:Btn = menuAnim.addBtn();
-			btnToEdges.setLabel("TO EDGES");
-			btnToEdges.onClick = function ():void {
-				anim.animMode = TextAnim.ANIM_TO_EDGES;
-			}
-				
-			var btnToCenter:Btn = menuAnim.addBtn();
-			btnToCenter.setLabel("TO CENTER");
-			btnToCenter.onClick = function ():void {
-				anim.animMode = TextAnim.ANIM_TO_CENTER;
-			}
-				
-			var btnRandom:Btn = menuAnim.addBtn();
-			btnRandom.setLabel("RANDOM");
-			btnRandom.onClick = function ():void {
-				anim.animMode = TextAnim.ANIM_RANDOM;
-			}
-			
-			menuAnim.selectBtn(btnToRight);
+			menuTools = new MenuTools();
+			addChild(menuTools);
+			menuTools.textAnim = anim;
 		}
 		
 		public function createBtnStart():void
@@ -128,6 +112,30 @@ package
 			btnVisibility.onClick = function():void {
 				anim.blocksVisible = !anim.blocksVisible;
 			}
+		}
+		
+		public function createInputText():void
+		{
+			inputText = new InputText();
+			inputText.txt.maxChars = 130;
+			addChild(inputText);
+			inputText.title.setText("Text to animate");
+			inputText.btn.setLabel("UPDATE");
+			inputText.btn.onClick = function():void {
+				anim.text = inputText.txt.text;
+			}
+		}
+		
+		public function createEventLog():void
+		{
+			eventLog = new InputText();
+			addChild(eventLog);
+			eventLog.title.setText("Event log");
+			eventLog.btn.setLabel("Clear");
+			eventLog.btn.onClick = function():void {
+				eventLog.text = "";
+			}
+			eventLog.txt.selectable = false;
 		}
 
 		public function fxScale(block:TextAnimBlock):void
@@ -159,6 +167,32 @@ package
 			if (btnVisibility) {
 				btnVisibility.x = btnVisibility.width/2 + MARGIN_X;
 				btnVisibility.y = stage.stageHeight - (btnVisibility.height/2 + MARGIN_Y);
+			}
+			
+			if (menuAnchor) {
+				menuAnchor.x = 150;
+				menuAnchor.y = MARGIN_Y;
+			}
+
+			
+			if (menuTools) {
+				menuTools.x = stage.stageWidth - menuTools.width - MARGIN_X;
+				menuTools.y = MARGIN_Y;
+			}
+			
+			if (eventLog) {
+				eventLog.x = stage.stageWidth - eventLog.width - MARGIN_X;
+				eventLog.y = stage.stageHeight - eventLog.height - MARGIN_Y;
+			}
+			
+			if (logo) {
+				logo.x = stage.stageWidth/2;
+				logo.y = MARGIN_Y + logo.height/2;
+			}
+			
+			if (inputText) {
+				inputText.x = stage.stageWidth - inputText.width - MARGIN_X;
+				inputText.y = eventLog.y - inputText.height - MARGIN_Y;
 			}
 		}
 		

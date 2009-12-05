@@ -1,5 +1,7 @@
 package components
 {
+	import caurina.transitions.Tweener;
+	
 	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
@@ -14,7 +16,7 @@ package components
 		public function Btn()
 		{
 			super();
-			stop();
+			base.stop();
 			
 			label = labelContainer.label;
 			
@@ -28,13 +30,13 @@ package components
 		public function overHandler(e:*):void
 		{
 			if (_select) return;
-			gotoAndStop("over");	
+			base.gotoAndStop("over");	
 		}
 		
 		public function outHandler(e:*):void
 		{
 			if (_select) return;
-			gotoAndStop("normal");
+			base.gotoAndStop("normal");
 		}
 		
 		public function clickHandler(e:*):void
@@ -45,7 +47,13 @@ package components
 		public function set select(val:Boolean):void
 		{
 			_select = val;
-			if (_select) gotoAndStop("selected") else gotoAndStop("normal");	
+			if (_select) {
+				base.gotoAndStop("selected");
+				Tweener.addTween(labelContainer, {_color:0xFFFFFF});
+			} else {
+				base.gotoAndStop("normal");
+				Tweener.addTween(labelContainer, {_color:null});
+			}	
 		}
 		
 		public function get select():Boolean
@@ -59,6 +67,27 @@ package components
 			label.autoSize = TextFieldAutoSize.CENTER;
 			label.y = -label.textHeight/2 - 3;
 		}
+		
+		public override function set width(value:Number):void
+		{
+			base.width = value;	
+		}
+		
+		public override function get width():Number
+		{
+			return base.width;
+		}
+		
+		public override function set height(value:Number):void
+		{
+			base.height = value;	
+		}
+		
+		public override function get height():Number
+		{
+			return base.height;
+		}
+		
 		
 	}
 }
