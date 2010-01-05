@@ -53,6 +53,7 @@ package
 			TextAnim.debug = true;
 			anim = new TextAnim(txtContainer.txt);
 			anim.effects = fxScale;
+			anim.interval = 50;
 			
 			createMenus();
 			createBtnStart();

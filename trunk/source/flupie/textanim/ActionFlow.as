@@ -33,10 +33,9 @@ package flupie.textanim
 	 * @author		Guilherme Almeida, Mauro de Tarso
 	 */
  
+	import flash.events.EventDispatcher;
 	import flash.utils.clearTimeout;
 	import flash.utils.setTimeout;
-	import flash.events.EventDispatcher;
-	import flash.events.Event;
 	
 	/**
 	 * Create an control a stream of functions dispatches.
@@ -193,29 +192,22 @@ package flupie.textanim
 		
 		private function processRandom():void
 		{
-			var num:Number=0;
-			var temp:Array= new Array();
-			var repeat:Boolean= true;
+			var num:int = 0;
+			var temp:Array = new Array(queue.length);
 			
-			if(queue != null && queue.length>0){
-				for(var i:Number=0; i<queue.length; i++){
-					repeat=true;
-					while(repeat){
-						num = Math.round(Math.random()*queue.length);
-						repeat=false;
-						for(var k:Number=0; k<temp.length; k++){
-							if(num==temp[k]){
-								repeat=true;
-								break;
-							}
-						}
-					}
-					lastIndex = num;  
-					temp.push(num);
-					setTimer(i, num);
-				}
+		   	for (var i:int = 0; i < queue.length; i++) {
+				temp[i] = i;
+			}
+			
+			for (i = 0; i < queue.length; i++) {
+				var r:Number = Math.round(Math.random()*(temp.length-1));
+				num = temp.splice(r, 1);
+				if (num == queue.length-1) lastIndex = i;
+				setTimer(i, num);
 			}
 		}
+		
+
 		
 	}
 }
