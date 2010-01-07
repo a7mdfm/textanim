@@ -2,7 +2,7 @@
 <actionScriptProperties mainApplicationPath="TextAnimRun.as" projectUUID="800f7ba8-1da7-447f-9de2-d639f180b574" version="6">
   <compiler additionalCompilerArguments="-locale en_US" autoRSLOrdering="true" copyDependentFiles="false" flexSDK="Flex 4.0" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
     <compilerSourcePath>
-      <compilerSourcePathEntry kind="1" linkType="1" path="/Users/maurodetarso/_PROJECTS/MDT/TextAnim/textanim/trunk/source"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="/Users/mauro/_PROJECTS/MDT/TextAnim/textanim/branches/newversion"/>
     </compilerSourcePath>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">
