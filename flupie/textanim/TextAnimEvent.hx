@@ -25,16 +25,16 @@
 	http://flupie.net
 */ 
 
-package flupie.textanim 
+package flupie.textanim; 
+
+/**
+ * Events are common. You can add a listener to track when the TextAnim starts the process. 
+ * During the firing of the blocks. And when it was over.
+ */
+class TextAnimEvent 
 {
-	/**
-	 * Events are common. You can add a listener to track when the TextAnim starts the process. 
-	 * During the firing of the blocks. And when it was over.
-	 */
-	public class TextAnimEvent 
-	{
-		public static const COMPLETE:String = "complete";
-		public static const START:String = "start";
-		public static const PROGRESS:String = "progress"; 
-	}
+	public static var COMPLETE:String = "complete";
+	public static var START:String = "start";
+	public static var PROGRESS:String = "progress"; 
 }
+
