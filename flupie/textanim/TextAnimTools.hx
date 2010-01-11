@@ -52,7 +52,7 @@ class TextAnimTools
 	*/
 	public static function toBitmap(textAnim:TextAnim, smooth:Bool = false):Void
 	{	
-		textAnim.applyToAllBlocks(function (block:TextAnimBlock, index:Int):Void {
+		textAnim.forEachBlock(function (block:TextAnimBlock):Void {
 			block.clearTexture();
 			
 			var bounds:Rectangle = getColorBounds(block);
@@ -90,7 +90,7 @@ class TextAnimTools
 	*/
 	public static function toVector(textAnim:TextAnim):Void
 	{
-		textAnim.applyToAllBlocks(function (block:TextAnimBlock, index:Int):Void {
+		textAnim.forEachBlock(function (block:TextAnimBlock):Void {
 			block.clearTexture();
 			block.addChild(block.textField);
 		});
@@ -106,7 +106,7 @@ class TextAnimTools
 	*/
 	public static function setPattern(textAnim:TextAnim, img:Dynamic, stretch:Bool = false):Void
 	{
-		textAnim.applyToAllBlocks(function (block:TextAnimBlock, index:Int):Void {
+		textAnim.forEachBlock(function (block:TextAnimBlock):Void {
 			
 			var bounds:Rectangle = getColorBounds(block);
 			var pattern:BitmapData;
@@ -152,7 +152,7 @@ class TextAnimTools
 	*/
 	public static function setGradientLinear(textAnim:TextAnim, colors:Array<UInt>, ?angle:Float = 0, ?alphas:Array<Float>, ?ratios:Array<Float>):Void
 	{
-		textAnim.applyToAllBlocks(function (block:TextAnimBlock, index:Int):Void {
+		textAnim.forEachBlock(function (block:TextAnimBlock):Void {
 			var bounds:Rectangle = getColorBounds(block);
 			
 			block.clearTexture();

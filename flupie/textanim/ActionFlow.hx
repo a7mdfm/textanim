@@ -72,8 +72,10 @@ class ActionFlow extends EventDispatcher
 	*/
 	public var onComplete:Dynamic;
 
-	private var queue:Array<Dynamic>;
 	private var lastIndex:Int;
+	private var firstAction:Dynamic;
+	private var lastAction:Dynamic;
+	private var length:UInt;
 
 	/**
 	 * Construtor. Only create the queue array.
@@ -83,7 +85,7 @@ class ActionFlow extends EventDispatcher
 		way = FIRST_TO_LAST;
 		time = 1000;
 		lastIndex = 0;
-		queue = [];
+		length = 0;
 	}
 	
 	/**
@@ -91,9 +93,13 @@ class ActionFlow extends EventDispatcher
 	 *	
 	 * @param funct Function added.
 	 */
-	public function addFunction(funct:Dynamic):Void
+	public function addFunction(callBack:Dynamic):Void
 	{
-		queue[queue.length] = {funct:funct, timer:null};
+		var action:Dynamic = {callBack:callBack, index:length, next:null};
+		if (firstAction == null) firstAction = action;
+		if (lastAction != null) lastAction.next = action;
+		lastAction = action;
+		length++;
 	}
 	
 	/**
@@ -124,10 +130,9 @@ class ActionFlow extends EventDispatcher
 	*/
 	public function stop():Void
 	{
-		if (queue == null) return;
-		for (i in 0... queue.length) {
-			if (queue[i].timer != null) queue[i].timer.stop();
-		}
+		forEach(function(a:Dynamic):Void {
+			if (a.timer != null) a.timer.stop();
+		});
 	}
 	
 	/**
@@ -136,15 +141,27 @@ class ActionFlow extends EventDispatcher
 	public function clear():Void
 	{
 		stop();
-		queue = [];
+		firstAction = null;
+		lastAction = null;
+		length = 0;
 	}
 	
-	private function setTimer(i:Int, num:Int):Void
+	private function forEach(cb:Dynamic):Void
 	{
-		var interv:Float = time/queue.length;
+		var a:Dynamic = firstAction;
+		while (a) {
+			cb(a);
+			a = a.next;
+		}
+	}
+	
+	private function setTimer(a:Dynamic, num:Int):Void
+	{
 		var af:Dynamic = this;
-		queue[i].timer = Timer.delay(function():Void {
-			af.queue[i].funct(i);
+		var interv:Float = time/length;
+		var i:UInt = a.index;
+		a.timer = Timer.delay(function():Void {
+			a.callBack(i);
 			if (af.onProgress != null) af.onProgress();
 			if (i == af.lastIndex && af.onComplete != null) af.onComplete();
 		}, Std.int(num*interv));
@@ -152,56 +169,59 @@ class ActionFlow extends EventDispatcher
 	
 	private function processFirstToLast():Void
 	{
-		for(i in 0... queue.length){
-			setTimer(i, i);
-		}
-		lastIndex = queue.length - 1;
+		var af:Dynamic = this;
+		forEach(function(a:Dynamic):Void {
+			af.setTimer(a, a.index);
+		});
+		lastIndex = length - 1;
 	}
 	
 	private function processLastToFirst():Void
 	{
-		var num:Int = queue.length;
-		for (i in 0... queue.length) {
+		var af:Dynamic = this;
+		var num:UInt = length;
+		forEach(function(a:Dynamic):Void {
 			num--;
-			setTimer(i, num);
-		}
+			af.setTimer(a, num);
+		});
 		lastIndex = 0;
 	}
 	
 	private function processCenterToEdges():Void
 	{
-		var middle:Float = Math.floor(queue.length/2);
-		for (i in 0... queue.length) {
-			var num:Int = Std.int(Math.abs(i-middle));
-			setTimer(i, num);
-		} 
+		var af:Dynamic = this;
+		var middle:Int = Std.int(Math.floor(length/2));
+		forEach(function(a:Dynamic):Void {
+			var num:Int = Std.int(Math.abs(a.index - middle));
+			af.setTimer(a, num);
+		}); 
 		lastIndex = 0;
 	}
 	
 	private function processEdgesToCenter():Void
 	{
-		var middle:Int = Std.int(queue.length/2);
-		for (i in 0... queue.length) {
-			var num:Int = Std.int(middle - Math.abs(middle - i));
-			setTimer(i, num);
-		}
+		var af:Dynamic = this;
+		var middle:Int = Std.int(Math.floor(length/2));
+		forEach(function(a:Dynamic):Void {
+			var num:Int = middle - Std.int(Math.abs(middle - a.index));
+			af.setTimer(a, num);
+		});
 		lastIndex = middle;
 	}
 	
 	private function processRandom():Void
 	{
+		var af:Dynamic = this;
 		var num:Int = 0;
 		var temp:Array<Int> = [];
 		
-	   	for (i in 0... queue.length) {
-			temp[i] = i;
-		}
+	   	for (i in 0... length) temp[i] = i;
 		
-		for (i in 0... queue.length) {
+		forEach(function(a:Dynamic):Void {
 			var r:Int = Math.round(Math.random()*(temp.length-1));
 			num = temp.splice(r, 1)[0];
-			if (num == queue.length-1) lastIndex = i;
-			setTimer(i, num);
-		}
+			if (num == af.length-1) af.lastIndex = a.index;
+			af.setTimer(a, num);
+		});
 	}	
 }

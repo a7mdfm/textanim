@@ -126,6 +126,11 @@ class TextAnim extends Sprite
 	*/
 	public var firstBlock:TextAnimBlock;
 	
+	/**
+	* Amount of TextAnimBlocks.
+	*/
+	public var length:UInt;
+	
 	public var anchorX(getAnchorX, setAnchorX):String;
 	private var _anchorX:String;
 	
@@ -170,6 +175,7 @@ class TextAnim extends Sprite
 		_blocksVisible = true;
 		
 		this.source = source;
+		length = 0;
 		
 		evStart = new Event(TextAnimEvent.START);
 		evProgress = new Event(TextAnimEvent.PROGRESS);
@@ -270,6 +276,7 @@ class TextAnim extends Sprite
 		}
 
 		source = null;
+		length = 0;
 		
 		onStart = onProgress = onComplete = onBlocksCreated = null;
 	}
@@ -277,7 +284,7 @@ class TextAnim extends Sprite
 	private function setBlocksVisible(val:Bool):Bool
 	{
 		_blocksVisible = val;
-		applyToAllBlocks(function(block:TextAnimBlock, index:Int):Void {
+		forEachBlock(function(block:TextAnimBlock):Void {
 			block.visible = val;
 		});
 		return _blocksVisible;
@@ -305,30 +312,30 @@ class TextAnim extends Sprite
 		if(block != null){
 			block.visible = true;
 			if (effects != null) {
-				for (k in 0... effectList.length){
-					var eff:Dynamic = effectList[k];
+				var i:Int = effectList.length - 1;
+				while (i >= 0) {
+					var eff:Dynamic = effectList[i];
 					eff(block);
+					i--;
 				}
 			}
 		}
 	}
 
 	/**
-	* Apply a function to all the blocks of this instance. 
+	* Apply a function to each block of this TextAnim.  
 	* 
 	* <p>This method takes a callback function and will call it according to the amount of blocks. 
 	* This must receive a callback object of type as a parameter <code>TextAnimBlock</code></p>
 	*
 	* @param act The function that will be applied to blocks.		
 	*/
-	public function applyToAllBlocks(act:Dynamic):Void
+	public function forEachBlock(callBack:Dynamic):Void
 	{
 		var block:TextAnimBlock = firstBlock;
-		var index:Int = 0;
 		while (block != null) {
-			act(block, index);
+			callBack(block);
 			block = block.nextBlock;
-			index++;
 		}
 	}
 	
@@ -342,20 +349,14 @@ class TextAnim extends Sprite
 	{
 		if (anchorX == ANCHOR_LEFT || anchorX == ANCHOR_CENTER || anchorX == ANCHOR_RIGHT) _anchorX = anchorX;
 		if (anchorY == ANCHOR_TOP || anchorY == ANCHOR_CENTER || anchorY == ANCHOR_BOTTOM) _anchorY = anchorY;
-		var bs:Dynamic = blockSettings;
-		applyToAllBlocks(function(block:TextAnimBlock, index:Int):Void {
-			bs(block);
-		});
+		forEachBlock(blockSettings);
 	}
 	
 	private function setAnchorX(val:String):String
 	{
 		if (val == ANCHOR_LEFT || val == ANCHOR_CENTER || val == ANCHOR_RIGHT) {
 			_anchorX = val;
-			var bs:Dynamic = blockSettings;
-			applyToAllBlocks(function(block:TextAnimBlock, index:Int):Void {
-				bs(block);
-			});
+			forEachBlock(blockSettings);
 		}
 		
 		return _anchorX;
@@ -374,10 +375,7 @@ class TextAnim extends Sprite
 	{
 		if (val == ANCHOR_TOP || val == ANCHOR_CENTER || val == ANCHOR_BOTTOM) {
 			_anchorY = val;
-			var bs:Dynamic = blockSettings;
-			applyToAllBlocks(function(block:TextAnimBlock, index:Int):Void {
-				bs(block);
-			});
+			forEachBlock(blockSettings);
 		}
 		
 		return _anchorY;
@@ -400,25 +398,15 @@ class TextAnim extends Sprite
 
 		flow.clear();
 		firstBlock = Breaker.separeBlocks(this, _breakMode);
-		var ta:Dynamic = this;
-		applyToAllBlocks(function(block:TextAnimBlock, index:Int):Void {
-			ta.addChild(block);
-			ta.blockSettings(block);
-		});
-		
+		forEachBlock(blockSettings);
 		if (onBlocksCreated != null) onBlocksCreated(); 
 	}
 
 	private function removeBlocks():Void
 	{
 		flow.clear();
-		var ta:Dynamic = this;
-		applyToAllBlocks(function(block:TextAnimBlock, index:Int):Void {
-			if (ta.contains(block)) ta.removeChild(block);
-			block.dispose();
-			block = null;
-		});
-		
+		forEachBlock(killBlock);
+		length = 0;
 		firstBlock = null;
 	}
 
@@ -443,8 +431,18 @@ class TextAnim extends Sprite
 		}
 		
 		block.visible = _blocksVisible;
+		addChild(block);
 		
 		anchorConfig(block);
+		
+		length++;
+	}
+	
+	private function killBlock(block:TextAnimBlock):Void
+	{
+		if (contains(block)) removeChild(block);
+		block.dispose();
+		block = null;
 	}
 	
 	private function anchorConfig(block:TextAnimBlock):Void
@@ -497,10 +495,11 @@ class TextAnim extends Sprite
 		if (time > 0) {
 			flow.time = time;
 		} else {
-			flow.time = interval*length();
+			flow.time = interval*length;
 		}
-		var ta:Dynamic = this;
-		applyToAllBlocks(function(block:TextAnimBlock, index:Int):Void {
+		
+		var ta:TextAnim = this;
+		forEachBlock(function(block:TextAnimBlock):Void {
 			ta.flow.addFunction(function(index:Int):Void {
 				ta.applyEffect(block);
 			});
@@ -524,15 +523,6 @@ class TextAnim extends Sprite
 	{         
 		if (onStart != null) onStart(); 
 		dispatchEvent(evStart); 
-	}
-	
-	public function length():Int
-	{
-		var count:Int = 0;
-		applyToAllBlocks(function(block:TextAnimBlock, index:Int):Void {
-			count = index;
-		});
-		return count;
 	}
 
 }
