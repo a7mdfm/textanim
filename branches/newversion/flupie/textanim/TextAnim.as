@@ -125,6 +125,8 @@ package flupie.textanim
 		*/
 		public var firstBlock:TextAnimBlock;
 		
+		public var length:uint;
+		
 		
 		private var _anchorX:String = ANCHOR_CENTER;
 		private var _anchorY:String = ANCHOR_CENTER;
@@ -154,6 +156,8 @@ package flupie.textanim
 			super();
 
 			this.source = source;
+			
+			length = 0;
 			
 			evStart = new Event(TextAnimEvent.START);
 			evProgress = new Event(TextAnimEvent.PROGRESS);
@@ -383,6 +387,7 @@ package flupie.textanim
 				block = null
 			});
 			
+			length = 0;
 			firstBlock = null;
 		}
 
@@ -406,6 +411,8 @@ package flupie.textanim
 			addChild(block);
 			
 			anchorConfig(block);
+			
+			length++;
 		}
 		
 		private function anchorConfig(block:TextAnimBlock):void
@@ -468,7 +475,6 @@ package flupie.textanim
 			}
 
 			forEachBlock(function(block:TextAnimBlock):void {
-				var index:int = block.index;
 				flow.addFunction(function(index:int):void{
 					applyEffect(block);
 				});
@@ -492,15 +498,6 @@ package flupie.textanim
 		{         
 			if (onStart != null) onStart(); 
 			dispatchEvent(evStart); 
-		}
-		
-		public function get length():int
-		{
-			var count:int = 0;
-			forEachBlock(function(block:TextAnimBlock):void {
-				count = block.index;
-			});
-			return count;
 		}
 
 	}
