@@ -182,7 +182,7 @@ package flupie.textanim
 			var num:uint = length;
 			forEach(function(a:Object):void {
 				num--;
-				setTimer(a.index, num);
+				setTimer(a, num);
 			});
 			lastIndex = 0;
 		}
@@ -192,7 +192,7 @@ package flupie.textanim
 			var middle:uint = Math.floor(length/2);
 			forEach(function(a:Object):void {
 				var num:uint = Math.abs(a.index - middle);
-				setTimer(a.index, num);
+				setTimer(a, num);
 			}); 
 			lastIndex = 0;
 		}
@@ -202,7 +202,7 @@ package flupie.textanim
 			var middle:uint = Math.floor(length/2);
 			forEach(function(a:Object):void {
 				var num:uint = middle - Math.abs(middle - a.index);
-				setTimer(a.index, num);
+				setTimer(a, num);
 			});
 			lastIndex = middle;
 		}
@@ -212,15 +212,13 @@ package flupie.textanim
 			var num:int = 0;
 			var temp:Array = [];
 			
-		   	for (var i:int = 0; i < length; i++) {
-				temp[i] = i;
-			}
+		   	for (var i:int = 0; i < length; i++) temp[i] = i;
 			
 			forEach(function(a:Object):void {
 				var r:Number = Math.round(Math.random()*(temp.length - 1));
 				num = temp.splice(r, 1);
-				if (num == length - 1) lastIndex = i;
-				setTimer(i, num);
+				if (num == length - 1) lastIndex = a.index;
+				setTimer(a, num);
 			});
 		}
 		
