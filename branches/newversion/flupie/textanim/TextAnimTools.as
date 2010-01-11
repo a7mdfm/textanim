@@ -51,7 +51,7 @@ package flupie.textanim
 		*/
 		public static function toBitmap(textAnim:TextAnim, smooth:Boolean = false):void
 		{	
-			textAnim.applyToAllBlocks(function (block:TextAnimBlock, index:int):void {
+			textAnim.forEachBlock(function (block:TextAnimBlock):void {
 				block.clearTexture();
 				
 				var bounds:Rectangle = getColorBounds(block);
@@ -89,7 +89,7 @@ package flupie.textanim
 		*/
 		public static function toVector(textAnim:TextAnim):void
 		{
-			textAnim.applyToAllBlocks(function (block:TextAnimBlock, index:int):void {
+			textAnim.forEachBlock(function (block:TextAnimBlock):void {
 				block.clearTexture();
 				block.addChild(block.textField);
 			});
@@ -105,7 +105,7 @@ package flupie.textanim
 		*/
 		public static function setPattern(textAnim:TextAnim, img:*, stretch:Boolean = false):void
 		{
-			textAnim.applyToAllBlocks(function (block:TextAnimBlock, index:int):void {
+			textAnim.forEachBlock(function (block:TextAnimBlock):void {
 				
 				var bounds:Rectangle = getColorBounds(block);
 				var pattern:BitmapData;
@@ -151,7 +151,7 @@ package flupie.textanim
 		*/
 		public static function setGradientLinear(textAnim:TextAnim, colors:Array, angle:Number = 0, alphas:Array = null, ratios:Array = null):void
 		{
-			textAnim.applyToAllBlocks(function (block:TextAnimBlock, index:int):void {
+			textAnim.forEachBlock(function (block:TextAnimBlock):void {
 				var bounds:Rectangle = getColorBounds(block);
 				
 				block.clearTexture();

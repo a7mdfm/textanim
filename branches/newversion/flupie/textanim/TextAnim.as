@@ -33,7 +33,6 @@ package flupie.textanim
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
-	import flash.utils.setTimeout;
 
 	/**
 	 * <code>TextAnim</code> is an extensible class to create text animations.
@@ -167,10 +166,10 @@ package flupie.textanim
 
 			text = source.htmlText;
 
-			x = source.x;
-			y = source.y;
-
 			if (autoReplace) {
+				x = source.x;
+				y = source.y;
+				
 				if (source.parent != null) {
 					source.parent.addChild(this);
 					source.parent.swapChildren(this, source);
@@ -209,20 +208,12 @@ package flupie.textanim
 		/**
 		* Starts the flow of effects dispatches.
 		*
-		* @param delay Time to wait before the first dispatch, in milliseconds.
 		* @see stop
 		*/
-		public function start(delay:Number = 0):void
+		public function start():void
 		{
-			if (delay == 0) {
-				flowSettings();
-				flow.start();
-			} else {
-				setTimeout(function():void {
-					flowSettings();
-					flow.start();
-				}, delay);
-			}
+			flowSettings();
+			flow.start();
 		}
 
 		/**
@@ -266,7 +257,7 @@ package flupie.textanim
 		public function set blocksVisible(val:Boolean):void
 		{
 			_blocksVisible = val;
-			applyToAllBlocks(function(block:TextAnimBlock, index:int):void {
+			forEachBlock(function(block:TextAnimBlock):void {
 				block.visible = val;
 			})
 		}
@@ -288,13 +279,13 @@ package flupie.textanim
 		public function applyEffect(block:TextAnimBlock):void
 		{
 			var effectList:Array = effects is Array ? effects : [effects];
-			var bl:TextAnimBlock = block;
 
 			if(block != null){
 				block.visible = true;
 				if (effects != null) {
-					for (var k:int = 0; k<effectList.length; k++){
-						var eff:Function = effectList[k];
+					var i:uint = effectList.length;
+					while (i--){
+						var eff:Function = effectList[i];
 						eff(block);
 					}
 				}
@@ -302,19 +293,19 @@ package flupie.textanim
 		}
 
 		/**
-		* Apply a function to all the blocks of this instance. 
+		* Apply a function to each block of this TextAnim. 
 		* 
 		* <p>This method takes a callback function and will call it according to the amount of blocks. 
 		* This must receive a callback object of type as a parameter <code>TextAnimBlock</code></p>
 		*
-		* @param act The function that will be applied to blocks.		
+		* @param callback The function that will be applied to blocks.		
 		*/
-		public function applyToAllBlocks(act:Function):void
+		public function forEachBlock(callback:Function):void
 		{
 			var block:TextAnimBlock = firstBlock;
 			var index:int = 0;
 			while (block) {
-				act(block, index);
+				callback(block);
 				block = block.nextBlock;
 				index++;
 			}
@@ -330,18 +321,14 @@ package flupie.textanim
 		{
 			if (anchorX == ANCHOR_LEFT || anchorX == ANCHOR_CENTER || anchorX == ANCHOR_RIGHT) _anchorX = anchorX;
 			if (anchorY == ANCHOR_TOP || anchorY == ANCHOR_CENTER || anchorY == ANCHOR_BOTTOM) _anchorY = anchorY;
-			applyToAllBlocks(function(block:TextAnimBlock, index:int):void{
-				blockSettings(block);
-			});
+			forEachBlock(blockSettings);
 		}
 		
 		public function set anchorX(val:String):void
 		{
 			if (val == ANCHOR_LEFT || val == ANCHOR_CENTER || val == ANCHOR_RIGHT) {
 				_anchorX = val;
-				applyToAllBlocks(function(block:TextAnimBlock, index:int):void{
-					blockSettings(block);
-				});
+				forEachBlock(blockSettings);
 			}
 		}
 		
@@ -358,9 +345,7 @@ package flupie.textanim
 		{
 			if (val == ANCHOR_TOP || val == ANCHOR_CENTER || val == ANCHOR_BOTTOM) {
 				_anchorY = val;
-				applyToAllBlocks(function(block:TextAnimBlock, index:int):void{
-					blockSettings(block);
-				});
+				forEachBlock(blockSettings);
 			}
 		}
 		/**
@@ -380,12 +365,10 @@ package flupie.textanim
 			if (firstBlock != null) removeBlocks();
 
 			flow.clear();
+			
 			firstBlock = Breaker.separeBlocks(this, _breakMode);
 
-			applyToAllBlocks(function(block:TextAnimBlock, index:int):void {
-				addChild(block);
-				blockSettings(block);
-			});
+			forEachBlock(blockSettings);
 			
 			if (onBlocksCreated != null) onBlocksCreated(); 
 		}
@@ -394,11 +377,12 @@ package flupie.textanim
 		{
 			flow.clear();
 
-			applyToAllBlocks(function(block:TextAnimBlock, index:int):void {
+			forEachBlock(function(block:TextAnimBlock):void {
 				if (contains(block)) removeChild(block);
 				block.dispose();
 				block = null
 			});
+			
 			firstBlock = null;
 		}
 
@@ -406,8 +390,8 @@ package flupie.textanim
 		{
 			var bounds:Rectangle = source.getCharBoundaries(block.index);
 			if (bounds == null) bounds = new Rectangle();
+		
 			var fmt:TextFormat = source.getTextFormat(block.index, block.index+1);
-
 			var modX:Number = (fmt.indent as Number) + (fmt.leftMargin as Number);
 
 			block.textField.x = block.textField.y = block.texture.x = block.texture.y = 0;
@@ -419,6 +403,7 @@ package flupie.textanim
 				block.textField.setTextFormat(source.getTextFormat(block.index+i, block.index+i+1), i, i+1);
 			
 			block.visible = _blocksVisible;
+			addChild(block);
 			
 			anchorConfig(block);
 		}
@@ -482,7 +467,8 @@ package flupie.textanim
 				flow.time = interval*length;
 			}
 
-			applyToAllBlocks(function(block:TextAnimBlock, index:int):void {
+			forEachBlock(function(block:TextAnimBlock):void {
+				var index:int = block.index;
 				flow.addFunction(function(index:int):void{
 					applyEffect(block);
 				});
@@ -511,8 +497,8 @@ package flupie.textanim
 		public function get length():int
 		{
 			var count:int = 0;
-			applyToAllBlocks(function(block:TextAnimBlock, index:int):void {
-				count = index;
+			forEachBlock(function(block:TextAnimBlock):void {
+				count = block.index;
 			});
 			return count;
 		}

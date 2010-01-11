@@ -12,7 +12,6 @@ package
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
-	import flash.text.TextFormat;
 	
 	import flupie.textanim.TextAnim;
 	import flupie.textanim.TextAnimBlock;
@@ -52,7 +51,7 @@ package
 			
 			TextAnim.debug = true;
 			anim = new TextAnim(txtContainer.txt);
-			anim.effects = fxScale;
+			anim.effects = [fxScale, fxRotation];
 			anim.time = 3500;
 			
 			createMenus();
@@ -143,6 +142,11 @@ package
 		{
 			block.scaleX = block.scaleY = 0;
 			Tweener.addTween(block, {scaleX:1, scaleY:1, time:1, transition:"linear"});
+		}
+		
+		public function fxRotation(block:TextAnimBlock):void
+		{
+			Tweener.addTween(block, {rotation:360, time:1, delay:1});
 		}
 		
 		public function resizeHandler(e:*=null):void

@@ -34,7 +34,6 @@ import flash.events.Event;
 import flash.geom.Rectangle;
 import flash.text.TextField;
 import flash.text.TextFormat;
-import haxe.Timer;
 
 /**
  * <code>TextAnim</code> is an extensible class to create text animations.
@@ -170,7 +169,6 @@ class TextAnim extends Sprite
 		_breakMode = Breaker.BREAK_IN_LETTERS;
 		_blocksVisible = true;
 		
-
 		this.source = source;
 		
 		evStart = new Event(TextAnimEvent.START);
@@ -184,10 +182,10 @@ class TextAnim extends Sprite
 
 		text = source.htmlText;
 
-		x = source.x;
-		y = source.y;
-
 		if (autoReplace) {
+			x = source.x;
+			y = source.y;
+			
 			if (source.parent != null) {
 				source.parent.addChild(this);
 				source.parent.swapChildren(this, source);
@@ -230,21 +228,12 @@ class TextAnim extends Sprite
 	/**
 	* Starts the flow of effects dispatches.
 	*
-	* @param delay Time to wait before the first dispatch, in milliseconds.
 	* @see stop
 	*/
-	public function start(delay:Int = 0):Void
+	public function start():Void
 	{
-		if (delay == 0) {
-			flowSettings();
-			flow.start();
-		} else {
-			var ta:Dynamic = this;
-			Timer.delay(function():Void {
-				ta.flowSettings();
-				ta.flow.start();
-			}, delay);
-		}
+		flowSettings();
+		flow.start();
 	}
 
 	/**
@@ -445,11 +434,11 @@ class TextAnim extends Sprite
 		block.posX = block.x = bounds.x - 2 - modX;
 		block.posY = block.y = bounds.y - 2;
 
-		var i:Int = block.textField.text.length;
+		var i:Int = block.textField.text.length - 1;
 		
 		while (i >= 0) {
-			//var fmt = source.getTextFormat(block.index+i, block.index+i+1);
-			//if (fmt != null) block.textField.setTextFormat(fmt, i, i+1);
+			var fmt = source.getTextFormat(block.index+i, block.index+i+1);
+			if (fmt != null) block.textField.setTextFormat(fmt, i, i+1);
 			i--;
 		}
 		

@@ -74,15 +74,16 @@ package flupie.textanim
 		public var onComplete:Function;
 
 		private var timeout:uint;
-		private var queue:Array = null;
 		private var lastIndex:int = 0;
-
+		private var firstAction:Object;
+		private var lastAction:Object;
+		private var length:uint;
 		/**
 		 * Construtor. Only create the queue array.
 		 */
 		public function ActionFlow()
 		{
-			queue = [];
+			length = 0;
 		}
 		
 		/**
@@ -90,9 +91,13 @@ package flupie.textanim
 		 *	
 		 * @param funct Function added.
 		 */
-		public function addFunction(funct:Function):void
+		public function addFunction(callback:Function):void
 		{
-			queue[queue.length] = {funct:funct, timer:null};
+			var action:Object = {callback:callback, index:length, timer:NaN, next:null};
+			if (firstAction == null) firstAction = action;
+			if (lastAction != null) lastAction.next = action;
+			lastAction = action;
+			length++;
 		}
 		
 		/**
@@ -128,9 +133,9 @@ package flupie.textanim
 		*/
 		public function stop():void
 		{
-			for(var i:Number=0; i<queue.length; i++){
-				clearTimeout(queue[i].timer);
-			}
+			forEach(function(a:Object):void {
+				clearTimeout(a.timer);
+			});
 		}
 		
 		/**
@@ -139,14 +144,26 @@ package flupie.textanim
 		public function clear():void
 		{
 			stop();
-			queue = [];
+			firstAction = null;
+			lastAction = null;
+			length = 0;
 		}
 		
-		private function setTimer(i:Number, num:Number):void
+		private function forEach(cb:Function):void
 		{
-			var interv:Number = time/queue.length;
-			queue[i].timer = setTimeout(function():void {
-				queue[i].funct(i);
+			var a:Object = firstAction;
+			while (a) {
+				cb(a);
+				a = a.next;
+			}
+		}
+		
+		private function setTimer(a:Object, num:Number):void
+		{
+			var interv:Number = time/length;
+			var i:uint = a.index;
+			a.timer = setTimeout(function():void {
+				a.callback(i);
 				if (onProgress != null) onProgress();
 				if (i == lastIndex && onComplete != null) onComplete();
 			}, num*interv);
@@ -154,60 +171,58 @@ package flupie.textanim
 		
 		private function processFirstToLast():void
 		{
-			for(var i:Number=0; i<queue.length; i++){
-				setTimer(i, i);
-			}
-			lastIndex = queue.length - 1;
+			forEach(function(a:Object):void {
+				setTimer(a, a.index);
+			});
+			lastIndex = length - 1;
 		}
 		
 		private function processLastToFirst():void
 		{
-			var num:Number=queue.length;
-			for(var i:Number=0; i<queue.length; i++){
+			var num:uint = length;
+			forEach(function(a:Object):void {
 				num--;
-				setTimer(i, num);
-			}
+				setTimer(a.index, num);
+			});
 			lastIndex = 0;
 		}
 		
 		private function processCenterToEdges():void
 		{
-			var middle:Number=Math.floor(queue.length/2);
-			for(var i:Number=0; i<queue.length; i++){
-				var num:Number=Math.abs(i-middle);
-				setTimer(i, num);
-			} 
+			var middle:uint = Math.floor(length/2);
+			forEach(function(a:Object):void {
+				var num:uint = Math.abs(a.index - middle);
+				setTimer(a.index, num);
+			}); 
 			lastIndex = 0;
 		}
 		
 		private function processEdgesToCenter():void
 		{
-			var middle:Number=Math.floor(queue.length/2);
-			for(var i:Number=0; i<queue.length; i++){
-				var num:Number=middle-Math.abs(middle-i);
-				setTimer(i, num);
-			}
+			var middle:uint = Math.floor(length/2);
+			forEach(function(a:Object):void {
+				var num:uint = middle - Math.abs(middle - a.index);
+				setTimer(a.index, num);
+			});
 			lastIndex = middle;
 		}
 		
 		private function processRandom():void
 		{
 			var num:int = 0;
-			var temp:Array = new Array(queue.length);
+			var temp:Array = [];
 			
-		   	for (var i:int = 0; i < queue.length; i++) {
+		   	for (var i:int = 0; i < length; i++) {
 				temp[i] = i;
 			}
 			
-			for (i = 0; i < queue.length; i++) {
-				var r:Number = Math.round(Math.random()*(temp.length-1));
+			forEach(function(a:Object):void {
+				var r:Number = Math.round(Math.random()*(temp.length - 1));
 				num = temp.splice(r, 1);
-				if (num == queue.length-1) lastIndex = i;
+				if (num == length - 1) lastIndex = i;
 				setTimer(i, num);
-			}
+			});
 		}
-		
-
 		
 	}
 }
