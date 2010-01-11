@@ -125,12 +125,13 @@ package flupie.textanim
 		*/
 		public var firstBlock:TextAnimBlock;
 		
+		/**
+		* Amount of TextAnimBlocks.
+		*/
 		public var length:uint;
-		
 		
 		private var _anchorX:String = ANCHOR_CENTER;
 		private var _anchorY:String = ANCHOR_CENTER;
-		
 		
 		private var _breakMode:String = Breaker.BREAK_IN_LETTERS;
 		private var _text:String;
@@ -156,7 +157,6 @@ package flupie.textanim
 			super();
 
 			this.source = source;
-			
 			length = 0;
 			
 			evStart = new Event(TextAnimEvent.START);
@@ -254,6 +254,7 @@ package flupie.textanim
 			}
 
 			source = null;
+			length = 0;
 			
 			onStart = onProgress = onComplete = onBlocksCreated = null;
 		}
@@ -307,11 +308,9 @@ package flupie.textanim
 		public function forEachBlock(callback:Function):void
 		{
 			var block:TextAnimBlock = firstBlock;
-			var index:int = 0;
 			while (block) {
 				callback(block);
 				block = block.nextBlock;
-				index++;
 			}
 		}
 		
@@ -367,26 +366,17 @@ package flupie.textanim
 		private function createBlocks():void
 		{
 			if (firstBlock != null) removeBlocks();
-
+			
 			flow.clear();
-			
 			firstBlock = Breaker.separeBlocks(this, _breakMode);
-
 			forEachBlock(blockSettings);
-			
 			if (onBlocksCreated != null) onBlocksCreated(); 
 		}
 
 		private function removeBlocks():void
 		{
 			flow.clear();
-
-			forEachBlock(function(block:TextAnimBlock):void {
-				if (contains(block)) removeChild(block);
-				block.dispose();
-				block = null
-			});
-			
+			forEachBlock(killBlock);
 			length = 0;
 			firstBlock = null;
 		}
@@ -413,6 +403,13 @@ package flupie.textanim
 			anchorConfig(block);
 			
 			length++;
+		}
+		
+		private function killBlock(block:TextAnimBlock):void
+		{
+			if (contains(block)) removeChild(block);
+			block.dispose();
+			block = null
 		}
 		
 		private function anchorConfig(block:TextAnimBlock):void

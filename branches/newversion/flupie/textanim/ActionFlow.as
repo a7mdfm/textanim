@@ -73,7 +73,6 @@ package flupie.textanim
 		*/
 		public var onComplete:Function;
 
-		private var timeout:uint;
 		private var lastIndex:int = 0;
 		private var firstAction:Object;
 		private var lastAction:Object;
