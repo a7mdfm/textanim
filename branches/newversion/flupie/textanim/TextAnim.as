@@ -40,7 +40,7 @@ package flupie.textanim
 	 */
 	public class TextAnim extends Sprite
 	{
-		public static const BREAK_IN_LETTERS:String = Breaker.BREAK_IN_LETTERS;
+		public static const BREAK_IN_CHARS:String = Breaker.BREAK_IN_CHARS;
 		public static const BREAK_IN_WORDS:String = Breaker.BREAK_IN_WORDS;
 		public static const BREAK_IN_LINES:String = Breaker.BREAK_IN_LINES;
 
@@ -133,7 +133,7 @@ package flupie.textanim
 		private var _anchorX:String = ANCHOR_CENTER;
 		private var _anchorY:String = ANCHOR_CENTER;
 		
-		private var _breakMode:String = Breaker.BREAK_IN_LETTERS;
+		private var _breakMode:String = Breaker.BREAK_IN_CHARS;
 		private var _text:String;
 		private var _blocksVisible:Boolean = true;
 		private var flow:ActionFlow;

@@ -12,9 +12,9 @@ package components
 
 			title.setText("Break Mode");
 			var btnLetters:Btn = addBtn();
-			btnLetters.setLabel("LETTERS");
+			btnLetters.setLabel("CHARS");
 			btnLetters.onClick = function():void {
-				textAnim.breakMode = TextAnim.BREAK_IN_LETTERS;
+				textAnim.breakMode = TextAnim.BREAK_IN_CHARS;
 			}
 				
 			var btnWords:Btn = addBtn();

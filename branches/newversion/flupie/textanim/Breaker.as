@@ -36,20 +36,21 @@ package flupie.textanim
 	 */	
 	internal class Breaker
 	{
-		public static const BREAK_IN_LETTERS:String = "breakInLetters";
+		public static const BREAK_IN_CHARS:String = "breakInChars";
 		public static const BREAK_IN_WORDS:String = "breakInWords";
 		public static const BREAK_IN_LINES:String = "breakInLines";
 		
-		internal static function separeBlocks(block:TextAnim, separationMode:String = BREAK_IN_LETTERS):TextAnimBlock {
+		internal static function separeBlocks(block:TextAnim, breakMode:String = BREAK_IN_CHARS):TextAnimBlock 
+		{
 			var firstBlock:TextAnimBlock;
-			switch (separationMode) {
-				case "breakInLetters" :
+			switch (breakMode) {
+				case BREAK_IN_CHARS :
 					firstBlock = breakInLetters(block);
 					break;
-				case "breakInWords" :
+				case BREAK_IN_WORDS :
 					firstBlock = breakInWords(block);
 					break;
-				case "breakInLines" :
+				case BREAK_IN_LINES :
 					firstBlock = breakInLines(block);
 					break;
 				default : firstBlock = breakInLetters(block);

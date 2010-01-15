@@ -129,6 +129,7 @@ package flupie.textanim
 			clearTexture();
 			if (contains(texture)) removeChild(texture);
 			texture = null;
+			nextBlock = null;
 		}
 
 		/**
