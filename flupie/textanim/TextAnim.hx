@@ -41,7 +41,7 @@ import flash.text.TextFormat;
  */
 class TextAnim extends Sprite
 {
-	public static var BREAK_IN_LETTERS:String = Breaker.BREAK_IN_LETTERS;
+	public static var BREAK_IN_CHARS:String = Breaker.BREAK_IN_CHARS;
 	public static var BREAK_IN_WORDS:String = Breaker.BREAK_IN_WORDS;
 	public static var BREAK_IN_LINES:String = Breaker.BREAK_IN_LINES;
 
@@ -171,7 +171,7 @@ class TextAnim extends Sprite
 		animMode = ANIM_TO_RIGHT;
 		_anchorX = ANCHOR_CENTER;
 		_anchorY = ANCHOR_CENTER;
-		_breakMode = Breaker.BREAK_IN_LETTERS;
+		_breakMode = Breaker.BREAK_IN_CHARS;
 		_blocksVisible = true;
 		
 		this.source = source;

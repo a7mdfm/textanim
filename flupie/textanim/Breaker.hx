@@ -35,19 +35,19 @@ package flupie.textanim;
  */	
 class Breaker
 {
-	public static var BREAK_IN_LETTERS:String = "breakInLetters";
+	public static var BREAK_IN_CHARS:String = "breakInChars";
 	public static var BREAK_IN_WORDS:String = "breakInWords";
 	public static var BREAK_IN_LINES:String = "breakInLines";
 	
-	public static function separeBlocks(block:TextAnim, ?separationMode:String):TextAnimBlock 
+	public static function separeBlocks(block:TextAnim, ?breakMode:String):TextAnimBlock 
 	{
 		var firstBlock:TextAnimBlock;
-		switch (separationMode) {
-			case "breakInLetters" :
+		switch (breakMode) {
+			case BREAK_IN_CHARS :
 				firstBlock = breakInLetters(block);
-			case "breakInWords" :
+			case BREAK_IN_WORDS :
 				firstBlock = breakInWords(block);
-			case "breakInLines" :
+			case BREAK_IN_LINES :
 				firstBlock = breakInLines(block);
 			default : firstBlock = breakInLetters(block);
 		}
