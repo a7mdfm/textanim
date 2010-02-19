@@ -144,11 +144,8 @@ package flupie.textanim
 			if(_count == sequence.length)
 			{
 				// check if the loop is setted for and reset the count
-				if(!loop)
-				{
-					trace("complete all", "dispatch a SEQUENCE_COMPLETE event?");
-					return;
-				}
+				if(!loop) return;
+
 				_count = 0;
 			}
 			
