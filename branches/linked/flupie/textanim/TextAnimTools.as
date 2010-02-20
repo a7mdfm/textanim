@@ -22,7 +22,7 @@
 	THE SOFTWARE.
 	
 	http://code.google.com/p/textanim/
-	http://flupie.net
+	http://flupie.net/blog/
 */       
 
 package flupie.textanim

@@ -22,7 +22,7 @@
 	THE SOFTWARE.
 	
 	http://code.google.com/p/textanim/
-	http://flupie.net
+	http://flupie.net/blog/
 */       
 
 package flupie.textanim
@@ -42,16 +42,16 @@ package flupie.textanim
 	 */
 	public class ActionFlow extends EventDispatcher
 	{
-		public static const FIRST_TO_LAST:String = "firstToLast";
-		public static const LAST_TO_FIRST:String = "lastToFirst";
-		public static const CENTER_TO_EDGES:String = "centerToEdges";
-		public static const EDGES_TO_CENTER:String = "edgesToCenter";
+		public static const LEFT_RIGHT:String = "firstToLast";
+		public static const RIGHT_LEFT:String = "lastToFirst"
+		public static const EDGES_CENTER:String = "edgesToCenter";
+		public static const CENTER_EDGES:String = "centerToEdges";
 		public static const RANDOM:String = "random";
 		
 		/**
-		 * The way of stream will occurs, like FIRST_TO_LAST, CENTER_TO_EDGES, etc.
+		 * The way of stream will occurs, like LEFT_RIGHT, EDGES_CENTER, etc.
 		 */
-		public var way:String = FIRST_TO_LAST;
+		public var way:String = LEFT_RIGHT;
 		
 		/**
 		 * The total duration (in milliseconds) of the stream, from the first dispatch to the last.
@@ -105,17 +105,17 @@ package flupie.textanim
 		public function start():void
 		{
 			switch (way){
-				case FIRST_TO_LAST :
+				case LEFT_RIGHT :
 					processFirstToLast();
 					break;
-				case LAST_TO_FIRST :
+				case RIGHT_LEFT :
 					processLastToFirst();
 					break;
-				case CENTER_TO_EDGES :
-					processCenterToEdges();
-					break;
-				case EDGES_TO_CENTER :
+				case EDGES_CENTER :
 					processEdgesToCenter();
+					break;
+				case CENTER_EDGES :
+					processCenterToEdges();
 					break;
 				case RANDOM :
 					processRandom();

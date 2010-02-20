@@ -22,7 +22,7 @@
 	THE SOFTWARE.
 	
 	http://code.google.com/p/textanim/
-	http://flupie.net
+	http://flupie.net/blog/
 */       
 
 package flupie.textanim
@@ -77,7 +77,7 @@ package flupie.textanim
 		
 		/**
 		 * TextAnimBlock is the most important object to manipulate your animations. No matter what you specify 
-		 * breakMode every effect will receive a TextAnimBlock so you can animate it.
+		 * break every effect will receive a TextAnimBlock so you can animate it.
 		 */
 		
 		public var nextBlock:TextAnimBlock;

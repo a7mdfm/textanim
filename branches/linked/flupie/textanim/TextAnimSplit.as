@@ -28,13 +28,12 @@
 package flupie.textanim 
 {
 	/**
-	 * Events are common. You can add a listener to track when the TextAnim starts the process. 
-	 * During the firing of the blocks. And when it was over.
+	 * comment...
 	 */
-	public class TextAnimEvent 
+	public class TextAnimSplit 
 	{
-		public static const COMPLETE:String = "complete";
-		public static const START:String = "start";
-		public static const PROGRESS:String = "progress"; 
+		public static const CHARS:String = Splitter.CHARS;
+		public static const WORDS:String = Splitter.WORDS;
+		public static const LINES:String = Splitter.LINES;
 	}
 }

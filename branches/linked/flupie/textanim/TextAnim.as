@@ -22,7 +22,7 @@
 	THE SOFTWARE.
 	
 	http://code.google.com/p/textanim/
-	http://flupie.net
+	http://flupie.net/blog/
 */       
 
 package flupie.textanim
@@ -33,6 +33,8 @@ package flupie.textanim
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
+	import flupie.textanim.TextAnimMode;
+	import flupie.textanim.TextAnimAnchor;
 
 	/**
 	 * <code>TextAnim</code> is an extensible class to create text animations.
@@ -40,22 +42,6 @@ package flupie.textanim
 	 */
 	public class TextAnim extends Sprite
 	{
-		public static const BREAK_IN_CHARS:String = Breaker.BREAK_IN_CHARS;
-		public static const BREAK_IN_WORDS:String = Breaker.BREAK_IN_WORDS;
-		public static const BREAK_IN_LINES:String = Breaker.BREAK_IN_LINES;
-
-		public static const ANIM_TO_RIGHT:String = ActionFlow.FIRST_TO_LAST;
-		public static const ANIM_TO_LEFT:String = ActionFlow.LAST_TO_FIRST;
-		public static const ANIM_TO_CENTER:String = ActionFlow.EDGES_TO_CENTER;
-		public static const ANIM_TO_EDGES:String = ActionFlow.CENTER_TO_EDGES;
-		public static const ANIM_RANDOM:String = ActionFlow.RANDOM;
-		
-		public static const ANCHOR_TOP:String = "T";
-		public static const ANCHOR_BOTTOM:String = "B";
-		public static const ANCHOR_LEFT:String = "L";
-		public static const ANCHOR_CENTER:String = "C";
-		public static const ANCHOR_RIGHT:String = "R";  
-		
 		public static var debug:Boolean = false;
 		
 		/**
@@ -106,7 +92,7 @@ package flupie.textanim
 		/**
 		* Callback function called when the blocks are created, or recreated.
 		*	
-		* <p>It occurs when the <code>breakMode</code> or <code>text</code> changes.</p> 
+		* <p>It occurs when the <code>break</code> or <code>text</code> changes.</p> 
 		*/
 		public var onBlocksCreated:Function;
 		
@@ -116,9 +102,9 @@ package flupie.textanim
 		* <p>Can be <code>ANIM_TO_RIGHT, ANIM_TO_LEFT, ANIM_TO_CENTER, ANIM_TO_EDGES and ANIM_RANDOM</code></p>
 		*	
 		* @default TextAnim.ANIM_TO_RIGHT
-		* @see breakMode
+		* @see break
 		*/
-		public var animMode:String = ANIM_TO_RIGHT;
+		public var mode:String = TextAnimMode.LEFT_RIGHT;
 		
 		/**
 		* It stores the TextAnimBlocks.
@@ -130,17 +116,16 @@ package flupie.textanim
 		*/
 		public var length:uint;
 		
-		private var _anchorX:String = ANCHOR_CENTER;
-		private var _anchorY:String = ANCHOR_CENTER;
+		private var _anchorX:String = TextAnimAnchor.CENTER;
+		private var _anchorY:String = TextAnimAnchor.CENTER;
 		
-		private var _breakMode:String = Breaker.BREAK_IN_CHARS;
+		private var _split:String = Splitter.CHARS;
 		private var _text:String;
 		private var _blocksVisible:Boolean = true;
 		private var flow:ActionFlow;
 		private var evStart:Event;
 		private var evProgress:Event;
 		private var evComplete:Event;
-		
 		
 		/**
 		* Construtor. Receives a TextField instance and instruction to replace that automatically.
@@ -194,9 +179,9 @@ package flupie.textanim
 		*/
 		public function get text():String { return source.text; }
 
-		public function set breakMode(value:String):void
+		public function set split(value:String):void
 		{
-			_breakMode = value;
+			_split = value;
 			createBlocks();
 		}
 
@@ -207,7 +192,7 @@ package flupie.textanim
 		*		
 		* @param value
 		*/
-		public function get breakMode():String { return _breakMode; }
+		public function get split():String { return _split; }
 
 		/**
 		* Starts the flow of effects dispatches.
@@ -317,19 +302,19 @@ package flupie.textanim
 		/**
 		* Modify the registration x and y of all blocks.
 		*	
-		* @param anchorX The horizontal registration (textAnim.ANCHOR_LEFT, textAnim.ANCHOR_RIGHT and textAnim.CENTER).
-		* @param anchorX The vertical registration (textAnim.ANCHOR_TOP, textAnim.ANCHOR_BOTTOM and textAnim.CENTER). 
+		* @param anchorX The horizontal registration (textAnim.LEFT, textAnim.RIGHT and textAnim.CENTER).
+		* @param anchorX The vertical registration (textAnim.TOP, textAnim.BOTTOM and textAnim.CENTER). 
 		*/
 		public function setAnchor(anchorX:String, anchorY:String):void
 		{
-			if (anchorX == ANCHOR_LEFT || anchorX == ANCHOR_CENTER || anchorX == ANCHOR_RIGHT) _anchorX = anchorX;
-			if (anchorY == ANCHOR_TOP || anchorY == ANCHOR_CENTER || anchorY == ANCHOR_BOTTOM) _anchorY = anchorY;
+			if (anchorX == TextAnimAnchor.LEFT || anchorX == TextAnimAnchor.CENTER || anchorX == TextAnimAnchor.RIGHT) _anchorX = anchorX;
+			if (anchorY == TextAnimAnchor.TOP || anchorY == TextAnimAnchor.CENTER || anchorY == TextAnimAnchor.BOTTOM) _anchorY = anchorY;
 			forEachBlock(blockSettings);
 		}
 		
 		public function set anchorX(val:String):void
 		{
-			if (val == ANCHOR_LEFT || val == ANCHOR_CENTER || val == ANCHOR_RIGHT) {
+			if (val == TextAnimAnchor.LEFT || val == TextAnimAnchor.CENTER || val == TextAnimAnchor.RIGHT) {
 				_anchorX = val;
 				forEachBlock(blockSettings);
 			}
@@ -338,15 +323,15 @@ package flupie.textanim
 		/**
 		 * The horizontal registration of each TextAnimBlock.
 		 *
-		 * <p>It can be <code>TextAnim.ANCHOR_CENTER, TextAnim.ANCHOR_LEFT, TextAnim.ANCHOR_RIGHT</code></p>	
-		 * @default TextAnim.ANCHOR_CENTER;
+		 * <p>It can be <code>TextAnim.CENTER, TextAnim.LEFT, TextAnim.RIGHT</code></p>	
+		 * @default TextAnim.CENTER;
 		 * @see setAnchor	
 		 */
 		public function get anchorX():String { return _anchorX; }
 		
 		public function set anchorY(val:String):void
 		{
-			if (val == ANCHOR_TOP || val == ANCHOR_CENTER || val == ANCHOR_BOTTOM) {
+			if (val == TextAnimAnchor.TOP || val == TextAnimAnchor.CENTER || val == TextAnimAnchor.BOTTOM) {
 				_anchorY = val;
 				forEachBlock(blockSettings);
 			}
@@ -354,8 +339,8 @@ package flupie.textanim
 		/**
 		 * The vertical registration of each TextAnimBlock.
 		 *
-		 * <p>It can be <code>TextAnim.ANCHOR_CENTER, TextAnim.ANCHOR_TOP, TextAnim.ANCHOR_BOTTOM</code></p>	
-		 * @default TextAnim.ANCHOR_CENTER;
+		 * <p>It can be <code>TextAnim.CENTER, TextAnim.TOP, TextAnim.BOTTOM</code></p>	
+		 * @default TextAnim.CENTER;
 		 * @see setAnchor	
 		 */
 		public function get anchorY():String { return _anchorY; }
@@ -368,7 +353,7 @@ package flupie.textanim
 			if (firstBlock != null) removeBlocks();
 			
 			flow.clear();
-			firstBlock = Breaker.separeBlocks(this, _breakMode);
+			firstBlock = Splitter.separeBlocks(this, _split);
 			forEachBlock(blockSettings);
 			if (onBlocksCreated != null) onBlocksCreated(); 
 		}
@@ -420,25 +405,25 @@ package flupie.textanim
 			var py:Number;
 			
 			switch (_anchorX) {
-				case ANCHOR_LEFT :
+				case TextAnimAnchor.LEFT :
 					px = -bounds.x;
 					break;
-				case ANCHOR_CENTER :
+				case TextAnimAnchor.CENTER :
 					px = -bounds.x - bounds.width/2;
 					break;
-				case ANCHOR_RIGHT :
+				case TextAnimAnchor.RIGHT :
 					px = -bounds.x - bounds.width;
 					break;
 			}
 			
 			switch (_anchorY) {
-				case ANCHOR_TOP :
+				case TextAnimAnchor.TOP :
 					py = -bounds.y;
 					break;
-				case ANCHOR_CENTER :
+				case TextAnimAnchor.CENTER :
 					py = -bounds.y - bounds.height/2;
 					break;
-				case ANCHOR_BOTTOM :
+				case TextAnimAnchor.BOTTOM :
 					py = -bounds.y - bounds.height;
 					break;
 			}
@@ -464,7 +449,7 @@ package flupie.textanim
 			var effectList:Array = effects is Array ? effects : [effects];
 
 			flow.clear();
-			flow.way = animMode;
+			flow.way = mode;
 			if (time > 0) {
 				flow.time = time;
 			} else {
@@ -483,16 +468,16 @@ package flupie.textanim
 			_blocksVisible = true;
 			if (onComplete != null) onComplete();
 			dispatchEvent(evComplete); 
-		}    
+		}
 		
 		private function progressHandler():void
-		{        
+		{
 			if (onProgress != null) onProgress();
 			dispatchEvent(evProgress); 
 		}
 		
 		private function startHandler():void
-		{         
+		{
 			if (onStart != null) onStart(); 
 			dispatchEvent(evStart); 
 		}

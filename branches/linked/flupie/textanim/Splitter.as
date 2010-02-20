@@ -22,7 +22,7 @@
 	THE SOFTWARE.
 	
 	http://code.google.com/p/textanim/
-	http://flupie.net
+	http://flupie.net/blog/
 */       
 
 package flupie.textanim
@@ -30,27 +30,27 @@ package flupie.textanim
 	
 	
 	/**
-	 * Separate blocks of text in line with the specified breakMode
+	 * Separate blocks of text in line with the specified break
 	 *	
 	 *	@private
 	 */	
-	internal class Breaker
+	internal class Splitter
 	{
-		public static const BREAK_IN_CHARS:String = "breakInChars";
-		public static const BREAK_IN_WORDS:String = "breakInWords";
-		public static const BREAK_IN_LINES:String = "breakInLines";
+		public static const CHARS:String = "breakInChars";
+		public static const WORDS:String = "breakInWords";
+		public static const LINES:String = "breakInLines";
 		
-		internal static function separeBlocks(block:TextAnim, breakMode:String = BREAK_IN_CHARS):TextAnimBlock 
+		internal static function separeBlocks(block:TextAnim, split:String = CHARS):TextAnimBlock 
 		{
 			var firstBlock:TextAnimBlock;
-			switch (breakMode) {
-				case BREAK_IN_CHARS :
+			switch (split) {
+				case CHARS :
 					firstBlock = breakInLetters(block);
 					break;
-				case BREAK_IN_WORDS :
+				case WORDS :
 					firstBlock = breakInWords(block);
 					break;
-				case BREAK_IN_LINES :
+				case LINES :
 					firstBlock = breakInLines(block);
 					break;
 				default : firstBlock = breakInLetters(block);

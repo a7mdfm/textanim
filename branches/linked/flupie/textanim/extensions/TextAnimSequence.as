@@ -109,7 +109,7 @@ package flupie.textanim
 		/**
 		 *	Method to add the textAnim parameters to the sequence
 		 *	
-		 *	@param				params:Object		The parameters must be exactly to the TextAnim parameters. <b>Eg: animMode, breakMode, interval, effects, anchorX, anchorY, 
+		 *	@param				params:Object		The parameters must be exactly to the TextAnim parameters. <b>Eg: mode, split, interval, effects, anchorX, anchorY, 
 		 *	@return				void
 		 */
 		public function add(params:Object):void
