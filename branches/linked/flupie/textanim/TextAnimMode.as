@@ -32,8 +32,8 @@ package flupie.textanim
 	 */
 	public class TextAnimMode 
 	{
-		public static const LEFT_RIGHT:String = ActionFlow.LEFT_RIGHT;
-		public static const RIGHT_LEFT:String = ActionFlow.RIGHT_LEFT;
+		public static const FIRST_LAST:String = ActionFlow.FIRST_LAST;
+		public static const LAST_FIRST:String = ActionFlow.LAST_FIRST;
 		public static const EDGES_CENTER:String = ActionFlow.EDGES_CENTER;
 		public static const CENTER_EDGES:String = ActionFlow.CENTER_EDGES;
 		public static const RANDOM:String = ActionFlow.RANDOM;

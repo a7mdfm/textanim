@@ -42,16 +42,16 @@ package flupie.textanim
 	 */
 	public class ActionFlow extends EventDispatcher
 	{
-		public static const LEFT_RIGHT:String = "firstToLast";
-		public static const RIGHT_LEFT:String = "lastToFirst"
+		public static const FIRST_LAST:String = "firstToLast";
+		public static const LAST_FIRST:String = "lastToFirst"
 		public static const EDGES_CENTER:String = "edgesToCenter";
 		public static const CENTER_EDGES:String = "centerToEdges";
 		public static const RANDOM:String = "random";
 		
 		/**
-		 * The way of stream will occurs, like LEFT_RIGHT, EDGES_CENTER, etc.
+		 * The way of stream will occurs, like FIRST_LAST, EDGES_CENTER, etc.
 		 */
-		public var way:String = LEFT_RIGHT;
+		public var way:String = FIRST_LAST;
 		
 		/**
 		 * The total duration (in milliseconds) of the stream, from the first dispatch to the last.
@@ -105,10 +105,10 @@ package flupie.textanim
 		public function start():void
 		{
 			switch (way){
-				case LEFT_RIGHT :
+				case FIRST_LAST :
 					processFirstToLast();
 					break;
-				case RIGHT_LEFT :
+				case LAST_FIRST :
 					processLastToFirst();
 					break;
 				case EDGES_CENTER :

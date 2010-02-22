@@ -104,7 +104,7 @@ package flupie.textanim
 		* @default TextAnim.ANIM_TO_RIGHT
 		* @see break
 		*/
-		public var mode:String = TextAnimMode.LEFT_RIGHT;
+		public var mode:String = TextAnimMode.FIRST_LAST;
 		
 		/**
 		* It stores the TextAnimBlocks.
