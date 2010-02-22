@@ -33,8 +33,6 @@ package flupie.textanim
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
-	import flupie.textanim.TextAnimMode;
-	import flupie.textanim.TextAnimAnchor;
 
 	/**
 	 * <code>TextAnim</code> is an extensible class to create text animations.
@@ -294,8 +292,9 @@ package flupie.textanim
 		{
 			var block:TextAnimBlock = firstBlock;
 			while (block) {
-				callback(block);
+				var b:TextAnimBlock = block;
 				block = block.nextBlock;
+				callback(b);
 			}
 		}
 		
