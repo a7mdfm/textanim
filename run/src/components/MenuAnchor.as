@@ -3,6 +3,7 @@ package components
 	import flash.display.Sprite;
 	
 	import flupie.textanim.TextAnim;
+	import flupie.textanim.TextAnimAnchor;
 
 	public class MenuAnchor extends Sprite
 	{
@@ -25,17 +26,17 @@ package components
 			var btnLeft:Btn = menuAnchorX.addBtn();
 			btnLeft.setLabel("LEFT");
 			btnLeft.onClick = function():void {
-				textAnim.anchorX = TextAnim.ANCHOR_LEFT;
+				textAnim.anchorX = TextAnimAnchor.LEFT;
 			}
 			var btnCenter:Btn = menuAnchorX.addBtn();
 			btnCenter.setLabel("CENTER");
 			btnCenter.onClick = function():void {
-				textAnim.anchorX = TextAnim.ANCHOR_CENTER;
+				textAnim.anchorX = TextAnimAnchor.CENTER;
 			}
 			var btnRight:Btn = menuAnchorX.addBtn();
 			btnRight.setLabel("RIGHT");
 			btnRight.onClick = function():void {
-				textAnim.anchorX = TextAnim.ANCHOR_RIGHT;
+				textAnim.anchorX = TextAnimAnchor.RIGHT;
 			}
 			menuAnchorX.selectBtn(btnCenter);
 		}
@@ -48,17 +49,17 @@ package components
 			var btnTop:Btn = menuAnchorY.addBtn();
 			btnTop.setLabel("TOP");
 			btnTop.onClick = function():void {
-				textAnim.anchorY = TextAnim.ANCHOR_TOP;
+				textAnim.anchorY = TextAnimAnchor.TOP;
 			}
 			var btnCenter:Btn = menuAnchorY.addBtn();
 			btnCenter.setLabel("CENTER");
 			btnCenter.onClick = function():void {
-				textAnim.anchorY = TextAnim.ANCHOR_CENTER;
+				textAnim.anchorY = TextAnimAnchor.CENTER;
 			}
 			var btnBottom:Btn = menuAnchorY.addBtn();
 			btnBottom.setLabel("BOTTOM");
 			btnBottom.onClick = function():void {
-				textAnim.anchorY = TextAnim.ANCHOR_BOTTOM;
+				textAnim.anchorY = TextAnimAnchor.BOTTOM;
 			}
 			menuAnchorY.selectBtn(btnCenter);
 			menuAnchorY.x = menuAnchorX.width + 3;

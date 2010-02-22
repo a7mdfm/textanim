@@ -1,6 +1,7 @@
 package components
 {
 	import flupie.textanim.TextAnim;
+	import flupie.textanim.TextAnimSplit;
 	
 	public class MenuBreak extends BtnGroup
 	{
@@ -14,19 +15,19 @@ package components
 			var btnLetters:Btn = addBtn();
 			btnLetters.setLabel("CHARS");
 			btnLetters.onClick = function():void {
-				textAnim.breakMode = TextAnim.BREAK_IN_CHARS;
+				textAnim.split = TextAnimSplit.CHARS;
 			}
 				
 			var btnWords:Btn = addBtn();
 			btnWords.setLabel("WORDS");
 			btnWords.onClick = function():void {
-				textAnim.breakMode = TextAnim.BREAK_IN_WORDS;
+				textAnim.split = TextAnimSplit.WORDS;
 			}
 				
 			var btnLines:Btn = addBtn();
 			btnLines.setLabel("LINES");
 			btnLines.onClick = function():void {
-				textAnim.breakMode = TextAnim.BREAK_IN_LINES;
+				textAnim.split = TextAnimSplit.LINES;
 			}
 				
 			selectBtn(btnLetters);
