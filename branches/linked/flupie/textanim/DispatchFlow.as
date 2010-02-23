@@ -34,6 +34,7 @@ package flupie.textanim
 	 */
  
 	import flash.events.EventDispatcher;
+	import flash.utils.clearInterval;
 	import flash.utils.clearTimeout;
 	import flash.utils.setTimeout;
 	
@@ -55,6 +56,7 @@ package flupie.textanim
 		private var firstAction:Object;
 		private var lastAction:Object;
 		private var length:uint;
+		private var delayToStart:uint;
 		
 		/**
 		 * Dispatch effect functions to each block, in an especific way.
@@ -74,7 +76,17 @@ package flupie.textanim
 			length++;
 		}
 		
-		internal function start():void
+		internal function start(delay:Number = 0):void
+		{
+			clearInterval(delayToStart);
+			if (delay == 0) {
+				switchWay();
+			} else {
+				delayToStart = setTimeout(switchWay, delay);
+			}
+		}
+		
+		internal function switchWay():void
 		{
 			switch (way){
 				case FIRST_LAST :
@@ -104,6 +116,7 @@ package flupie.textanim
 			forEach(function(a:Object):void {
 				clearTimeout(a.timer);
 			});
+			clearTimeout(delayToStart);
 		}
 		
 		internal function clear():void
@@ -112,6 +125,7 @@ package flupie.textanim
 			firstAction = null;
 			lastAction = null;
 			length = 0;
+			clearTimeout(delayToStart);
 		}
 		
 		private function forEach(cb:Function):void

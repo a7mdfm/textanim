@@ -58,6 +58,7 @@ package
 			anim.debug = true;
 			*/
 			anim = TextAnim.create(txtContainer.txt, [fxScale, fxRotation], {time:3500, debug:true});
+			anim.start(3000);
 			
 			createMenus();
 			createBtnStart();

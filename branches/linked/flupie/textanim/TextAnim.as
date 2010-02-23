@@ -40,7 +40,18 @@ package flupie.textanim
 	 */
 	public class TextAnim extends Sprite
 	{	
-		
+		/**
+		 * Creates an instance of TextAnim in a fast way. 
+		 * 
+		 * <p>If you needs a fast text animation, hit:
+		 * <code>var anim:TextAnim = TextAnim.create(myTextField, myEffect, {interval:50, split:TextAnimSplit.WORD});
+		 * </code>
+		 * </p>
+		 *
+		 * @param source The TextField instance that TextAnim will be based.
+		 * @param effects Effects pressets
+		 * @param config Additional instance settings, like time, blocksVisible, etc.	
+		 */
 		public static function create(source:TextField, effects:*, config:Object):TextAnim
 		{
 			var anim:TextAnim = new TextAnim(source);
@@ -210,10 +221,10 @@ package flupie.textanim
 		*
 		* @see stop
 		*/
-		public function start():void
+		public function start(delay:Number = 0):void
 		{
 			flowSettings();
-			flow.start();
+			flow.start(delay);
 		}
 
 		/**
@@ -275,7 +286,7 @@ package flupie.textanim
 		/**
 		* To apply the effects to a single block, by the <code>index</code> of the <code>TextAnimBlock</code>.
 		*	
-		* @param blockIndex The index of the target block.
+		* @param block The target block thats play the setted effects.
 		*/
 		public function applyEffect(block:TextAnimBlock):void
 		{
