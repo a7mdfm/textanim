@@ -160,7 +160,7 @@ package flupie.textanim
 				if (source.parent != null) {
 					source.parent.addChild(this);
 					source.parent.swapChildren(this, source);
-					if (!debug) source.parent.removeChild(source) else source.alpha = .3;
+					source.parent.removeChild(source);
 				}
 			}
 		}
