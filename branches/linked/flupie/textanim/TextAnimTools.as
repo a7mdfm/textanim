@@ -96,6 +96,26 @@ package flupie.textanim
 			});
 		}
 		
+		public static function debug(textAnim:TextAnim):void
+		{
+			textAnim.forEachBlock(function (block:TextAnimBlock):void {
+				if (!block.getChildByName("regRef")) {
+					var regRef:Shape = new Shape();
+					regRef.name = "regRef";
+					regRef.graphics.beginFill(0xFF0000);
+					regRef.graphics.drawRect(0, 0, 2, 2);
+					regRef.graphics.endFill();
+					regRef.x = -1;
+					regRef.y = -1;
+					regRef.blendMode = "invert";
+					block.addChild(regRef);
+				}
+			});
+			textAnim.onBlocksCreated = function():void {
+				debug(textAnim);
+			};
+		}
+		
 		/**
 		* Takes a display object to draw a texture in each TextAnim block.
 		*

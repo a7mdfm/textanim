@@ -52,7 +52,7 @@ package flupie.textanim
 		 * @param effects Effects pressets
 		 * @param config Additional instance settings, like time, blocksVisible, etc.	
 		 */
-		public static function create(source:TextField, effects:*, config:Object):TextAnim
+		public static function create(source:TextField, effects:*, config:Object=null):TextAnim
 		{
 			var anim:TextAnim = new TextAnim(source);
 			anim.blocksVisible = false;
@@ -141,7 +141,6 @@ package flupie.textanim
 		private var _split:String = Splitter.CHARS;
 		private var _text:String;
 		private var _blocksVisible:Boolean = true;
-		private var _debug:Boolean;
 		private var flow:DispatchFlow;
 		private var evStart:Event;
 		private var evProgress:Event;
@@ -160,8 +159,6 @@ package flupie.textanim
 		public function TextAnim(source:TextField, autoReplace:Boolean = true)
 		{
 			super();
-
-			_debug = false;
 			
 			this.source = source;
 			length = 0;
@@ -368,15 +365,6 @@ package flupie.textanim
 		 */
 		public function get anchorY():String { return _anchorY; }
 		
-		
-		public function set debug(val:Boolean):void
-		{
-			_debug = val;
-			createBlocks();
-		}
-		
-		public function get debug():Boolean { return _debug; }
-		
 		/**
 		 *	@private
 		 */
@@ -461,18 +449,6 @@ package flupie.textanim
 			}
 			
 			block.updateRegistration(px, py);
-			
-			if (debug && !block.getChildByName("regRef")) {
-				var regRef:Shape = new Shape();
-				regRef.name = "regRef";
-				regRef.graphics.beginFill(0xFF0000);
-				regRef.graphics.drawRect(0, 0, 2, 2);
-				regRef.graphics.endFill();
-				regRef.x = -1;
-				regRef.y = -1;
-				regRef.blendMode = "invert";
-				block.addChild(regRef);
-			}
 		}
 
 		private function flowSettings():void
