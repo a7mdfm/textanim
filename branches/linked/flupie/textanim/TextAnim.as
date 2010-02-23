@@ -40,6 +40,18 @@ package flupie.textanim
 	 */
 	public class TextAnim extends Sprite
 	{	
+		
+		public static function create(source:TextField, effects:*, config:Object):TextAnim
+		{
+			var anim:TextAnim = new TextAnim(source);
+			anim.blocksVisible = false;
+			anim.effects = effects;
+			for (var prop:* in config) 
+				if (anim.hasOwnProperty(prop)) anim[prop] = config[prop];
+			
+			return anim;
+		}
+		
 		/**
 		* The original TextField instance.
 		* <p>That's can be whatever TextField instance, but you need to make sure to embed font. The textanim will preserve all 

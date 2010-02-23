@@ -16,6 +16,7 @@ package
 	import flupie.textanim.TextAnim;
 	import flupie.textanim.TextAnimBlock;
 	import flupie.textanim.TextAnimEvent;
+	import flupie.textanim.TextAnimMode;
 	
 	public class TextAnimRun extends Sprite
 	{
@@ -50,10 +51,13 @@ package
 			addChild(txtContainer);
 			
 			//TextAnim.debug = true;
+			/*
 			anim = new TextAnim(txtContainer.txt);
 			anim.effects = [fxScale, fxRotation];
 			anim.time = 3500;
 			anim.debug = true;
+			*/
+			anim = TextAnim.create(txtContainer.txt, [fxScale, fxRotation], {time:3500, debug:true});
 			
 			createMenus();
 			createBtnStart();
