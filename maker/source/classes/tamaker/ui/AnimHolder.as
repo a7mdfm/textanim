@@ -6,6 +6,8 @@ package tamaker.ui
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flupie.textanim.TextAnimTools;
+	import com.gskinner.motion.easing.Back;
+	import com.gskinner.motion.GTween;
 
 	public class AnimHolder extends Sprite 
 	{
@@ -16,23 +18,19 @@ package tamaker.ui
 		public var _w:int = 550;
 		public var _h:int = 120;
 		
-		public var setedText:String;
-		public var defaultText:String;
+		public var _grid:Boolean = false;
 		
 		public function AnimHolder()
 		{
 			super();
 			
-			graphics.lineStyle(1, 0x0, .1);
-			graphics.beginFill(0x0, .02);
+			graphics.lineStyle(1, 0x0, _grid ? .1 :0);
+			graphics.beginFill(0x0, _grid ? .02 : 0);
 			graphics.drawRect(0, 0, _w, _h);
 			graphics.endFill();
 			
 			_fm = new TextFormat(new AbadiBold().fontName, 38, 0x0);
 			_fm.align = "center";
-			
-			defaultText = "TextAnim Maker! Lorem ipsum\ntashin ishi quiring din.";
-			setedText = defaultText;
 		}
 		
 		public function createTextAnim(params:Object):void
@@ -45,7 +43,8 @@ package tamaker.ui
 			_tf.height = _h - _tf.y;
 			_tf.embedFonts = true;
 			_tf.defaultTextFormat = _fm;
-			_tf.text = setedText;
+			trace(params.text);
+			_tf.text = params.text;
 			addChild(_tf);
 			
 			_ta = new TextAnim(_tf);
@@ -53,15 +52,34 @@ package tamaker.ui
 			if (params.debug) TextAnimTools.debug(_ta);
 			
 			_ta.interval = params.interval;
+			_ta.effects = defaultEffect;
 			_ta.anchorX = TextAnimAnchor[params.anchorX];
 			_ta.anchorY = TextAnimAnchor[params.anchorY];
 			_ta.mode = params.mode;
 			_ta.split = TextAnimSplit[params.split];
-			_ta.blocksVisible = false;
+			_ta.blocksVisible = params.blocksVisible == "true" ? true : false;
 			_ta.start();
-			
 		}
-	
+		
+		public function defaultEffect(block:TextAnimBlock):void
+		{
+			block.alpha = 0;
+			block.x = block.posX - 20;
+			block.scaleX = block.scaleY = 0;
+			block.rotation = -120;
+			new GTween(block, .5, {x:block.posX, alpha:1, rotation:0, scaleX:1, scaleY:1}, {ease:Back.easeOut});
+		}
+		
+		/*override public function get width():Number
+		{
+			return _w;
+		}
+		
+		override public function get height():Number
+		{
+			return _h;
+		}*/
+		
 	}
 
 }

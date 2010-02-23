@@ -117,12 +117,12 @@ package com.bit101.components
 		 */
 		public function set text(t:String):void
 		{
-			_text = t;
+			_text = _tf.text = t;
 			invalidate();
 		}
 		public function get text():String
 		{
-			return _text;
+			return _tf.text;
 		}
 		
 		/**

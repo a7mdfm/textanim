@@ -15,17 +15,20 @@ package
 	
 	[SWF(width='955', height='550', backgroundColor='#FAFAFA', frameRate='60')]
 	
-	public class textanim_maker extends Sprite	 
+	public class textanim_maker extends Sprite
 	{
-		public var _split_panel:SplitPanel;
 		public var _mode_panel:ModePanel;
-		public var _interval_slider:IntervalPanel;
-		public var _code_area:TextField;
+		public var _split_panel:SplitPanel;
+		public var _anchor_x_panel:AnchorPanel;
+		public var _anchor_y_panel:AnchorPanel;
+		public var _text_panel:TextPanel;
+		public var _interval_panel:IntervalPanel;
+		public var _visible_panel:VisiblePanel;
 		public var _bt_start:PushButton;
 		public var _bt_copy:PushButton;
 		public var _anim_holder:AnimHolder;
-		public var _anchor_x_panel:AnchorPanel;
-		public var _anchor_y_panel:AnchorPanel;
+		
+		public var _ta_code:TextField;
 		public var _ta_params:Object;
 		public var _fps:FPS;
 		
@@ -63,8 +66,17 @@ package
 			_anchor_y_panel.onChange = onChangeValue;
 			addChild(_anchor_y_panel);
 			
-			_interval_slider = new IntervalPanel(onChangeValue);
-			addChild(_interval_slider);
+			_text_panel = new TextPanel();
+			_text_panel.onChange = onChangeValue;
+			addChild(_text_panel);
+			
+			_interval_panel = new IntervalPanel();
+			_interval_panel.onChange = onChangeValue;
+			addChild(_interval_panel);
+			
+			_visible_panel = new VisiblePanel();
+			_visible_panel.onChange = onChangeValue;
+			addChild(_visible_panel);
 			
 			_bt_start = new PushButton(this, 0, 0, "START", startClick);
 			addChild(_bt_start);
@@ -75,23 +87,25 @@ package
 			_anim_holder = new AnimHolder();
 			addChild(_anim_holder);
 			
-			_code_area = new TextField();
-			_code_area.width = 500;
-			_code_area.height = 140;
-			_code_area.border = true;
-			_code_area.embedFonts = true;
-			_code_area.mouseEnabled = false;
-			_code_area.defaultTextFormat = new TextFormat(new Monaco().fontName, 12, 0x0);
-			addChild(_code_area);
+			_ta_code = new TextField();
+			_ta_code.width = 500;
+			_ta_code.height = 140;
+			_ta_code.border = true;
+			_ta_code.embedFonts = true;
+			_ta_code.defaultTextFormat = new TextFormat(new Monaco().fontName, 12, 0x0);
+			addChild(_ta_code);
 			
 			onChangeValue();
 		}
 		
 		public function onChangeValue(e:Event = null):void
 		{
-			var interval:int = int(_interval_slider.slider.value * 5);
+			var interval:int = int(_interval_panel.slider.value * 5);
 			
 			_ta_params = {
+				debug:"true",
+				text:_text_panel.selected,
+				blocksVisible:_visible_panel.selected,
 				mode:_mode_panel.value,
 				split:_split_panel.selected,
 				anchorX:_anchor_x_panel.selected,
@@ -99,28 +113,31 @@ package
 				interval:interval
 			}
 			
-			_code_area.text = "var txtanim:TextAnim = new TextAnim(myTextField);\n";
+			_ta_code.text = "var txtanim:TextAnim = new TextAnim(myTextField);\n";
 			
 			if (_mode_panel.selected != _mode_panel.defaultValue)
-				_code_area.appendText("txtanim.mode = TextAnimMode."+_mode_panel.selected+";\n");
+				_ta_code.appendText("txtanim.mode = TextAnimMode."+_mode_panel.selected+";\n");
 				
 			if (_split_panel.selected != _split_panel.defaultValue)
-				_code_area.appendText("txtanim.split = TextAnimSplit."+_ta_params.split+";\n");
+				_ta_code.appendText("txtanim.split = TextAnimSplit."+_ta_params.split+";\n");
 				
 			if (_anchor_x_panel.selected != _anchor_x_panel.defaultValue)
-				_code_area.appendText("txtanim.anchorX = TextAnimAnchor."+_ta_params.anchorX+";\n");
+				_ta_code.appendText("txtanim.anchorX = TextAnimAnchor."+_ta_params.anchorX+";\n");
 				
 			if (_anchor_y_panel.selected != _anchor_y_panel.defaultValue)
-				_code_area.appendText("txtanim.anchorY = TextAnimAnchor."+_ta_params.anchorY+";\n");
+				_ta_code.appendText("txtanim.anchorY = TextAnimAnchor."+_ta_params.anchorY+";\n");
 				
-			if (_ta_params.interval != _interval_slider.defaultValue)
-				_code_area.appendText("txtanim.interval = "+_ta_params.interval+";\n");
-			
-			_code_area.appendText("txtanim.blocksVisible = "+false+";\n");
-			
-			_code_area.appendText("txtanim.start();\n");
+			if (_ta_params.interval != _interval_panel.defaultValue)
+				_ta_code.appendText("txtanim.interval = "+_ta_params.interval+";\n");
+
+			if (_ta_params.blocksVisible != _visible_panel.defaultValue)
+				_ta_code.appendText("txtanim.blocksVisible = "+_ta_params.blocksVisible+";\n");
+
+			//_ta_code.appendText("txtanim.text = "+_ta_params.text+";\n");
+			_ta_code.appendText("txtanim.start();\n");
 			
 			_anim_holder.createTextAnim(_ta_params);
+			onResize();
 		}
 		
 		public function startClick(e:MouseEvent):void
@@ -135,22 +152,28 @@ package
 			_mode_panel.x = 10;
 			_mode_panel.y = 10;
 			
-			_split_panel.x = 140;
+			_split_panel.x = 130;
 			_split_panel.y = _mode_panel.y;
 
-			_anchor_x_panel.x = 240;
+			_anchor_x_panel.x = 230;
 			_anchor_x_panel.y = _mode_panel.y;
 			
-			_anchor_y_panel.x = 340;
+			_anchor_y_panel.x = 330;
 			_anchor_y_panel.y = _mode_panel.y;
 			
-			_code_area.y = stage.stageHeight - _code_area.height-1;
+			_text_panel.x = 430;
+			_text_panel.y = _mode_panel.y;
 			
-			_bt_copy.x = _code_area.width - _bt_copy.width - 2;
-			_bt_copy.y = _code_area.y + _code_area.height - _bt_copy.height - 2;
+			_ta_code.y = stage.stageHeight - _ta_code.height- _bt_copy.height-2;
 			
-			_interval_slider.x = _mode_panel.x;
-			_interval_slider.y = 140;
+			_bt_copy.x = _ta_code.width - _bt_copy.width;
+			_bt_copy.y = _ta_code.y + _ta_code.height + 2;
+			
+			_interval_panel.x = _mode_panel.x;
+			_interval_panel.y = 140;
+			
+			_visible_panel.x = _mode_panel.x;
+			_visible_panel.y = 210;
 
 			_anim_holder.x = (stage.stageWidth * .5) - _anim_holder.width * .5;
 			_anim_holder.y = (stage.stageHeight * .5) - _anim_holder.height * .5;
