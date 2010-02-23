@@ -89,6 +89,7 @@ package flupie.textanim
 		*/
 		public static function toVector(textAnim:TextAnim):void
 		{
+			textAnim.onBlocksCreated = null;
 			textAnim.forEachBlock(function (block:TextAnimBlock):void {
 				block.clearTexture();
 				block.addChild(block.textField);
