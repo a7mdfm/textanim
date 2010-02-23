@@ -9,6 +9,7 @@ library-path:
 
 source-path:
     - source/classes
+    - ../branches/linked
     
 applications:
     - class: source/classes/textanim_maker.as

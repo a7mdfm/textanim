@@ -56,7 +56,7 @@
 		<string>build.yaml</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
-	<false/>
+	<true/>
 	<key>treeState</key>
 	<dict>
 		<key>maker</key>

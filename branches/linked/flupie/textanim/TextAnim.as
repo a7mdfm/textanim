@@ -39,30 +39,7 @@ package flupie.textanim
 	 *
 	 */
 	public class TextAnim extends Sprite
-	{	
-		/**
-		 * Creates an instance of TextAnim in a fast way. 
-		 * 
-		 * <p>If you needs a fast text animation, hit:
-		 * <code>var anim:TextAnim = TextAnim.create(myTextField, myEffect, {interval:50, split:TextAnimSplit.WORD});
-		 * </code>
-		 * </p>
-		 *
-		 * @param source The TextField instance that TextAnim will be based.
-		 * @param effects Effects pressets
-		 * @param config Additional instance settings, like time, blocksVisible, etc.	
-		 */
-		public static function create(source:TextField, effects:*, config:Object=null):TextAnim
-		{
-			var anim:TextAnim = new TextAnim(source);
-			anim.blocksVisible = false;
-			anim.effects = effects;
-			for (var prop:* in config) 
-				if (anim.hasOwnProperty(prop)) anim[prop] = config[prop];
-			
-			return anim;
-		}
-		
+	{
 		/**
 		* The original TextField instance.
 		* <p>That's can be whatever TextField instance, but you need to make sure to embed font. The textanim will preserve all 
@@ -79,19 +56,27 @@ package flupie.textanim
 		public var effects:*;
 		
 		/**
-		* It is the interval that effects will be dispatched for each block.
+		* It is the interval (milliseconds) that effects will be dispatched for each block.
 		* 
 		* @default 100
 		*/
 		public var interval:Number = 100;
 		
 		/**
-		* Indicates the totalTime of effects dispatches.
+		* Indicates the totalTime (milliseconds) of effects dispatches.
 		* <p>If it has a value different 0 that's overwrites the interval.</p>
 		*       
 		* @default 0
 		*/
 		public var time:Number = 0;
+		
+		/**
+		* Indicates the delay (milliseconds) to start.
+		* <p>It's can be on <code>start(1000); method</code>.</p>
+		*       
+		* @default 0
+		*/
+		public var delay:Number = 0;
 		
 		/**
 		* Callback function called when the TextAnim start.
@@ -135,11 +120,10 @@ package flupie.textanim
 		*/
 		public var length:uint;
 		
+		private var _text:String;
+		private var _split:String = Splitter.CHARS;
 		private var _anchorX:String = TextAnimAnchor.CENTER;
 		private var _anchorY:String = TextAnimAnchor.CENTER;
-		
-		private var _split:String = Splitter.CHARS;
-		private var _text:String;
 		private var _blocksVisible:Boolean = true;
 		private var flow:DispatchFlow;
 		private var evStart:Event;
@@ -186,6 +170,28 @@ package flupie.textanim
 			}
 		}
 		
+		/**
+		 * Creates an instance of TextAnim in a fast way. 
+		 * 
+		 * <p>If you needs a fast text animation, hit:
+		 * <code>var anim:TextAnim = TextAnim.create(myTextField, {effects:myEffect, interval:50, split:TextAnimSplit.WORD});
+		 * </code>
+		 * </p>
+		 *
+		 * @param source The TextField instance that TextAnim will be based.
+		 * @param config Additional instance settings, like time, blocksVisible, etc.	
+		 */
+		public static function create(source:TextField, config:Object=null):TextAnim
+		{
+			var tanim:TextAnim = new TextAnim(source);
+			tanim.blocksVisible = false;
+
+			for (var prop:* in config) 
+				if (tanim.hasOwnProperty(prop)) tanim[prop] = config[prop];
+			
+			return tanim;
+		}
+		
 		public function set text(value:String):void
 		{
 			source.htmlText = value;
@@ -218,10 +224,10 @@ package flupie.textanim
 		*
 		* @see stop
 		*/
-		public function start(delay:Number = 0):void
+		public function start(p_delay:Number = 0):void
 		{
 			flowSettings();
-			flow.start(delay);
+			flow.start(p_delay > 0 ? p_delay : delay);
 		}
 
 		/**

@@ -8,6 +8,7 @@ package tamaker.ui
 	import flupie.textanim.TextAnimTools;
 	import com.gskinner.motion.easing.Back;
 	import com.gskinner.motion.GTween;
+	import textanim_maker;
 
 	public class AnimHolder extends Sprite 
 	{
@@ -43,31 +44,33 @@ package tamaker.ui
 			_tf.height = _h - _tf.y;
 			_tf.embedFonts = true;
 			_tf.defaultTextFormat = _fm;
-			trace(params.text);
 			_tf.text = params.text;
 			addChild(_tf);
 			
+			
+			//CREATE TEXTANIM INSTANCE
 			_ta = new TextAnim(_tf);
-			
-			if (params.debug) TextAnimTools.debug(_ta);
-			
-			_ta.interval = params.interval;
-			_ta.effects = defaultEffect;
+			_ta.blocksVisible = params.blocksVisible == "true" ? true : false;
 			_ta.anchorX = TextAnimAnchor[params.anchorX];
 			_ta.anchorY = TextAnimAnchor[params.anchorY];
-			_ta.mode = params.mode;
 			_ta.split = TextAnimSplit[params.split];
-			_ta.blocksVisible = params.blocksVisible == "true" ? true : false;
+			_ta.interval = params.interval;
+			_ta.effects = defaultEffect;
+			_ta.mode = params.mode;
+			_ta.delay = params.delay;
+			if (params.showAnchors) TextAnimTools.showAnchors(_ta);
+			
 			_ta.start();
+			
+			//TextAnim.create(_tf, {effects:defaultEffect}).start(1000);
 		}
 		
 		public function defaultEffect(block:TextAnimBlock):void
 		{
 			block.alpha = 0;
-			block.x = block.posX - 20;
 			block.scaleX = block.scaleY = 0;
 			block.rotation = -120;
-			new GTween(block, .5, {x:block.posX, alpha:1, rotation:0, scaleX:1, scaleY:1}, {ease:Back.easeOut});
+			new GTween(block, .5, {alpha:1, rotation:0, scaleX:1, scaleY:1}, {ease:Back.easeOut});
 		}
 		
 		/*override public function get width():Number

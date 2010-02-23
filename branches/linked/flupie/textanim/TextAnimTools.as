@@ -96,7 +96,7 @@ package flupie.textanim
 			});
 		}
 		
-		public static function debug(textAnim:TextAnim):void
+		public static function showAnchors(textAnim:TextAnim):void
 		{
 			textAnim.forEachBlock(function (block:TextAnimBlock):void {
 				if (!block.getChildByName("regRef")) {
@@ -112,7 +112,7 @@ package flupie.textanim
 				}
 			});
 			textAnim.onBlocksCreated = function():void {
-				debug(textAnim);
+				showAnchors(textAnim);
 			};
 		}
 		
