@@ -57,7 +57,7 @@ package tamaker.ui
 			_ta.interval = params.interval;
 			_ta.effects = defaultEffect;
 			_ta.mode = params.mode;
-			_ta.delay = params.delay;
+			_ta.delay = params.delay || 0;
 			if (params.showAnchors) TextAnimTools.showAnchors(_ta);
 			
 			_ta.start();

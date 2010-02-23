@@ -24,6 +24,7 @@ package
 		public var _anchor_y_panel:AnchorPanel;
 		public var _text_panel:TextPanel;
 		public var _interval_panel:IntervalPanel;
+		public var _delay_panel:DelayPanel;
 		public var _visible_panel:VisiblePanel;
 		public var _bt_start:PushButton;
 		public var _bt_copy:PushButton;
@@ -89,16 +90,21 @@ package
 			_interval_panel.y = 140;
 			addChild(_interval_panel);
 			
+			_delay_panel = new DelayPanel();
+			_delay_panel.onChange = onChangeValue;
+			_delay_panel.x = _mode_panel.x;
+			_delay_panel.y = 210;
+			addChild(_delay_panel);
+			
 			_visible_panel = new VisiblePanel();
 			_visible_panel.onChange = onChangeValue;
 			_visible_panel.x = _mode_panel.x;
-			_visible_panel.y = 210;
+			_visible_panel.y = 280;
 			addChild(_visible_panel);
 			
-			_bt_start = new PushButton(this, 0, 0, "START", startClick);
+			_bt_start = new PushButton(this, 0, 0, "START", onChangeValue);
 			
-			_bt_copy = new PushButton(this, 0, 0, "Copy code");
-			_bt_copy.addEventListener(MouseEvent.CLICK, onCopyClick, false, 0, true);
+			_bt_copy = new PushButton(this, 0, 0, "Copy code", onCopyClick);
 			
 			_code_type = new CodeType();
 			_code_type.onChange = changeCodeType;
@@ -131,7 +137,8 @@ package
 				split:_split_panel.selected,
 				anchorX:_anchor_x_panel.selected,
 				anchorY:_anchor_y_panel.selected,
-				interval:int(_interval_panel.slider.value * 5)
+				interval:int(_interval_panel.slider.value * 5),
+				delay:int(_delay_panel.slider.value * 10)
 			}
 			
 			changeCodeType();
@@ -173,7 +180,12 @@ package
 			if (_ta_params.interval != _interval_panel.defaultValue)
 				_ta_code.appendText("interval:"+_ta_params.interval+", ");
 				
-			_ta_code.appendText("effect:myEffect}).start();\n");
+			_ta_code.appendText("effect:myEffect}).start(");
+			
+			if (_ta_params.delay != _delay_panel.defaultValue) 
+				_ta_code.appendText(_ta_params.delay);
+			
+			_ta_code.appendText(");\n");
 		}
 		
 		public function setCodeInstace():void
@@ -199,17 +211,15 @@ package
 			if (_ta_params.blocksVisible != _visible_panel.defaultValue)
 				_ta_code.appendText("txtanim.blocksVisible = "+_ta_params.blocksVisible+";\n");
 
+			if (_ta_params.delay != _delay_panel.defaultValue)
+				_ta_code.appendText("txtanim.delay = "+_ta_params.delay+";\n");
+				
 			_ta_code.appendText("txtanim.effects = myEffect;\n");
 			_ta_code.appendText("txtanim.start();\n");
 			
 			if (_bt_show_anchor.selected) {
 				_ta_code.appendText("\nTextAnimTools.showAnchors(txtanim);");
 			}
-		}
-		
-		public function startClick(e:MouseEvent):void
-		{
-			_anim_holder.createTextAnim(_ta_params);
 		}
 		
 		public function onResize(e:Event = null):void
