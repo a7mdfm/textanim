@@ -49,10 +49,11 @@ package
 			txtContainer = new TextContainer();
 			addChild(txtContainer);
 			
-			TextAnim.debug = true;
+			//TextAnim.debug = true;
 			anim = new TextAnim(txtContainer.txt);
 			anim.effects = [fxScale, fxRotation];
 			anim.time = 3500;
+			anim.debug = true;
 			
 			createMenus();
 			createBtnStart();
@@ -69,6 +70,7 @@ package
 			});
 			anim.addEventListener(TextAnimEvent.COMPLETE, function(e:*):void {
 				eventLog.text += <p>### COMPLETE</p>
+				//anim.debug = !anim.debug;
 			});
 			
 			stage.addEventListener(Event.RESIZE, resizeHandler);

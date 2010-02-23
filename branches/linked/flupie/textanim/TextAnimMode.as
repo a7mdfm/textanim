@@ -32,10 +32,10 @@ package flupie.textanim
 	 */
 	public class TextAnimMode 
 	{
-		public static const FIRST_LAST:String = ActionFlow.FIRST_LAST;
-		public static const LAST_FIRST:String = ActionFlow.LAST_FIRST;
-		public static const EDGES_CENTER:String = ActionFlow.EDGES_CENTER;
-		public static const CENTER_EDGES:String = ActionFlow.CENTER_EDGES;
-		public static const RANDOM:String = ActionFlow.RANDOM;
+		public static const FIRST_LAST:String = DispatchFlow.FIRST_LAST;
+		public static const LAST_FIRST:String = DispatchFlow.LAST_FIRST;
+		public static const EDGES_CENTER:String = DispatchFlow.EDGES_CENTER;
+		public static const CENTER_EDGES:String = DispatchFlow.CENTER_EDGES;
+		public static const RANDOM:String = DispatchFlow.RANDOM;
 	}
 }

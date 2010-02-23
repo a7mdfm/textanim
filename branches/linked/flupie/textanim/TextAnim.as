@@ -39,9 +39,7 @@ package flupie.textanim
 	 *
 	 */
 	public class TextAnim extends Sprite
-	{
-		public static var debug:Boolean = false;
-		
+	{	
 		/**
 		* The original TextField instance.
 		* <p>That's can be whatever TextField instance, but you need to make sure to embed font. The textanim will preserve all 
@@ -120,7 +118,8 @@ package flupie.textanim
 		private var _split:String = Splitter.CHARS;
 		private var _text:String;
 		private var _blocksVisible:Boolean = true;
-		private var flow:ActionFlow;
+		private var _debug:Boolean;
+		private var flow:DispatchFlow;
 		private var evStart:Event;
 		private var evProgress:Event;
 		private var evComplete:Event;
@@ -139,6 +138,8 @@ package flupie.textanim
 		{
 			super();
 
+			_debug = false;
+			
 			this.source = source;
 			length = 0;
 			
@@ -146,7 +147,7 @@ package flupie.textanim
 			evProgress = new Event(TextAnimEvent.PROGRESS);
 			evComplete = new Event(TextAnimEvent.COMPLETE);
 			
-			flow = new ActionFlow();
+			flow = new DispatchFlow();
 			flow.onStart = startHandler; 
 			flow.onProgress = progressHandler; 
 			flow.onComplete = completeHandler; 
@@ -344,6 +345,15 @@ package flupie.textanim
 		 */
 		public function get anchorY():String { return _anchorY; }
 		
+		
+		public function set debug(val:Boolean):void
+		{
+			_debug = val;
+			createBlocks();
+		}
+		
+		public function get debug():Boolean { return _debug; }
+		
 		/**
 		 *	@private
 		 */
@@ -480,6 +490,5 @@ package flupie.textanim
 			if (onStart != null) onStart(); 
 			dispatchEvent(evStart); 
 		}
-
 	}
 }
