@@ -1,0 +1,16 @@
+---
+default:
+    - debug: true
+      open: public/textanim_maker.swf
+      extra: -use-network=false
+    
+library-path:
+    - source/swc
+
+source-path:
+    - source/classes
+    
+applications:
+    - class: source/classes/textanim_maker.as
+      output: public/textanim_maker.swf
+      
