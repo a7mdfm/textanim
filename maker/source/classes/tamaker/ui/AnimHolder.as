@@ -42,6 +42,7 @@ package tamaker.ui
 			_tf.x = _tf.y = 10;
 			_tf.width = _w - _tf.x;
 			_tf.height = _h - _tf.y;
+			_tf.multiline = true;
 			_tf.embedFonts = true;
 			_tf.defaultTextFormat = _fm;
 			addChild(_tf);

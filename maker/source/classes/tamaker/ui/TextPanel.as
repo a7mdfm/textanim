@@ -8,8 +8,7 @@ package tamaker.ui
 	{
 		public var bt0:PushButton;
 		public var textArea:Text;
-		//public var defaultValue:String = "TextAnim Maker! Lorem ipsum\ntashin ishi quiring din.";
-		public var defaultValue:String = 'TextAnim <font color="#FF0000">Maker!</font> Lorem ipsum\ntashin ishi quiring din.';
+		public var defaultValue:String = 'TextAnim <font color="#FF0000">Maker!</font> Lorem ipsum<br>tashin ishi quiring din.';
 		
 		public function TextPanel()
 		{
@@ -28,7 +27,7 @@ package tamaker.ui
 		
 		public function onClick(e:MouseEvent):void
 		{
-			selected = defaultValue//textArea.text;
+			selected = textArea.text.replace(/\r/g, "<br>");
 		}
 	}
 
