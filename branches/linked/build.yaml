@@ -3,20 +3,19 @@ default:
     - debug: false
       open: textanim_lib.swf
       extra: -use-network=false
-    
-library-path:
-    - source
 
 source-path:
     - source
     
 applications:
-    - class: source/textanim_lib.as
+    - class: lib/textanim_lib.as
       output: lib/textanim_lib.swc
       
 asdoc:
     - title: "TextAnim Documentation"
       footer: "(c) Copyright 2009 - MIT LICENSE. All Rights Reserved. http://code.google.com/p/textanim"
       output: doc
+      exclude-dirs:
+          - lib
       source-path:
           - source
