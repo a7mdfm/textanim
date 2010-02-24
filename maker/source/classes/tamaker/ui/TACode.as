@@ -35,7 +35,7 @@ package tamaker.ui
 			_field = new TextField();
 			_field.y = _bt_copy.height + 10;
 			_field.width = 500;
-			_field.height = 140;
+			_field.height = 160;
 			_field.border = true;
 			_field.wordWrap = true;
 			_field.embedFonts = true;

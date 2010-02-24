@@ -2,12 +2,14 @@ package tamaker.ui
 {
 	import com.bit101.components.*;
 	import flash.events.MouseEvent;
+	import flash.xml.XMLNode;
 	
 	public class TextPanel extends TAPanel 
 	{
 		public var bt0:PushButton;
 		public var textArea:Text;
 		public var defaultValue:String = "TextAnim Maker! Lorem ipsum\ntashin ishi quiring din.";
+		//public var defaultValue:String = "TextAnim <font color=\"#FF0000\">Maker!</font> Lorem ipsum\ntashin ishi quiring din.";
 		
 		public function TextPanel()
 		{

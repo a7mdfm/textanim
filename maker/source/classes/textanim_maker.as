@@ -110,7 +110,6 @@ package
 			addChild(_ta_code);
 			
 			_eff_code = new EffCode();
-			//_eff_code.x = _ta_code.width - 30;
 			addChild(_eff_code);
 		}
 		
@@ -124,8 +123,8 @@ package
 				split:_split_panel.selected,
 				anchorX:_anchor_x_panel.selected,
 				anchorY:_anchor_y_panel.selected,
-				interval:int(_interval_panel.slider.value * 5),
-				delay:int(_delay_panel.slider.value * 10)
+				interval:int(_interval_panel.slider.value),
+				delay:int(_delay_panel.slider.value)
 			}
 			
 			changeCodeType();
@@ -211,7 +210,7 @@ package
 		
 		public function onResize(e:Event = null):void
 		{
-			_fps.x = stage.stageWidth - _fps.width - 1;
+			_fps.x = stage.stageWidth - _fps.width - 10;
 			
 			_ta_code.y = stage.stageHeight - _ta_code.height - 10;
 			
