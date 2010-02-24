@@ -8,7 +8,6 @@ package tamaker.ui
 	import flupie.textanim.TextAnimTools;
 	import com.gskinner.motion.easing.Back;
 	import com.gskinner.motion.GTween;
-	import textanim_maker;
 
 	public class AnimHolder extends Sprite 
 	{
@@ -62,8 +61,6 @@ package tamaker.ui
 			if (params.showAnchors) TextAnimTools.showAnchors(_ta);
 			
 			_ta.start();
-			
-			//TextAnim.create(_tf, {effects:defaultEffect}).start(1000);
 		}
 		
 		public function defaultEffect(block:TextAnimBlock):void
@@ -73,17 +70,6 @@ package tamaker.ui
 			block.rotation = -120;
 			new GTween(block, .5, {alpha:1, rotation:0, scaleX:1, scaleY:1}, {ease:Back.easeOut});
 		}
-		
-		/*override public function get width():Number
-		{
-			return _w;
-		}
-		
-		override public function get height():Number
-		{
-			return _h;
-		}*/
-		
 	}
 
 }

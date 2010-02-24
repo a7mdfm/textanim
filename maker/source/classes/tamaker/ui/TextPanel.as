@@ -27,7 +27,7 @@ package tamaker.ui
 		
 		public function onClick(e:MouseEvent):void
 		{
-			selected = textArea.text.replace(/\r/g, "<br>");
+			selected = textArea.text;
 		}
 	}
 

@@ -59,6 +59,13 @@ package flupie.textanim
 		public var interval:Number = 100;
 		
 		/**
+		* Sets the delay (in milliseconds) before start.
+		* 
+		* @default 0
+		*/
+		public var delay:Number = 0;
+		
+		/**
 		* Indicates a fixed total time (in milliseconds) of effects dispatches.
 		* <p>If it has a value higher than 0, interval will be ignored.</p>
 		*       
@@ -188,7 +195,7 @@ package flupie.textanim
 		
 		public function set htmlText(value:String):void
 		{
-			source.htmlText = value;
+			source.htmlText = value.replace(/\r/g, "<br>");
 			source.height = source.textHeight;
 			createBlocks();
 		}
@@ -217,10 +224,10 @@ package flupie.textanim
 		*
 		* @see stop
 		*/
-		public function start(delay:Number = 0):void
+		public function start(p_delay:Number = 0):void
 		{
 			flowSettings();
-			flow.start(delay);
+			flow.start(p_delay > 0 ? p_delay : delay);
 		}
 
 		/**
