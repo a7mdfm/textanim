@@ -1,6 +1,6 @@
 #summary List of changes in TextAnim new versions.
 
-*02.10.07* [1.0.0]
+*02.10.07* - 1.0.0
 
  *  Called TextAnim as first AS3 version.
 
