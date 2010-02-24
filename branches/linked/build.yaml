@@ -1,15 +1,16 @@
 ---
 default:
     - debug: false
-      open: textanim_lib.swf
+      open: lib/textanim.swf
       extra: -use-network=false
 
 source-path:
     - source
+    - lib
     
 applications:
-    - class: lib/textanim_lib.as
-      output: lib/textanim_lib.swc
+    - class: lib/textanim.as
+      output: lib/textanim.swc
       
 asdoc:
     - title: "TextAnim Documentation"
