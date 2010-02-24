@@ -49,6 +49,7 @@ package
 			
 			txtContainer = new TextContainer();
 			addChild(txtContainer);
+			txtContainer.txt.width = 800;
 			
 			//TextAnim.debug = true;
 			
@@ -57,7 +58,7 @@ package
 			anim.time = 3500;
 			TextAnimTools.debug(anim);
 			anim.htmlText = "Testing<br/><font color='#FF0000'>red</font> <a href='http://www.google.com.br'>google link</a><br/><font size='65'>large size</font>";
-
+			//anim.text = "TextAnim Maker! \nLorem ipsumtashin ishi quiring din.";
 			//anim = TextAnim.create(field, {effects:[fxScale, fxRotation], time:3500});
 			//anim.start();
 			//TextAnimTools.debug(anim);
