@@ -214,6 +214,11 @@ package flupie.textanim
 			return bounds;
 		}
 		
+		/**
+		 * Use only when you not sure if TextAnim instance is working rightly.
+		 *
+		 * @param textAnim Instance of TextAnim.
+		 */
 		public static function debug(textAnim:TextAnim):void
 		{
 			if (textAnim.parent != null) textAnim.parent.addChild(textAnim.source);

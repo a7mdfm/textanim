@@ -41,42 +41,31 @@ package flupie.textanim
 	public class TextAnim extends Sprite
 	{
 		/**
-		* The original TextField instance.
-		* <p>That's can be whatever TextField instance, but you need to make sure to embed font. The textanim will preserve all 
-		* settings TextFormat of the TextField has.</p>
+		* The original TextField instance thats TextAnim will use as reference. 
+		* Can be any textField, since it has an embed font.
 		*/
 		public var source:TextField;
 		
 		/**
 		* Are the effect functions that will be called for all blocks, according to the interval specified.
-		* 
 		* <p>It can be an Array of functions or just one function.</p>
-		* <p>Every effect works as a call and must receive a TextAnimBlock as parameter in order to animate as you want.</p>
 		*/
 		public var effects:*;
 		
 		/**
-		* It is the interval (milliseconds) that effects will be dispatched for each block.
+		* Sets the interval (in milliseconds) between each effect dispatch.
 		* 
 		* @default 100
 		*/
 		public var interval:Number = 100;
 		
 		/**
-		* Indicates the totalTime (milliseconds) of effects dispatches.
-		* <p>If it has a value different 0 that's overwrites the interval.</p>
+		* Indicates a fixed total time (in milliseconds) of effects dispatches.
+		* <p>If it has a value higher than 0, interval will be ignored.</p>
 		*       
 		* @default 0
 		*/
 		public var time:Number = 0;
-		
-		/**
-		* Indicates the delay (milliseconds) to start.
-		* <p>It's can be on <code>start(1000); method</code>.</p>
-		*       
-		* @default 0
-		*/
-		public var delay:Number = 0;
 		
 		/**
 		* Callback function called when the TextAnim start.
@@ -89,29 +78,25 @@ package flupie.textanim
 		public var onProgress:Function;
 		
 		/**
-		* Callback function called when the last effect was dispatched .
+		* Callback function called when the last effect was dispatched.
 		*/
 		public var onComplete:Function;
 		
 		/**
 		* Callback function called when the blocks are created, or recreated.
-		*	
-		* <p>It occurs when the <code>break</code> or <code>text</code> changes.</p> 
+		* <p>It occurs when the <code>split</code> or <code>text</code> changes.</p> 
 		*/
 		public var onBlocksCreated:Function;
 		
 		/**
 		* Is the way of the effects dispatches will be occurs.
-		*		
-		* <p>Can be <code>ANIM_TO_RIGHT, ANIM_TO_LEFT, ANIM_TO_CENTER, ANIM_TO_EDGES and ANIM_RANDOM</code></p>
 		*	
-		* @default TextAnim.ANIM_TO_RIGHT
-		* @see break
+		* @default TextAnimMode.FIRST_LAST
 		*/
 		public var mode:String = TextAnimMode.FIRST_LAST;
 		
 		/**
-		* It stores the TextAnimBlocks.
+		* The first block reference.
 		*/
 		public var firstBlock:TextAnimBlock;
 		
@@ -131,10 +116,7 @@ package flupie.textanim
 		private var evComplete:Event;
 		
 		/**
-		* Construtor. Receives a TextField instance and instruction to replace that automatically.
-		*	
-		* <p>Using <code>autoReplace = false</code>, you must add the TextAnim instance in the displayList manually.
-		* By default, autoReplace is <code>true</code>. It means that TextAnim will do the addChild and position settings job.</p>
+		* Constructor. Receives a TextField instance and instruction to replace that automatically.
 		*
 		* @param source The TextField instance that TextAnim will be based.
 		* @param autoReplace Do a replacement, removing the source and placing this TextAnim instance in the same scope, with same positions. (works only if the source textfield was in display list). 
@@ -199,7 +181,7 @@ package flupie.textanim
 			createBlocks();
 		}
 		/**
-		* To change the text, then all the blocks will be recreated.
+		* Changes the text. All the blocks will be recreated.
 		*
 		*/
 		public function get text():String { return source.text; }
@@ -212,7 +194,7 @@ package flupie.textanim
 			createBlocks();
 		}
 		/**
-		 * Sets a html as text.
+		 * Sets a html as text. Like <code>text</code>, all the blocks will be recreated.
 		 *
 		 */
 		public function get htmlText():String { return source.htmlText; }
@@ -225,9 +207,7 @@ package flupie.textanim
 		}
 
 		/**
-		* To specify how the TextAnim will break the text.
-		*
-		* <p>The text can be broken in letter, word or line blocks.</p>	
+		* To specify how the TextAnim will break the text: in chars, words or lines. See TextAnimSplit.
 		*		
 		* @param value
 		*/
@@ -238,10 +218,10 @@ package flupie.textanim
 		*
 		* @see stop
 		*/
-		public function start(p_delay:Number = 0):void
+		public function start(delay:Number = 0):void
 		{
 			flowSettings();
-			flow.start(p_delay > 0 ? p_delay : delay);
+			flow.start(delay);
 		}
 
 		/**
@@ -301,9 +281,9 @@ package flupie.textanim
 		}
 
 		/**
-		* To apply the effects to a single block, by the <code>index</code> of the <code>TextAnimBlock</code>.
+		* To apply the effects to a single block.
 		*	
-		* @param block The target block thats play the setted effects.
+		* @param block The target block who plays the instance effects.
 		*/
 		public function applyEffect(block:TextAnimBlock):void
 		{
@@ -322,12 +302,9 @@ package flupie.textanim
 		}
 
 		/**
-		* Apply a function to each block of this TextAnim. 
-		* 
-		* <p>This method takes a callback function and will call it according to the amount of blocks. 
-		* This must receive a callback object of type as a parameter <code>TextAnimBlock</code></p>
+		* Apply a function to each block of this TextAnim.
 		*
-		* @param callback The function that will be applied to blocks.		
+		* @param callback The function that will be applied to each block.		
 		*/
 		public function forEachBlock(callback:Function):void
 		{
