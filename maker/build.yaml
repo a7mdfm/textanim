@@ -1,6 +1,6 @@
 ---
 default:
-    - debug: true
+    - debug: false
       open: public/textanim_maker.swf
       extra: -use-network=false
     

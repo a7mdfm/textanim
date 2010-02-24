@@ -14,7 +14,7 @@ package
 	import flash.events.MouseEvent;
 	import flash.system.System;
 	
-	[SWF(width='955', height='550', backgroundColor='#FAFAFA', frameRate='60')]
+	[SWF(width='1024', height='600', backgroundColor='#FAFAFA', frameRate='60')]
 	
 	public class textanim_maker extends Sprite
 	{
@@ -27,12 +27,10 @@ package
 		public var _delay_panel:DelayPanel;
 		public var _visible_panel:VisiblePanel;
 		public var _bt_start:PushButton;
-		public var _bt_copy:PushButton;
 		public var _bt_show_anchor:CheckBox;
+		public var _ta_code:TACode;
+		public var _eff_code:EffCode;
 		public var _anim_holder:AnimHolder;
-		public var _code_type:CodeType;
-		
-		public var _ta_code:TextField;
 		public var _ta_params:Object;
 		public var _fps:FPS;
 		
@@ -87,44 +85,33 @@ package
 			_interval_panel = new IntervalPanel();
 			_interval_panel.onChange = onChangeValue;
 			_interval_panel.x = _mode_panel.x;
-			_interval_panel.y = 140;
+			_interval_panel.y = 130;
 			addChild(_interval_panel);
 			
 			_delay_panel = new DelayPanel();
 			_delay_panel.onChange = onChangeValue;
 			_delay_panel.x = _mode_panel.x;
-			_delay_panel.y = 210;
+			_delay_panel.y = 200;
 			addChild(_delay_panel);
 			
 			_visible_panel = new VisiblePanel();
 			_visible_panel.onChange = onChangeValue;
 			_visible_panel.x = _mode_panel.x;
-			_visible_panel.y = 280;
+			_visible_panel.y = 270;
 			addChild(_visible_panel);
 			
 			_bt_start = new PushButton(this, 0, 0, "START", onChangeValue);
 			
-			_bt_copy = new PushButton(this, 0, 0, "Copy code", onCopyClick);
-			
-			_code_type = new CodeType();
-			_code_type.onChange = changeCodeType;
-			addChild(_code_type);
-			
 			_anim_holder = new AnimHolder();
 			addChild(_anim_holder);
 			
-			_ta_code = new TextField();
-			_ta_code.width = 500;
-			_ta_code.height = 140;
-			_ta_code.border = true;
-			_ta_code.embedFonts = true;
-			_ta_code.defaultTextFormat = new TextFormat(new Monaco().fontName, 12, 0x0);
+			_ta_code = new TACode(changeCodeType);
+			_ta_code.x = 10;
 			addChild(_ta_code);
-		}
-		
-		public function onCopyClick(e:MouseEvent):void
-		{
-			System.setClipboard(_ta_code.text);
+			
+			_eff_code = new EffCode();
+			_eff_code.x = _ta_code.width - 30;
+			addChild(_eff_code);
 		}
 		
 		public function onChangeValue(e:Event = null):void
@@ -149,12 +136,12 @@ package
 		
 		public function changeCodeType(e:Event = null):void
 		{
-			if (_code_type.selected == "Static") {
+			if (_ta_code.type.selected == _ta_code.type.defaultValue) {
 				setCodeStatic();
 				return;
 			}
 			
-			setCodeInstace();
+			setCodeInstance();
 		}
 		
 		public function setCodeStatic():void
@@ -188,7 +175,7 @@ package
 			_ta_code.appendText(");\n");
 		}
 		
-		public function setCodeInstace():void
+		public function setCodeInstance():void
 		{
 			_ta_code.text = "import flupie.textanim.*;\n\n";
 			_ta_code.appendText("var txtanim:TextAnim = new TextAnim(myTextField);\n");
@@ -226,17 +213,12 @@ package
 		{
 			_fps.x = stage.stageWidth - _fps.width - 1;
 			
-			_ta_code.y = stage.stageHeight - _ta_code.height - 2;
-			_ta_code.width = stage.stageWidth - 2; 
+			_ta_code.y = stage.stageHeight - _ta_code.height - 10;
 			
-			_bt_copy.x = _ta_code.width - _bt_copy.width;
-			_bt_copy.y = _ta_code.y - _bt_copy.height - 2;
-			
-			_code_type.x = _bt_copy.x - 110;
-			_code_type.y = _bt_copy.y + 5;
+			_eff_code.y = stage.stageHeight - _eff_code.height - 10;
 			
 			_anim_holder.x = (stage.stageWidth * .5) - _anim_holder.width * .5;
-			_anim_holder.y = (stage.stageHeight * .5) - _anim_holder.height * .5;
+			_anim_holder.y = (stage.stageHeight * .45) - _anim_holder.height * .5;
 						
 			_bt_start.x = (_anim_holder.x + _anim_holder.width * .5) - _bt_start.width * .5;
 			_bt_start.y = _anim_holder.y + _anim_holder.height + 10;
