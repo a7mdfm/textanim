@@ -55,7 +55,7 @@ package tamaker.ui
 			_ta.effects = defaultEffect;
 			_ta.mode = params.mode;
 			_ta.delay = params.delay || 0;
-			_ta.htmlText = params.text;
+			_ta.htmlText = params.htmlText;
 			if (params.showAnchors) TextAnimTools.showAnchors(_ta);
 			
 			_ta.start();

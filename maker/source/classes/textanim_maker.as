@@ -117,7 +117,7 @@ package
 		{
 			_ta_params = {
 				showAnchors:_bt_show_anchor.selected,
-				text:_text_panel.selected,
+				htmlText:_text_panel.selected,
 				blocksVisible:_visible_panel.selected,
 				mode:_mode_panel.value,
 				split:_split_panel.selected,
@@ -218,7 +218,7 @@ package
 			_eff_code.y = stage.stageHeight - _eff_code.height - 10;
 			
 			_anim_holder.x = (stage.stageWidth * .5) - _anim_holder.width * .5;
-			_anim_holder.y = (stage.stageHeight * .45) - _anim_holder.height * .5;
+			_anim_holder.y = (stage.stageHeight * .4) - _anim_holder.height * .5;
 						
 			_bt_start.x = (_anim_holder.x + _anim_holder.width * .5) - _bt_start.width * .5;
 			_bt_start.y = _anim_holder.y + _anim_holder.height + 10;
