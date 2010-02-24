@@ -181,25 +181,25 @@ package
 			
 			if (_mode_panel.selected != _mode_panel.defaultValue)
 				_ta_code.appendText("txtanim.mode = TextAnimMode."+_mode_panel.selected+";\n");
-				
+			
 			if (_split_panel.selected != _split_panel.defaultValue)
 				_ta_code.appendText("txtanim.split = TextAnimSplit."+_ta_params.split+";\n");
-				
+			
 			if (_anchor_x_panel.selected != _anchor_x_panel.defaultValue)
 				_ta_code.appendText("txtanim.anchorX = TextAnimAnchor."+_ta_params.anchorX+";\n");
-				
+			
 			if (_anchor_y_panel.selected != _anchor_y_panel.defaultValue)
 				_ta_code.appendText("txtanim.anchorY = TextAnimAnchor."+_ta_params.anchorY+";\n");
-				
+			
 			if (_ta_params.interval != _interval_panel.defaultValue)
 				_ta_code.appendText("txtanim.interval = "+_ta_params.interval+";\n");
-
+			
 			if (_ta_params.blocksVisible != _visible_panel.defaultValue)
 				_ta_code.appendText("txtanim.blocksVisible = "+_ta_params.blocksVisible+";\n");
 
 			if (_ta_params.delay != _delay_panel.defaultValue)
 				_ta_code.appendText("txtanim.delay = "+_ta_params.delay+";\n");
-				
+			
 			_ta_code.appendText("txtanim.effects = myEffect;\n");
 			_ta_code.appendText("txtanim.start();\n");
 			
