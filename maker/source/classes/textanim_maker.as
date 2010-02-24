@@ -6,8 +6,6 @@ package
 	import tamaker.ui.*;
 	
 	import flash.display.Sprite;
-	import flash.text.TextField;
-	import flash.text.TextFormat;
 	import flash.events.Event;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
