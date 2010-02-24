@@ -1,4 +1,4 @@
-package com.gabriellaet
+package com.gabriellaet.debug
 {	
 	import flash.display.Sprite;
 	import flash.events.Event;

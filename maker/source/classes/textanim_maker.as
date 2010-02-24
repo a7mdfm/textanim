@@ -1,9 +1,9 @@
 package
 {
 	import com.bit101.components.*;
-	import com.gabriellaet.FPS;
+	import com.gabriellaet.debug.FPS;
+
 	import flupie.textanim.*;
-	import tamaker.ui.*;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -11,6 +11,8 @@ package
 	import flash.display.StageScaleMode;
 	import flash.events.MouseEvent;
 	import flash.system.System;
+	
+	import tamaker.ui.*;
 	
 	[SWF(width='1024', height='600', backgroundColor='#FAFAFA', frameRate='60')]
 	

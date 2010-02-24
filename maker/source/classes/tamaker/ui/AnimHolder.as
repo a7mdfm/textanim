@@ -1,13 +1,11 @@
 package tamaker.ui 
 {
 	import flupie.textanim.*;
+	import caurina.transitions.Tweener;
 	
 	import flash.display.Sprite;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
-	import flupie.textanim.TextAnimTools;
-	import com.gskinner.motion.easing.Back;
-	import com.gskinner.motion.GTween;
 
 	public class AnimHolder extends Sprite 
 	{
@@ -68,7 +66,7 @@ package tamaker.ui
 			block.alpha = 0;
 			block.scaleX = block.scaleY = 0;
 			block.rotation = -120;
-			new GTween(block, .5, {alpha:1, rotation:0, scaleX:1, scaleY:1}, {ease:Back.easeOut});
+			Tweener.addTween(block, {alpha:1, rotation:0, scaleX:1, scaleY:1, time:.5, transition:"easeoutback"});
 		}
 	}
 
