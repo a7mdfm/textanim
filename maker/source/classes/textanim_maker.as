@@ -110,7 +110,7 @@ package
 			addChild(_ta_code);
 			
 			_eff_code = new EffCode();
-			_eff_code.x = _ta_code.width - 30;
+			//_eff_code.x = _ta_code.width - 30;
 			addChild(_eff_code);
 		}
 		
@@ -215,6 +215,7 @@ package
 			
 			_ta_code.y = stage.stageHeight - _ta_code.height - 10;
 			
+			_eff_code.x = stage.stageWidth - _eff_code.width - 10;
 			_eff_code.y = stage.stageHeight - _eff_code.height - 10;
 			
 			_anim_holder.x = (stage.stageWidth * .5) - _anim_holder.width * .5;

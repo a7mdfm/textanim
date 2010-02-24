@@ -39,6 +39,7 @@ package tamaker.ui
 			_field.border = true;
 			_field.wordWrap = true;
 			_field.embedFonts = true;
+			_field.background = true;
 			_field.defaultTextFormat = new TextFormat(new Monaco().fontName, 12, 0x0);
 			addChild(_field);
 			

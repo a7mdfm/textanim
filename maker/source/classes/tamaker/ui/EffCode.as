@@ -38,8 +38,8 @@ package tamaker.ui
 			_field.width = 500;
 			_field.height = 140;
 			_field.border = true;
-			//_field.wordWrap = true;
 			_field.embedFonts = true;
+			_field.background = true;
 			_field.defaultTextFormat = new TextFormat(new Monaco().fontName, 12, 0x0);
 			addChild(_field);
 			
@@ -47,8 +47,9 @@ package tamaker.ui
 			_field.appendText("function myEffect(block:TextAnimBlock):void {\n");
 			_field.appendText("    block.scaleX = block.scaleY = 0;\n");
 			_field.appendText("    block.rotation = -120;\n");
-			_field.appendText("    Tweener.addTween(block, {rotation:0, _scale:1, time:.5, transition:\"easeoutback\"});\n");
-			_field.appendText("}");
+			_field.appendText("    Tweener.addTween(block, {rotation:0, scaleX:1, scaleY:1, time:.5, transition:\"easeoutback\"});\n");
+			_field.appendText("}\n\n");
+			_field.appendText("//create effect using the tween engine that you prefer");
 			
 			_bt_copy.x = _field.width - _bt_copy.width;
 		}
@@ -56,6 +57,11 @@ package tamaker.ui
 		public function onCopyClick(e:MouseEvent):void
 		{
 			System.setClipboard(_field.text);
+		}
+		
+		override public function get width():Number
+		{
+			return _field.width;
 		}
 	}
 
