@@ -1,5 +1,5 @@
 #summary List of changes in TextAnim new versions.
 
-=== 08.22.06 ===
+*08.22.06*
 
  * First version, AS2 prototype 
