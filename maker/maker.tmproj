@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>source/classes/tamaker/ui/AnimHolder.as</string>
+	<string>build.yaml</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -21,19 +21,63 @@
 	<integer>240</integer>
 	<key>metaData</key>
 	<dict>
+		<key>build.yaml</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>34</integer>
+				<key>line</key>
+				<integer>15</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>source/classes/tamaker/ui/AnimHolder.as</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>31</integer>
+				<integer>26</integer>
 				<key>line</key>
-				<integer>46</integer>
+				<integer>2</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>35</integer>
+			<integer>0</integer>
+		</dict>
+		<key>source/classes/tamaker/ui/ModePanel.as</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>35</integer>
+				<key>line</key>
+				<integer>34</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>16</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>34</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>35</integer>
+				<key>line</key>
+				<integer>34</integer>
+			</dict>
 		</dict>
 		<key>source/classes/tamaker/ui/TAPanel.as</key>
 		<dict>
@@ -67,6 +111,8 @@
 	<key>openDocuments</key>
 	<array>
 		<string>source/classes/tamaker/ui/AnimHolder.as</string>
+		<string>build.yaml</string>
+		<string>source/classes/tamaker/ui/ModePanel.as</string>
 		<string>source/classes/tamaker/ui/TextPanel.as</string>
 		<string>source/classes/tamaker/ui/TAPanel.as</string>
 	</array>
