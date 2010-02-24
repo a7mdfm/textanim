@@ -156,7 +156,7 @@ package flupie.textanim
 			flow.onProgress = progressHandler; 
 			flow.onComplete = completeHandler; 
 
-			text = source.htmlText;
+			text = source.text;
 
 			if (autoReplace) {
 				x = source.x;
@@ -194,15 +194,29 @@ package flupie.textanim
 		
 		public function set text(value:String):void
 		{
-			source.htmlText = value;
+			source.text = value;
+			source.height = source.textHeight;
 			createBlocks();
 		}
-
 		/**
 		* To change the text, then all the blocks will be recreated.
 		*
 		*/
 		public function get text():String { return source.text; }
+		
+		
+		public function set htmlText(value:String):void
+		{
+			source.htmlText = value;
+			source.height = source.textHeight;
+			createBlocks();
+		}
+		/**
+		 * Sets a html as text.
+		 *
+		 */
+		public function get htmlText():String { return source.htmlText; }
+		
 
 		public function set split(value:String):void
 		{

@@ -51,15 +51,17 @@ package
 			addChild(txtContainer);
 			
 			//TextAnim.debug = true;
-			/*
+			
 			anim = new TextAnim(txtContainer.txt);
 			anim.effects = [fxScale, fxRotation];
 			anim.time = 3500;
-			anim.debug = true;
-			*/
-			anim = TextAnim.create(txtContainer.txt, [fxScale, fxRotation], {time:3500, debug:true});
-			anim.start();
 			TextAnimTools.debug(anim);
+			anim.htmlText = "Testing<br/><font color='#FF0000'>red</font> <a href='http://www.google.com.br'>google link</a><br/><font size='65'>large size</font>";
+
+			//anim = TextAnim.create(field, {effects:[fxScale, fxRotation], time:3500});
+			//anim.start();
+			//TextAnimTools.debug(anim);
+			//"Testing<br/><font color='#FF0000'>red</font> <a href='http://www.google.com.br'>google link</a><br/><font size='65'>large size</font>"
 			
 			createMenus();
 			createBtnStart();

@@ -213,6 +213,14 @@ package flupie.textanim
 			block.textField.visible = visible;
 			return bounds;
 		}
+		
+		public static function debug(textAnim:TextAnim):void
+		{
+			if (textAnim.parent != null) textAnim.parent.addChild(textAnim.source);
+			textAnim.source.alpha = .3;
+			textAnim.source.border = true;
+			textAnim.source.borderColor = 0x000000;
+		}
 
 	}
 }
