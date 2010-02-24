@@ -1,1 +1,1 @@
-#summary List of changes in new versions TextAnim.
+#summary List of changes in TextAnim new versions.
