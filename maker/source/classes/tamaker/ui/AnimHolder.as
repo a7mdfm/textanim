@@ -44,7 +44,6 @@ package tamaker.ui
 			_tf.height = _h - _tf.y;
 			_tf.embedFonts = true;
 			_tf.defaultTextFormat = _fm;
-			_tf.text = params.text;
 			addChild(_tf);
 			
 			
@@ -58,6 +57,7 @@ package tamaker.ui
 			_ta.effects = defaultEffect;
 			_ta.mode = params.mode;
 			_ta.delay = params.delay || 0;
+			_ta.htmlText = params.text;
 			if (params.showAnchors) TextAnimTools.showAnchors(_ta);
 			
 			_ta.start();
