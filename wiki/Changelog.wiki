@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary List of changes in new versions TextAnim.
 
 = Changelog =
 
