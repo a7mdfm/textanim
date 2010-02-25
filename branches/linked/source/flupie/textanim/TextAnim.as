@@ -34,23 +34,23 @@ package flupie.textanim
 	import flash.text.TextFormat;
 
 	/**
-	 *	TextAnim is an extensible class to create text animations.
-	 *	<p>TextAnim works creating blocks of text, then applying functions that you create to each one of them.
-	 *	We call these functions as "effects". These functions must receives a TextAnimBlock as a parameter.</p>
-	 *	<p>Here is the most basic example:</p>
-	 *	<p><code>
-	 *	import flupie.textanim.*;
-	 *	
-	 *	var myTextAnim:TextAnim = new TextAnim(myTextField);
-	 *	myTextAnim.effects = myEffect;
-	 *	myTextAnim.start();
-	 *	
-	 *	function myEffect(block:TextAnimBlock):void {
-	 *		block.scaleY = 2;
-	 *	}
-	 *	</code></p>
-	 *
-	 */
+	* TextAnim is an extensible class to create text animations.
+	* <p>TextAnim works creating blocks of text, then applying functions that you create to each one of them.
+	* We call these functions as "effects". These functions must receives a TextAnimBlock as a parameter.</p>
+	* <p><b>Here is the most basic example</b>:</p>
+	* <br/><br/>
+	*	
+	* <code>import flupie.textanim.*;
+	* <br/><br/>
+	* var myTextAnim:TextAnim = new TextAnim(myTextField);<br/>
+	* myTextAnim.effects = myEffect;<br/>
+	* myTextAnim.start();<br/>
+	* <br/><br/>
+	* function myEffect(block:TextAnimBlock):void {<br/>
+	*       block.scaleY = 2;<br/>
+	* }</code>
+	*
+	*/
 	public class TextAnim extends Sprite
 	{
 		/**
@@ -448,7 +448,7 @@ package flupie.textanim
 		*	};
 		*	</code>
 		*
-		* 	@param callback The function that will be applied to each block.		
+		* 	@param callback The function that will be applied to each block.
 		*/
 		public function forEachBlock(callback:Function):void
 		{
