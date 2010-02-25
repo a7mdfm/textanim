@@ -28,9 +28,36 @@
 package flupie.textanim 
 {
 	/**
-	 * Events are common. You can add a listener to track when the TextAnim starts the process. 
-	 * During the firing of the blocks. And when it was over.
-	 */
+	*	Events thats TextAnim instances dispatches.
+	*	<p>
+	*	<code>
+	*	import flupie.textanim.*;
+	*
+	*	var myTextAnim:TextAnim = new TextAnim(myTextField);
+	*	myTextAnim.effects = myEffect;
+	*	myTextAnim.addEventListener(TextAnimEvent.START, startHandler);
+	*	myTextAnim.addEventListener(TextAnimEvent.PROGRESS, progressHandler);
+	*	myTextAnim.addEventListener(TextAnimEvent.COMPLETE, completeHandler);
+	*	myTextAnim.start();
+	*
+	*	function myEffect(block:TextAnimBlock):void {
+	*		block.scaleY = 2;
+	*	}
+	*
+	*	function startHandler(e:Event):void {
+	*		trace("START!");
+	*	}
+	*
+	*	function progressHandler(e:Event):void {
+	*		trace("PROGRESS!");
+	*	}
+	*
+	*	function completeHandler(e:Event):void {
+	*		trace("COMPLETE!");
+	*	}
+	*	</code>
+	*	</p>
+	*/
 	public class TextAnimEvent 
 	{
 		public static const COMPLETE:String = "complete";

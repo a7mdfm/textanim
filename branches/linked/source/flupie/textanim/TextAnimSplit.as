@@ -28,8 +28,8 @@
 package flupie.textanim 
 {
 	/**
-	 * comment...
-	 */
+	* 	The way of TextAnim instance will break the text.
+	*/
 	public class TextAnimSplit 
 	{
 		public static const CHARS:String = Splitter.CHARS;

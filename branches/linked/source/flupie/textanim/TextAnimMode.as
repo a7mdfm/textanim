@@ -28,8 +28,18 @@
 package flupie.textanim 
 {
 	/**
-	 * comment...
-	 */
+	*	The way thats TextAnim will dispatch the effects.
+	*	<p>
+	*	It orients the animation of text. If you want a phrase animating from right to left, from edges to center characters,
+	*	randomly, you must set the <code>mode</code> property of TextAnim with one of these options:
+	*	
+	*	TextAnimMode.FIRST_LAST - Begins with the first char and ends with last (left to right).
+	*	TextAnimMode.LAST_FIRST - Begins with the last char and ends with first.
+	*	TextAnimMode.EDGES_CENTER - Begins with the first and last, then evolues to center.
+	*	TextAnimMode.CENTER_EDGES - Begins in the central chars and evolues to edges.
+	*	TextAnimMode.RANDOM - Animate randomly.
+	*	</p>
+	*/
 	public class TextAnimMode 
 	{
 		public static const FIRST_LAST:String = DispatchFlow.FIRST_LAST;

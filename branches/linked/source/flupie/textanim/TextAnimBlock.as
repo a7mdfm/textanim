@@ -33,55 +33,80 @@ package flupie.textanim
 	import flash.text.TextFormat;
 
 	/**
-	 * Represents a piece of TextAnim that contains a text slice. 
-	 */
+	* 	TextAnimBlock is the part of TextAnim that contains a text slice. 
+	*	Is the target of <code>effects</code>.
+	*	  
+	*/
 	public class TextAnimBlock extends Sprite
 	{
 		/**
-		* The instance of TextAnim that the block belongs.
+		* 	The instance of TextAnim that the block belongs.
 		*/		
 		public var textAnim:TextAnim;
 		
 		/**
-		* The textField containing the slice of original text.
+		* 	The textField containing the slice of original text.
 		*/
 		public var textField:TextField;
 		
 		/**
-		* The TextFormat of the original text.
+		* 	The TextFormat of the original text.
 		*/
 		public var textFormat:TextFormat;
 		
 		/**
-		* Index works like a ID block in the TextAnim instance. Each block has a index, starting from 0 ascending to right. 
-		* It serves as a reference for actions, delays and whatever it needs.
+		* 	Index works like a ID block in the TextAnim instance. Each block has a index, starting from 0. 
+		* 	It serves as a reference for actions, delays and anything else.
 		*/		
 		public var index:int;
 		
 		/**
-		* The original X position of the block, very useful for creating animations, this value is generated after all blocks are 
-		* created and positioned. With this you always know where the original X position of text.
+		* 	The original x position of the block. 
+		*	<p>This value is generated after all blocks are created, and keeps the horizontal correct 
+		*	position of the block in TextAnim.</p>
+		*	<code>
+		*	function myEffect(block:TextAnimBlock):void {
+		*		block.x = block.posX - 100; //Put the block 100px left of correct position.
+		*		Tweener.addTween(block, {x:block.posX, time:.5}) //Slide the block to correct position.
+		*	}
+		*	</code>
+		*	
+		*	@default 0;
 		*/		
 		public var posX:Number = 0;
 		
 		/**
-		* The original Y position of the block, very useful for creating animations, this value is generated after all blocks are 
-		* created and positioned. With this you always know where the original Y position of text.
-		*/		
+		* 	The original y position of the block. 
+		*	<p>This value is generated after all blocks are created, and keeps the vertical correct 
+		*	position of the block in TextAnim.</p>
+		*	<code>
+		*	function myEffect(block:TextAnimBlock):void {
+		*		block.y = block.posY + 100; //Put the block 100px below of correct position.
+		*		Tweener.addTween(block, {y:block.posY, time:.5}) //Slide the block to correct position.
+		*	}
+		*	</code>
+		*	
+		*	@default 0;
+		*/
 		public var posY:Number = 0;
 		
 		/**
-		* The container used for patterns, bitmaps, etc.
+		* 	The container used for patterns, bitmaps, etc.
 		*/
 		public var texture:Sprite;
 		
 		/**
-		 * TextAnimBlock is the most important object to manipulate your animations. No matter what you specify 
-		 * break every effect will receive a TextAnimBlock so you can animate it.
-		 */
-		
+		* 	Reference to the next block. 
+		*/
 		public var nextBlock:TextAnimBlock;
 		
+		
+		/**
+		* 	Constructor. Created basically by a TextAnim instance.
+		*	
+		*	@param textAnim The TextAnim instance who contains this block.
+		*	@param index The index of the block in TextAnim instance list.
+		*/
 		public function TextAnimBlock(textAnim:TextAnim, index:int)
 		{
 			texture = new Sprite();
@@ -112,14 +137,14 @@ package flupie.textanim
 			textField.htmlText = val;
 			textField.setTextFormat(textFormat);
 		}
-		
 		/**
-		* You can change the text of a block at any time.
+		*	Sets the text of this block.
 		*/
 		public function get text():String { return textField.text; }
 		
+		
 		/**
-		* Clear the references.
+		* 	Clear references.
 		*/
 		public function dispose():void
 		{
@@ -133,10 +158,12 @@ package flupie.textanim
 		}
 
 		/**
-		* Sets the registration point of block;
+		* 	Sets the registration point of block;
 		*	
-		* @param px The horizontal registration.
-		* @param py The vertical registration.	
+		* 	@param px The horizontal registration.
+		* 	@param py The vertical registration.
+		*	
+		*	@see TextAnimAnchor	
 		*/
 		public function updateRegistration(px:Number, py:Number):void
 		{
@@ -149,7 +176,7 @@ package flupie.textanim
 		}
 		
 		/**
-		* Clear the texture sprite that can contains any display objects, used in patterns, gradientColors, etc. 
+		* 	Clear the texture sprite that can contains any display objects, used in patterns, gradientColors, etc. 
 		*/
 		public function clearTexture():void
 		{

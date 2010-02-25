@@ -40,14 +40,12 @@ package flupie.textanim
 	public class TextAnimTools
 	{
 		/**
-		* Convert blocks to Bitmap. By default, all blocks contains
-		* one TextField inside, <code>toBitmap</code> tool convert 
-		* all TextFields to Bitmap.
+		* 	Convert blocks to Bitmap, instead original textField vector.
 		*
-		* @param textAnim Instance of TextAnim.
-		* @param smooth Allow smooth bitmap.
+		* 	@param textAnim Instance of TextAnim.
+		* 	@param smooth Allow smooth bitmap.
 		* 
-		* @see toVector
+		* 	@see toVector
 		*/
 		public static function toBitmap(textAnim:TextAnim, smooth:Boolean = false):void
 		{	
@@ -80,12 +78,13 @@ package flupie.textanim
 			};
 		}
 		
+		
 		/**
-		* If the textAnim instance was converted to bitmap, <code>toVector</code> can reverse it.
+		* 	If the textAnim instance was converted to bitmap, <code>toVector</code> can reverse it.
 		*
-		* @param textAnim Instance of TextAnim.
+		* 	@param textAnim Instance of TextAnim.
 		*	
-		* @see toBitmap
+		* 	@see toBitmap
 		*/
 		public static function toVector(textAnim:TextAnim):void
 		{
@@ -96,6 +95,14 @@ package flupie.textanim
 			});
 		}
 		
+		
+		/**
+		* 	Shows the registration reference of each block in a TextAnim instance.
+		*
+		* 	@param textAnim Instance of TextAnim.
+		*	
+		* 	@see TextAnimAnchor
+		*/
 		public static function showAnchors(textAnim:TextAnim):void
 		{
 			textAnim.forEachBlock(function (block:TextAnimBlock):void {
@@ -116,12 +123,13 @@ package flupie.textanim
 			};
 		}
 		
+		
 		/**
-		* Takes a display object to draw a texture in each TextAnim block.
+		* 	Takes a display object to draw a texture in each TextAnim block.
 		*
-		* @param textAnim Instance of TextAnim.
-		* @param img The source off texture bitmap.
-		* @param stretch To extends the texture dimenions to fill up each block's area, without repetition.
+		* 	@param textAnim Instance of TextAnim.
+		* 	@param img The source of texture bitmap.
+		* 	@param stretch To extends the texture to fill up each block's area, without repetition.
 		*
 		*/
 		public static function setPattern(textAnim:TextAnim, img:*, stretch:Boolean = false):void
@@ -161,14 +169,15 @@ package flupie.textanim
 			};
 		}
 		
+		
 		/**
-		* A linear gradient as a color of the text.
+		* 	A linear gradient as a color of the text.
 		*
-		* @param textAnim Instance of TextAnim.
-		* @param colors List of colors of the gradient.
-		* @param angle The direction of the gradient (in degrees).
-		* @param alphas The alpha of each color.
-		* @param ratios The ratio of each color.
+		* 	@param textAnim Instance of TextAnim.
+		* 	@param colors List of colors of the gradient.
+		* 	@param angle The direction of the gradient (in degrees).
+		* 	@param alphas The alpha of each color.
+		* 	@param ratios The ratio of each color.
 		*/
 		public static function setGradientLinear(textAnim:TextAnim, colors:Array, angle:Number = 0, alphas:Array = null, ratios:Array = null):void
 		{
@@ -193,6 +202,7 @@ package flupie.textanim
 			};
 		}
 		
+		
 		/**
 		* Get color boundsof a TextAnimBlock instance.
 		*
@@ -214,11 +224,12 @@ package flupie.textanim
 			return bounds;
 		}
 		
+		
 		/**
-		 * Use only when you not sure if TextAnim instance is working rightly.
-		 *
-		 * @param textAnim Instance of TextAnim.
-		 */
+		* 	Use only when you not sure if TextAnim instance is working rightly.
+		*
+		* 	@param textAnim Instance of TextAnim.
+		*/
 		public static function debug(textAnim:TextAnim):void
 		{
 			if (textAnim.parent != null) textAnim.parent.addChild(textAnim.source);

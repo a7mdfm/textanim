@@ -28,8 +28,28 @@
 package flupie.textanim 
 {
 	/**
-	 * comment...
-	 */
+	* 	TextAnimAnchor configures the point of registration of each TextAnimBlock.
+	*	<p>Use to change anchor properties. TOP and BOTTOM works with vertical orientation. LEFT and RIGHT
+	*	works with horizontal. CENTER can set either.
+	*	</p>
+	*	<code>
+	*	import flupie.textanim.*;
+	*	
+	*	var myTextAnim:TextAnim = new TextAnim(myTextField);
+	*	myTextAnim.effects = myEffect;
+	*	myTextAnim.anchorY = TextAnimAnchor.TOP; //changes the vertical registration to TOP, and keeps horizontal registration.
+	*	myTextAnim.start();
+	*
+	*	function myEffect(block:TextAnimBlock):void {
+	*		block.scaleY = 2;
+	*	}
+	*	</code>
+	*	
+	*	<p>
+	*	You can use <code>TextAnimTools.showAnchors(myTextAnim)</code> to visualize the anchor points.
+	*	</p>
+	*	 
+	*/
 	public class TextAnimAnchor 
 	{
 		public static const TOP:String = "T";
