@@ -256,7 +256,6 @@ package flupie.textanim
 			}
 		}
 		
-		
 		/**
 		* 	Creates an instance of TextAnim in a fast way.
 		* 	<p>If you needs a fast text animation, hit:
@@ -286,6 +285,7 @@ package flupie.textanim
 			source.height = source.textHeight;
 			createBlocks();
 		}
+		
 		/**
 		* 	Changes the text. All the blocks will be recreated.
 		*	<p>The first value will be the same of the source's text. 
@@ -303,6 +303,7 @@ package flupie.textanim
 			source.height = source.textHeight;
 			createBlocks();
 		}
+		
 		/**
 		*	Sets a html as text. Like <code>text</code>, all the blocks will be recreated.
 		*	
