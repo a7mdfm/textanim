@@ -28,35 +28,35 @@
 package flupie.textanim 
 {
 	/**
-	*	Events thats TextAnim instances dispatches.
-	*	<p>
-	*	<code>
-	*	import flupie.textanim.*;
+	* Events thats TextAnim instances dispatches.
+	* <p>
+	* <code>
+	* import flupie.textanim.*;
 	*
-	*	var myTextAnim:TextAnim = new TextAnim(myTextField);
-	*	myTextAnim.effects = myEffect;
-	*	myTextAnim.addEventListener(TextAnimEvent.START, startHandler);
-	*	myTextAnim.addEventListener(TextAnimEvent.PROGRESS, progressHandler);
-	*	myTextAnim.addEventListener(TextAnimEvent.COMPLETE, completeHandler);
-	*	myTextAnim.start();
+	* var myTextAnim:TextAnim = new TextAnim(myTextField);
+	* myTextAnim.effects = myEffect;
+	* myTextAnim.addEventListener(TextAnimEvent.START, startHandler);
+	* myTextAnim.addEventListener(TextAnimEvent.PROGRESS, progressHandler);
+	* myTextAnim.addEventListener(TextAnimEvent.COMPLETE, completeHandler);
+	* myTextAnim.start();
 	*
-	*	function myEffect(block:TextAnimBlock):void {
-	*		block.scaleY = 2;
-	*	}
+	* function myEffect(block:TextAnimBlock):void {
+	* 	block.scaleY = 2;
+	* }
 	*
-	*	function startHandler(e:Event):void {
-	*		trace("START!");
-	*	}
+	* function startHandler(e:Event):void {
+	* 	trace("START!");
+	* }
 	*
-	*	function progressHandler(e:Event):void {
-	*		trace("PROGRESS!");
-	*	}
+	* function progressHandler(e:Event):void {
+	* 	trace("PROGRESS!");
+	* }
 	*
-	*	function completeHandler(e:Event):void {
-	*		trace("COMPLETE!");
-	*	}
-	*	</code>
-	*	</p>
+	* function completeHandler(e:Event):void {
+	* 	trace("COMPLETE!");
+	* }
+	* </code>
+	* </p>
 	*/
 	public class TextAnimEvent 
 	{

@@ -158,12 +158,14 @@ package flupie.textanim
 		
 		/**
 		* 	Is the way of the effects dispatches will be occurs.
-		*	<p>TextAnim dispatch effects in five diferent ways:
-		*	TextAnimMode.FIRST_LAST - Begins with the first char and ends with last (left to right).
-		*	TextAnimMode.LAST_FIRST - Begins with the last char and ends with first.
-		*	TextAnimMode.EDGES_CENTER - Begins with the first and last, then evolues to center.
-		*	TextAnimMode.CENTER_EDGES - Begins in the central chars and evolues to edges.
-		*	TextAnimMode.RANDOM - Animate randomly.
+		*	<p><b>TextAnim dispatch effects in five diferent ways</b>:
+		*	<ul>
+		*	<li>TextAnimMode.FIRST_LAST - Begins with the first char and ends with last (left to right).</li>
+		*	<li>TextAnimMode.LAST_FIRST - Begins with the last char and ends with first.</li>
+		*	<li>TextAnimMode.EDGES_CENTER - Begins with the first and last, then evolues to center.</li>
+		*	<li>TextAnimMode.CENTER_EDGES - Begins in the central chars and evolues to edges.</li>
+		*	<li>TextAnimMode.RANDOM - Animate randomly.</li>
+		*	</ul>
 		*	</p>
 		*	
 		* 	@default TextAnimMode.FIRST_LAST
