@@ -34,7 +34,7 @@ package flupie.textanim
 	import flash.text.TextFormat;
 
 	/**
-	* TextAnim is an extensible class to create text animations.
+	* A class for dynamic text animation in actionscript 3
 	* <p>TextAnim works creating blocks of text, then applying functions that you create to each one of them.
 	* We call these functions as "effects". These functions must receives a TextAnimBlock as a parameter.</p>
 	* <p><b>Here is the most basic example</b>:</p>

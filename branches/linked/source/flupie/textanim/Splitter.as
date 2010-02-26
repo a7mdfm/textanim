@@ -27,10 +27,8 @@
 
 package flupie.textanim
 {
-	
-	
 	/**
-	 * Separate blocks of text in line with the specified break
+	 * Separate blocks of text with the specified break
 	 *	
 	 *	@private
 	 */	

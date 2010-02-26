@@ -28,9 +28,8 @@
 package flupie.textanim
 {
 	/**
-	 * flupie.textanim.TextAnim
-	 *	
-	 * @author		Guilherme Almeida, Mauro de Tarso
+	 * 
+	 *	@private
 	 */
  
 	import flash.events.EventDispatcher;
