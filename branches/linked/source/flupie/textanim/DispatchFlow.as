@@ -40,10 +40,10 @@ package flupie.textanim
 	
 	internal class DispatchFlow extends EventDispatcher
 	{
-		public static const FIRST_LAST:String = "firstToLast";
-		public static const LAST_FIRST:String = "lastToFirst"
-		public static const EDGES_CENTER:String = "edgesToCenter";
-		public static const CENTER_EDGES:String = "centerToEdges";
+		public static const FIRST_LAST:String = "firsttolast";
+		public static const LAST_FIRST:String = "lasttofirst"
+		public static const EDGES_CENTER:String = "edgestocenter";
+		public static const CENTER_EDGES:String = "centertoedges";
 		public static const RANDOM:String = "random";
 		
 		internal var way:String = FIRST_LAST;
@@ -88,7 +88,7 @@ package flupie.textanim
 		
 		internal function switchWay():void
 		{
-			switch (way){
+			switch (way.toLowerCase()){
 				case FIRST_LAST :
 					processFirstToLast();
 					break;

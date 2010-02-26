@@ -91,6 +91,12 @@ package flupie.textanim
 		public var posY:Number = 0;
 		
 		/**
+		* Comment...
+		* 
+		*/
+		public var vars:Object = {};
+		
+		/**
 		* 	The container used for patterns, bitmaps, etc.
 		*/
 		public var texture:Sprite;

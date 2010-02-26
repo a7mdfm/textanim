@@ -36,14 +36,14 @@ package flupie.textanim
 	 */	
 	internal class Splitter
 	{
-		public static const CHARS:String = "breakInChars";
-		public static const WORDS:String = "breakInWords";
-		public static const LINES:String = "breakInLines";
+		public static const CHARS:String = "chars";
+		public static const WORDS:String = "words";
+		public static const LINES:String = "lines";
 		
 		internal static function separeBlocks(block:TextAnim, split:String = CHARS):TextAnimBlock 
 		{
 			var firstBlock:TextAnimBlock;
-			switch (split) {
+			switch (split.toLowerCase()) {
 				case CHARS :
 					firstBlock = breakInLetters(block);
 					break;
