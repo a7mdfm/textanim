@@ -363,41 +363,6 @@ package flupie.textanim
 		}
 
 
-		/**
-		* 	Clear all blocks, internal references, stops the progress and kill the TextAnim instance.
-		*	<p>Do it when the instance of TextAnim is not needed anymore. Delete blocks, remove references and clear memory.</p>
-		*	<p><code>
-		*	myTextAnim.dispose();
-		*	myTextAnim = null;
-		*	</code></p>
-		*/
-		public function dispose():void
-		{
-			if (flow == null) return;
-
-			stop();
-
-			removeBlocks();
-			firstBlock = null;
-
-			flow.clear();
-			flow = null;
-			
-			evStart = null;
-			evProgress = null;
-			evComplete = null;
-
-			if (parent != null) {
-				if (parent.contains(this)) parent.removeChild(this);
-			}
-
-			source = null;
-			length = 0;
-			
-			onStart = onProgress = onComplete = onBlocksCreated = null;
-		}
-
-
 		public function set blocksVisible(val:Boolean):void
 		{
 			_blocksVisible = val;
@@ -511,6 +476,40 @@ package flupie.textanim
 		*/
 		public function get anchorY():String { return _anchorY; }
 		
+		
+		/**
+		* 	Clear all blocks, internal references, stops the progress and kill the TextAnim instance.
+		*	<p>Do it when the instance of TextAnim is not needed anymore. Delete blocks, remove references and clear memory.</p>
+		*	<p><code>
+		*	myTextAnim.dispose();
+		*	myTextAnim = null;
+		*	</code></p>
+		*/
+		public function dispose():void
+		{
+			if (flow == null) return;
+
+			stop();
+
+			removeBlocks();
+			firstBlock = null;
+
+			flow.clear();
+			flow = null;
+			
+			evStart = null;
+			evProgress = null;
+			evComplete = null;
+
+			if (parent != null) {
+				if (parent.contains(this)) parent.removeChild(this);
+			}
+
+			source = null;
+			length = 0;
+			
+			onStart = onProgress = onComplete = onBlocksCreated = null;
+		}
 		
 		/**
 		 *	@private
