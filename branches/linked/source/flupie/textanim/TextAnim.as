@@ -62,7 +62,7 @@ package flupie.textanim
 		/**
 		* 	Are the effect functions that will be called for all blocks, according to the interval specified.
 		* 	<p>It can be an Array of functions or just one. These functions must receives a TextAnimBlock as a parameter.</p>
-		*	<p>Ex.:<code>
+		*	<p>Example:<code>
 		*	myTextAnim.effects = effectFunction1;
 		*	</code><p>or</p><code>
 		*	myTextAnim.effects = [effectFunction1, effectFunction2];
@@ -265,7 +265,8 @@ package flupie.textanim
 		* 	</p>
 		*
 		* 	@param source The TextField instance that TextAnim will be based.
-		* 	@param config Additional instance settings, like time, blocksVisible, etc.	
+		* 	@param config Additional instance settings, like time, blocksVisible, etc.
+		*	@return TextAnim an instance of TextAnim.
 		*/
 		public static function create(source:TextField, config:Object=null):TextAnim
 		{
