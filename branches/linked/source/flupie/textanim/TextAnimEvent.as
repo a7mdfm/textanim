@@ -29,39 +29,79 @@ package flupie.textanim
 {
 	/**
 	* Events thats TextAnim instances dispatches.
-	* <p>
-	* <code>
-	* import flupie.textanim.*;
-	*
-	* var myTextAnim:TextAnim = new TextAnim(myTextField);
-	* myTextAnim.effects = myEffect;
-	* myTextAnim.addEventListener(TextAnimEvent.START, startHandler);
-	* myTextAnim.addEventListener(TextAnimEvent.PROGRESS, progressHandler);
-	* myTextAnim.addEventListener(TextAnimEvent.COMPLETE, completeHandler);
-	* myTextAnim.start();
-	*
-	* function myEffect(block:TextAnimBlock):void {
-	* 	block.scaleY = 2;
-	* }
-	*
-	* function startHandler(e:Event):void {
-	* 	trace("START!");
-	* }
-	*
-	* function progressHandler(e:Event):void {
-	* 	trace("PROGRESS!");
-	* }
-	*
-	* function completeHandler(e:Event):void {
-	* 	trace("COMPLETE!");
-	* }
-	* </code>
-	* </p>
 	*/
+	
 	public class TextAnimEvent 
 	{
-		public static const COMPLETE:String = "complete";
+		/**
+		* Dispatched when TextAnim start to dispatche blocks.
+		* <p>Example:</p>
+		* <pre><code>
+		* import flupie.textanim.TextAnim;
+		*	
+		* var myTextAnim:TextAnim = TextAnim.create(myTextField, {effect:myEffect});
+		* myTextAnim.addEventListener(TextAnimEvent.START, startHandler);
+		* myTextAnim.start();
+		*	
+		* function myEffect(block:TextAnimBlock):void {
+		* 	block.scaleY = 2;
+		* }
+		*	
+		* function startHandler(e:Event):void {
+		* 	trace("START!");
+		* }
+		* </code></pre>
+		*	
+		* @eventType flupie.textanim.TextAnimEvent.START
+		*/	
 		public static const START:String = "start";
-		public static const PROGRESS:String = "progress"; 
+
+		/**
+		* Dispatched when the dipatch blocks is on progress each blocks.
+		* <p>Example:</p>
+		*	
+		* <pre><code>
+		* import flupie.textanim.TextAnim;
+		*	
+		* var myTextAnim:TextAnim = new TextAnim(myTextField);
+		* myTextAnim.effects = myEffect;
+		* myTextAnim.addEventListener(TextAnimEvent.PROGRESS, progressHandler);
+		* myTextAnim.start();
+		*	
+		* function myEffect(block:TextAnimBlock):void {
+		* 	block.scaleY = 2;
+		* }
+		*	
+		* function progressHandler(e:Event):void {
+		* 	trace("PROGRESS");
+		* } </code></pre>
+		*	
+		* @eventType flupie.textanim.TextAnimEvent.PROGRESS
+		*/
+		public static const PROGRESS:String = "progress";
+		
+		/**
+		* Dispatched when dispatche blocks was completed.
+		* <p>Example:</p>
+		* <pre><code>
+		* import flupie.textanim.TextAnim;
+		*	
+		* var myTextAnim:TextAnim = new TextAnim(myTextField);
+		* myTextAnim.effects = myEffect;
+		* myTextAnim.addEventListener(TextAnimEvent.COMPLETE, completeHandler);
+		* myTextAnim.start();
+		*	
+		* function myEffect(block:TextAnimBlock):void {
+		* 	block.scaleY = 2;
+		* }
+		*	
+		* function completeHandler(e:Event):void {
+		* 	trace("COMPLETE");
+		* } </code></pre>
+		*	
+		* @eventType flupie.textanim.TextAnimEvent.COMPLETE
+		*/
+		public static const COMPLETE:String = "complete";
+
 	}
 }

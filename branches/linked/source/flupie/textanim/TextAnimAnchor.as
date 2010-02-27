@@ -33,7 +33,7 @@ package flupie.textanim
 	*	works with horizontal. CENTER can set either.
 	*	</p>
 	*	<code>
-	*	import flupie.textanim.*;
+	*	import flupie.textanim.TextAnim;
 	*	
 	*	var myTextAnim:TextAnim = new TextAnim(myTextField);
 	*	myTextAnim.effects = myEffect;

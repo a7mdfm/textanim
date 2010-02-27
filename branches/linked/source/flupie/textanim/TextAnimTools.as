@@ -207,6 +207,7 @@ package flupie.textanim
 		* Get color boundsof a TextAnimBlock instance.
 		*
 		* @param block The block measured.
+		* @return Rectangle color boundsof a block.
 		*/
 		public static function getColorBounds(block:TextAnimBlock):Rectangle
 		{

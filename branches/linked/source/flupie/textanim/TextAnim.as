@@ -34,34 +34,35 @@ package flupie.textanim
 	import flash.text.TextFormat;
 
 	/**
-	* A class for dynamic text animation in actionscript 3
-	* <p>TextAnim works creating blocks of text, then applying functions that you create to each one of them.
-	* We call these functions as "effects". These functions must receives a TextAnimBlock as a parameter.</p>
-	* <p><b>Here is the most basic example</b>:</p>
-	* <br/><br/>
-	*	
-	* <code>import flupie.textanim.*;
-	* <br/><br/>
-	* var myTextAnim:TextAnim = new TextAnim(myTextField);<br/>
-	* myTextAnim.effects = myEffect;<br/>
-	* myTextAnim.start();<br/>
-	* <br/><br/>
-	* function myEffect(block:TextAnimBlock):void {<br/>
-	*       block.scaleY = 2;<br/>
-	* }</code>
+	*	<p>A class for dynamic text animation in actionscript 3.</p>
+	*	<p>TextAnim works creating blocks of text, then applying functions that you create to each one of them.
+	*	We call these functions as "effects". These functions must receives a TextAnimBlock as a parameter.</p>
+	*	<p><b>Here is the most basic example</b>:</p>
+	*
+	*	<pre><code>
+	*	import flupie.textanim.TextAnim;
+	*	import flupie.textanim.TextAnimBlock;
+	*	  
+	*	var myTextAnim:TextAnim = new TextAnim(myTextField);
+	*	myTextAnim.effects = myEffect;
+	*	myTextAnim.start();
+	*		
+	*	function myEffect(block:TextAnimBlock):void {
+	*	      block.scaleY = 2;
+	*	}</code></pre>
 	*
 	*/
 	public class TextAnim extends Sprite
 	{
 		/**
-		* 	The original TextField instance thats TextAnim will use as reference. 
-		* 	<p>Can be any textField, since it has an embed font.</p>
+		*	The original TextField instance thats TextAnim will use as reference. 
+		*	<p>Can be any textField, since it has an embed font.</p>
 		*/
 		public var source:TextField;
 		
 		/**
-		* 	Are the effect functions that will be called for all blocks, according to the interval specified.
-		* 	<p>It can be an Array of functions or just one. These functions must receives a TextAnimBlock as a parameter.</p>
+		*	Are the effect functions that will be called for all blocks, according to the interval specified.
+		*	<p>It can be an Array of functions or just one. These functions must receives a TextAnimBlock as a parameter.</p>
 		*	<p>Example:<code>
 		*	myTextAnim.effects = effectFunction1;
 		*	</code><p>or</p><code>
@@ -98,9 +99,9 @@ package flupie.textanim
 		/**
 		* 	Callback function called when the TextAnim starts.
 		*	<p>Runs only after delay setted.</p>
-		*	<p><code>
-		*	import flupie.textanim.*;
-		*
+		*	<pre><code>
+		*	import flupie.textanim.TextAnim;
+		*	
 		*	var myTextAnim:TextAnim = new TextAnim(myTextField);
 		*	myTextAnim.effects = myEffect;
 		*	myTextAnim.delay = 1000;
@@ -108,7 +109,7 @@ package flupie.textanim
 		*		trace("textAnim starts after 1 second");
 		*	}
 		*	myTextAnim.start();
-		*	</code></p>
+		*	</code></pre>
 		*	
 		*	@default null
 		*/
@@ -116,16 +117,16 @@ package flupie.textanim
 		
 		/**
 		* 	Callback function called when each effect dispatch.
-		*	<p><code>
-		*	import flupie.textanim.*;
-		*
+		*	<pre><code>
+		*	import flupie.textanim.TextAnim;
+		*	
 		*	var myTextAnim:TextAnim = new TextAnim(myTextField);
 		*	myTextAnim.effects = myEffect;
 		*	myTextAnim.onProgress = function():void {
 		*		trace("effect was dispatched.");
 		*	}
 		*	myTextAnim.start();
-		*	</code></p>
+		*	</code></pre>
 		*	
 		*	@default null
 		*/
@@ -133,16 +134,16 @@ package flupie.textanim
 		
 		/**
 		* 	Callback function called when the last effect was dispatched.
-		*	<p><code>
-		*	import flupie.textanim.*;
-		*
+		*	<pre><code>
+		*	import flupie.textanim.TextAnim;
+		*	
 		*	var myTextAnim:TextAnim = new TextAnim(myTextField);
 		*	myTextAnim.effects = myEffect;
 		*	myTextAnim.onComplete = function():void {
 		*		trace("text animation completed!");
 		*	}
 		*	myTextAnim.start();
-		*	</code></p>
+		*	</code></pre>
 		*	
 		*	@default null
 		*/
@@ -212,15 +213,14 @@ package flupie.textanim
 		*	<code>
 		*	var anim:TextAnim = new TextAnim(myTextField);
 		*	</code>
-		*	</p><p>
+		*	</p>
 		*	Without auto-replacement, then you need do add settings manually:
-		*	<code>
-		*	var anim:TextAnim = new TextAnim(myTextField, false);
+		*	<pre><code>
+		*	var anim:TextAnim = new TextAnim(myTextField);
 		*	myTextField.x = 50;
 		*	myTextField.y = 100;
 		*	addChild(myTextField);
-		*	</code>
-		*	</p> 
+		*	</code></pre> 
 		*
 		* 	@param source The TextField instance that TextAnim will be based.
 		* 	@param autoReplace Do a replacement removing the source and placing this TextAnim instance in the same scope, with same positions. (works only if the source textfield was in display list). 
@@ -257,15 +257,19 @@ package flupie.textanim
 		}
 		
 		/**
-		* 	Creates an instance of TextAnim in a fast way.
-		* 	<p>If you needs a fast text animation, hit:
-		* 	<code>
-		*	var anim:TextAnim = TextAnim.create(myTextField, {effects:myEffect, interval:50, split:TextAnimSplit.WORD});
+		*	Creates an instance of TextAnim in a fast way.
+		*	<p>If you needs a fast text animation, hit:</p>
+		*	<code>
+		*	TextAnim.create(myTextField, {effects:myEffect, split:TextAnimSplit.WORD}).start();
 		* 	</code>
-		* 	</p>
-		*
-		* 	@param source The TextField instance that TextAnim will be based.
-		* 	@param config Additional instance settings, like time, blocksVisible, etc.
+		*	<p>or:</p>
+		*	<pre><code>
+		*	var anim:TextAnim = TextAnim.create(myTextField, {effects:myEffect, interval:50, split:TextAnimSplit.WORD});
+		*	anim.start(500); //delay to start (in milliseconds)
+		*	</code></pre>
+		*	
+		*	@param source The TextField instance that TextAnim will be based.
+		*	@param config Additional instance settings, like time, blocksVisible, etc.
 		*	@return TextAnim an instance of TextAnim.
 		*/
 		public static function create(source:TextField, config:Object=null):TextAnim
@@ -410,12 +414,12 @@ package flupie.textanim
 		/**
 		* 	Apply a function to each block of this TextAnim.
 		*	<p>Offers access to all blocks of textAnim instance.</p>
-		*	<code>
+		*	<pre><code>
 		*	myTextAnim.forEachBlock = function(block:TextAnimBlock):void {
 		*		block.alpha = .5;
-		*		trace(block.text);	
+		*		trace(block.index, block.text); //index number of block (ID)
 		*	};
-		*	</code>
+		*	</code></pre>
 		*
 		* 	@param callback The function that will be applied to each block.
 		*/
@@ -481,10 +485,10 @@ package flupie.textanim
 		/**
 		* 	Clear all blocks, internal references, stops the progress and kill the TextAnim instance.
 		*	<p>Do it when the instance of TextAnim is not needed anymore. Delete blocks, remove references and clear memory.</p>
-		*	<p><code>
+		*	<pre><code>
 		*	myTextAnim.dispose();
 		*	myTextAnim = null;
-		*	</code></p>
+		*	</code></pre>
 		*/
 		public function dispose():void
 		{

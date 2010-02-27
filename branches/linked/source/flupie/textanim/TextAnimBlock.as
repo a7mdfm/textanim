@@ -91,7 +91,7 @@ package flupie.textanim
 		public var posY:Number = 0;
 		
 		/**
-		* The empty <code>Object</code> to putting custom variables for each blocks.
+		* The empty <code>Object</code> to putting custom variables each blocks.
 		* 
 		*/
 		public var vars:Object = {};
