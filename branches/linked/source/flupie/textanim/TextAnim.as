@@ -36,19 +36,19 @@ package flupie.textanim
 	/**
 	*	<p>A class for dynamic text animation in actionscript 3.</p>
 	*	<p>TextAnim works creating blocks of text, then applying functions that you create to each one of them.
-	*	We call these functions as "effects". These functions must receives a TextAnimBlock as a parameter.</p>
+	*	We call these functions as <code>effects</code>. These functions must receives a TextAnimBlock as a parameter.</p>
 	*	<p><b>Here is the most basic example</b>:</p>
 	*
 	*	<pre><code>
 	*	import flupie.textanim.TextAnim;
 	*	import flupie.textanim.TextAnimBlock;
-	*	  
+	*  
 	*	var myTextAnim:TextAnim = new TextAnim(myTextField);
 	*	myTextAnim.effects = myEffect;
 	*	myTextAnim.start();
-	*		
+	*	
 	*	function myEffect(block:TextAnimBlock):void {
-	*	      block.scaleY = 2;
+	*		block.scaleY = 2;
 	*	}</code></pre>
 	*
 	*/
@@ -62,12 +62,13 @@ package flupie.textanim
 		
 		/**
 		*	Are the effect functions that will be called for all blocks, according to the interval specified.
-		*	<p>It can be an Array of functions or just one. These functions must receives a TextAnimBlock as a parameter.</p>
-		*	<p>Example:<code>
-		*	myTextAnim.effects = effectFunction1;
+		*	<p>It can be an <code>Array</code> of functions or just one. These functions must receives a TextAnimBlock as a parameter.</p>
+		*	<p><b>Example:</b></p>
+		*	<code>
+		*	myTextAnim.effects = effect1Function;
 		*	</code><p>or</p><code>
-		*	myTextAnim.effects = [effectFunction1, effectFunction2];
-		*	</code></p>
+		*	myTextAnim.effects = [effect1Function, effect2Function];
+		*	</code>
 		*/
 		public var effects:*;
 		
@@ -199,10 +200,11 @@ package flupie.textanim
 		
 		/**
 		* 	Constructor. Receives a TextField instance and instruction to replace that automatically.
-		*	<p>The source textField must have the font embbeded. TextAnim will use the source as reference
-		*	to create and organize TextAnimBlocks to looks identical to the source text. If the source already 
-		*	is in displayList, TextAnim can self add in displayList in the same position/depth 
-		*	with autoReplace setted as true</p>
+		*	<p>The source <code>TextField</code> must have the <b>font embbeded</b>.</p>
+		*	
+		*	<p>TextAnim will use the source as reference to create and organize TextAnimBlocks to looks 
+		*	identical to the source text. If the source already is in displayList, TextAnim can self add 
+		*	in displayList in the same position/depth with autoReplace setted as true.</p>
 		*	<p>
 		*	By default, TextAnim creates the first set of blocks with the source text, but you can change this text
 		*	everytime you want, using <code>text</code> or <code>htmlText</code> properties.
@@ -371,7 +373,7 @@ package flupie.textanim
 		public function set blocksVisible(val:Boolean):void
 		{
 			_blocksVisible = val;
-			forEachBlock(function(block:TextAnimBlock):void {
+			forEachBlocks(function(block:TextAnimBlock):void {
 				block.visible = val;
 			})
 		}
@@ -415,7 +417,7 @@ package flupie.textanim
 		* 	Apply a function to each block of this TextAnim.
 		*	<p>Offers access to all blocks of textAnim instance.</p>
 		*	<pre><code>
-		*	myTextAnim.forEachBlock = function(block:TextAnimBlock):void {
+		*	myTextAnim.forEachBlocks = function(block:TextAnimBlock):void {
 		*		block.alpha = .5;
 		*		trace(block.index, block.text); //index number of block (ID)
 		*	};
@@ -423,7 +425,7 @@ package flupie.textanim
 		*
 		* 	@param callback The function that will be applied to each block.
 		*/
-		public function forEachBlock(callback:Function):void
+		public function forEachBlocks(callback:Function):void
 		{
 			var block:TextAnimBlock = firstBlock;
 			while (block) {
@@ -444,7 +446,7 @@ package flupie.textanim
 		{
 			if (anchorX == TextAnimAnchor.LEFT || anchorX == TextAnimAnchor.CENTER || anchorX == TextAnimAnchor.RIGHT) _anchorX = anchorX;
 			if (anchorY == TextAnimAnchor.TOP || anchorY == TextAnimAnchor.CENTER || anchorY == TextAnimAnchor.BOTTOM) _anchorY = anchorY;
-			forEachBlock(blockSettings);
+			forEachBlocks(blockSettings);
 		}
 		
 		
@@ -452,7 +454,7 @@ package flupie.textanim
 		{
 			if (val == TextAnimAnchor.LEFT || val == TextAnimAnchor.CENTER || val == TextAnimAnchor.RIGHT) {
 				_anchorX = val;
-				forEachBlock(blockSettings);
+				forEachBlocks(blockSettings);
 			}
 		}
 		/**
@@ -469,7 +471,7 @@ package flupie.textanim
 		{
 			if (val == TextAnimAnchor.TOP || val == TextAnimAnchor.CENTER || val == TextAnimAnchor.BOTTOM) {
 				_anchorY = val;
-				forEachBlock(blockSettings);
+				forEachBlocks(blockSettings);
 			}
 		}
 		/**
@@ -525,14 +527,14 @@ package flupie.textanim
 			
 			flow.clear();
 			firstBlock = Splitter.separeBlocks(this, _split);
-			forEachBlock(blockSettings);
+			forEachBlocks(blockSettings);
 			if (onBlocksCreated != null) onBlocksCreated(); 
 		}
 
 		private function removeBlocks():void
 		{
 			flow.clear();
-			forEachBlock(killBlock);
+			forEachBlocks(killBlock);
 			length = 0;
 			firstBlock = null;
 		}
@@ -556,7 +558,7 @@ package flupie.textanim
 			block.visible = _blocksVisible;
 			addChild(block);
 			
-			anchorConfig(block);
+			anchorSettings(block);
 			
 			length++;
 		}
@@ -568,7 +570,7 @@ package flupie.textanim
 			block = null
 		}
 		
-		private function anchorConfig(block:TextAnimBlock):void
+		private function anchorSettings(block:TextAnimBlock):void
 		{
 			var bounds:Rectangle = TextAnimTools.getColorBounds(block);
 			
@@ -615,7 +617,7 @@ package flupie.textanim
 				flow.time = interval*length;
 			}
 
-			forEachBlock(function(block:TextAnimBlock):void {
+			forEachBlocks(function(block:TextAnimBlock):void {
 				flow.addFunction(function(index:int):void{
 					applyEffect(block);
 				});

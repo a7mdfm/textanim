@@ -40,6 +40,11 @@ package flupie.textanim
 	*	<li>TextAnimMode.CENTER_EDGES - Begins in the central chars and evolues to edges.</li>
 	*	<li>TextAnimMode.RANDOM - Animate randomly.</li>
 	*	</ul>
+	*	
+	*	Example:
+	*	<code>
+	*	myTextAnim.mode = TextAnimMode.EDGES_CENTER; //Dispatche blocks from borders of text to center.
+	*	</code>
 	*/
 	public class TextAnimMode 
 	{

@@ -1,8 +1,5 @@
 package
 {
-	import com.bit101.components.*;
-	import com.gabriellaet.debug.FPS;
-
 	import flupie.textanim.*;
 	
 	import flash.display.Sprite;
@@ -11,6 +8,11 @@ package
 	import flash.display.StageScaleMode;
 	import flash.events.MouseEvent;
 	import flash.system.System;
+	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
+	
+	import com.bit101.components.*;
+	import com.gabriellaet.debug.FPS;
 	
 	import tamaker.ui.*;
 	
@@ -32,6 +34,8 @@ package
 		public var _eff_code:EffCode;
 		public var _anim_holder:AnimHolder;
 		public var _ta_params:Object;
+		public var _bt_download:PushButton;
+		public var _bt_docs:PushButton;
 		public var _fps:FPS;
 		
 		public function textanim_maker()
@@ -105,6 +109,10 @@ package
 			_anim_holder = new AnimHolder();
 			addChild(_anim_holder);
 			
+			_bt_download = new PushButton(this, _text_panel.x + _text_panel.width - 20, 45, "Download class", onDownloadClick);
+			
+			_bt_docs = new PushButton(this, _text_panel.x + _text_panel.width - 20, _bt_download.y + _bt_download.height + 5, "Documentation", onDocsClick);
+			
 			_ta_code = new TACode(changeCodeType);
 			_ta_code.x = 10;
 			addChild(_ta_code);
@@ -143,10 +151,24 @@ package
 			setCodeInstance();
 		}
 		
+		public function onDocsClick(e:MouseEvent):void
+		{
+			var req:URLRequest = new URLRequest("http://flupie.net/textanim/docs");
+			navigateToURL(req, "_blank");
+		}
+		
+		public function onDownloadClick(e:MouseEvent):void
+		{
+			var req:URLRequest = new URLRequest("http://code.google.com/p/textanim/downloads/list");
+			navigateToURL(req, "_blank");
+		}
+		
 		public function setCodeStatic():void
 		{
+			_visible_panel.defaultValue = "false";
+			
 			_ta_code.text = "import flupie.textanim.*;\n\n";
-			_ta_code.appendText("TextAnim.create(tf, {");
+			_ta_code.appendText("TextAnim.create(myTextField, {");
 			
 			if (_mode_panel.selected != _mode_panel.defaultValue)
 				_ta_code.appendText("mode:TextAnimMode."+_mode_panel.selected+", ");
@@ -176,6 +198,8 @@ package
 		
 		public function setCodeInstance():void
 		{
+			_visible_panel.defaultValue = "true";
+			
 			_ta_code.text = "import flupie.textanim.*;\n\n";
 			_ta_code.appendText("var txtanim:TextAnim = new TextAnim(myTextField);\n");
 			

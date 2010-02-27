@@ -43,7 +43,7 @@ package tamaker.ui
 			_field.defaultTextFormat = new TextFormat(new Monaco().fontName, 12, 0x0);
 			addChild(_field);
 			
-			_field.text = "import caurina.transitions.;\n\n";
+			_field.text = "import caurina.transitions.*;\n\n";
 			_field.appendText("function myEffect(block:TextAnimBlock):void {\n");
 			_field.appendText("    block.scaleX = block.scaleY = 0;\n");
 			_field.appendText("    block.rotation = -120;\n");

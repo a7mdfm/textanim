@@ -49,7 +49,7 @@ package flupie.textanim
 		*/
 		public static function toBitmap(textAnim:TextAnim, smooth:Boolean = false):void
 		{	
-			textAnim.forEachBlock(function (block:TextAnimBlock):void {
+			textAnim.forEachBlocks(function (block:TextAnimBlock):void {
 				block.clearTexture();
 				
 				var bounds:Rectangle = getColorBounds(block);
@@ -89,7 +89,7 @@ package flupie.textanim
 		public static function toVector(textAnim:TextAnim):void
 		{
 			textAnim.onBlocksCreated = null;
-			textAnim.forEachBlock(function (block:TextAnimBlock):void {
+			textAnim.forEachBlocks(function (block:TextAnimBlock):void {
 				block.clearTexture();
 				block.addChild(block.textField);
 			});
@@ -105,7 +105,7 @@ package flupie.textanim
 		*/
 		public static function showAnchors(textAnim:TextAnim):void
 		{
-			textAnim.forEachBlock(function (block:TextAnimBlock):void {
+			textAnim.forEachBlocks(function (block:TextAnimBlock):void {
 				if (!block.getChildByName("regRef")) {
 					var regRef:Shape = new Shape();
 					regRef.name = "regRef";
@@ -134,7 +134,7 @@ package flupie.textanim
 		*/
 		public static function setPattern(textAnim:TextAnim, img:*, stretch:Boolean = false):void
 		{
-			textAnim.forEachBlock(function (block:TextAnimBlock):void {
+			textAnim.forEachBlocks(function (block:TextAnimBlock):void {
 				
 				var bounds:Rectangle = getColorBounds(block);
 				var pattern:BitmapData;
@@ -181,7 +181,7 @@ package flupie.textanim
 		*/
 		public static function setGradientLinear(textAnim:TextAnim, colors:Array, angle:Number = 0, alphas:Array = null, ratios:Array = null):void
 		{
-			textAnim.forEachBlock(function (block:TextAnimBlock):void {
+			textAnim.forEachBlocks(function (block:TextAnimBlock):void {
 				var bounds:Rectangle = getColorBounds(block);
 				
 				block.clearTexture();
@@ -204,10 +204,10 @@ package flupie.textanim
 		
 		
 		/**
-		* Get color boundsof a TextAnimBlock instance.
+		* Get color bounds of a TextAnimBlock instance.
 		*
 		* @param block The block measured.
-		* @return Rectangle color boundsof a block.
+		* @return Rectangle color bounds of a block.
 		*/
 		public static function getColorBounds(block:TextAnimBlock):Rectangle
 		{
