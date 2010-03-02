@@ -1,6 +1,6 @@
 #summary List of changes in TextAnim new versions.
 
-Here are just some highlights of the life of TextAnim, since when it started until the present day, without many details. Of course, I'll never remember it.
+Here are just some highlights of the life of TextAnim, since when it started until today, without many details. Of course, I'll never remember it.
 
 This project never had the pretension of being published, it's always been a tool to support "all" projects that passed us, and was becoming increasingly useful and consequent mature and stable, that motivated us to make it public. Some people spoke to us "...was very nice that it was free...", and we take care of all the code to ensure that really help day work. The only idea is allow that almost all effect/animations with dynamic text and everyone can do funny things with that. That's all.
 
