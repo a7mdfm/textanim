@@ -2,25 +2,43 @@
 
 Here are just some highlights of the life of TextAnim, since when it started until the present day, without many details. Of course, I'll never remember it.
 
-**11.10.08* - Add anchor setting and time override interval property.
+This project never had the pretension of being published, it's always been a tool to support "all" projects that passed us, and was becoming increasingly useful and consequent mature and stable, that motivated us to make it public. Some people spoke to us "...was very nice that it was free...", and we take care of all the code to ensure that really help day work. The only idea is allow that almost all effect/animations with dynamic text and everyone can do funny things with that. That's all.
 
+*02.25.10* - New static method 'create'.
 
-*04.20.08*
+*02.20.10* - Improve animMode to mode, breakMode to split, actionflow branding new name and remove source on debug mode.
 
- * Create callback functions and first TextAnimTool getColorBounds.
+*01.30.10* - IMPORTANT! Change API breakmode, animMode, anchorX and anchorX to separate classes.
 
-*09.05.07* - 1.1.3
+*01.30.10* - Create linked branche folder structure, bug fix in forEachBlocks loop
 
- * Add the HTML support and important fixes with TextFormat and text align.
+*01.07.10* - New version, with a linked list of blocks
 
-*02.10.07* - 1.0.0
+*01.01.10* - Add delay to star, new debug mode, toVector cancelling cached tool
 
- * Called TextAnim as first AS3 version, metrics of text, multiline textfield.
+*12.10.09* - Change package and improve docs settings.
 
-*12.15.06*
+*11.15.09* - TextAnim became public.
 
- * Create instances to a given object.
+*08.05.09* - break_in_lines with HTML textformat setting and  	
+method onBlocksCreated added 
 
-*08.22.06* 
+*06.20.09* - Param alphas included in TextAnimTools.setGradientLinear and blocksVisible now is a getter/setter property.
 
- * First version, AS2 prototype, no multiline, called LetterMotion.
+*04.10.09* - Add new tools, setPattern, setGradientLinear.
+
+*02.05.09* - Fixe bounds of block and position settings.
+
+*11.25.08* - Create TextAnimEvents dispatch start, progress and complete event.
+
+*07.10.08* - Add anchor setting and time override interval property.
+
+*04.20.08* - Create callback functions and first TextAnimTool getColorBounds.
+
+*09.05.07* - Add the HTML support and important fixes with TextFormat and text align.
+
+*02.10.07* - Called TextAnim as first AS3 version, metrics of text, multiline textfield.
+
+*12.15.06* - Create instances to a given object.
+
+*08.22.06* - First version, AS2 prototype, no multiline, called LetterMotion.
