@@ -6,11 +6,12 @@ This project never had the pretension of being published, it's always been a too
 
 *02.25.10* - New static method 'create'.
 
-*02.20.10* - Improve animMode to mode, breakMode to split, actionflow branding new name and remove source on debug mode.
+*02.20.10* - IMPORTANT! Change animMode to mode, breakMode to split, actionflow branding new name and remove source on debug mode.
 
 *01.30.10* - IMPORTANT! Change API breakmode, animMode, anchorX and anchorX to separate classes.
 
-*01.30.10* - Create linked branche folder structure, bug fix in forEachBlocks loop
+*01.30.10* - Create *new branche "linked"* folder structure, bug fix in forEachBlocks loop.
+---
 
 *01.07.10* - New version, with a linked list of blocks
 
