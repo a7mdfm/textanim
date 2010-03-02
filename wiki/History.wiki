@@ -2,7 +2,7 @@
 
 Here are just some highlights of the life of TextAnim, since when it started until the present day, without many details. Of course, I'll never remember it.
 
-* *11.10.08* - Add anchor setting and time override interval property.
+**11.10.08* - Add anchor setting and time override interval property.
 
 
 *04.20.08*
