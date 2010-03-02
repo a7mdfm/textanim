@@ -1,0 +1,26 @@
+#summary List of changes in TextAnim new versions.
+
+Here are just some highlights of the life of TextAnim, since when it started until the present day, without many details. Of course, I'll never remember it.
+
+* *11.10.08* - Add anchor setting and time override interval property.
+
+
+*04.20.08*
+
+ * Create callback functions and first TextAnimTool getColorBounds.
+
+*09.05.07* - 1.1.3
+
+ * Add the HTML support and important fixes with TextFormat and text align.
+
+*02.10.07* - 1.0.0
+
+ * Called TextAnim as first AS3 version, metrics of text, multiline textfield.
+
+*12.15.06*
+
+ * Create instances to a given object.
+
+*08.22.06* 
+
+ * First version, AS2 prototype, no multiline, called LetterMotion.
