@@ -1,6 +1,6 @@
+#summary Extra tools for special treatment of TextAnim instance.
 #labels Featured
-Extra tools for special treatment of TextAnim instance. 
-Can convert the blocks to bitmap, apply patterns, etc.
+Can convert the blocks to bitmap, set patterns, gradient...
 
 =Examples=
 
