@@ -1,0 +1,739 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../print.css" type="text/css" media="print">
+<meta content="TextAnim,flupie.textanim.TextAnim,ANCHOR_BOTTOM,ANCHOR_CENTER,ANCHOR_LEFT,ANCHOR_RIGHT,ANCHOR_TOP,ANIM_RANDOM,ANIM_TO_CENTER,ANIM_TO_EDGES,ANIM_TO_LEFT,ANIM_TO_RIGHT,BREAK_IN_LETTERS,BREAK_IN_LINES,BREAK_IN_WORDS,anchorX,anchorY,animMode,blocks,effects,interval,onBlocksCreated,onComplete,onProgress,onStart,source,time,blocksVisible,breakMode,text,applyEffect,applyToAllBlocks,dispose,setAnchor,start,stop" name="keywords">
+<title>flupie.textanim.TextAnim</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'TextAnim - TextAnim Documentation';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">TextAnim Documentation</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?flupie/textanim/TextAnim.html&amp;flupie/textanim/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;TextAnim</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class TextAnim"); titleBar_setSubNav(true,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">flupie.textanim</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class TextAnim</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">TextAnim <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> flash.display.Sprite</td>
+</tr>
+</table>
+<p></p>
+  <code>TextAnim</code> is an extensible class to create text animations.
+    <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#anchorX">anchorX</a> : String = "C"<div class="summaryTableDescription">
+  The horizontal registration of each TextAnimBlock.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#anchorY">anchorY</a> : String = "C"<div class="summaryTableDescription">
+  The vertical registration of each TextAnimBlock.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#animMode">animMode</a> : String = "firstToLast"<div class="summaryTableDescription">
+  Is the way of the effects dispatches will be occurs.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#blocks">blocks</a> : Array<div class="summaryTableDescription">
+  It stores the TextAnimBlocks.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#blocksVisible">blocksVisible</a> : Boolean<div class="summaryTableDescription">
+  Sets the visibility of all blocks.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#breakMode">breakMode</a> : String<div class="summaryTableDescription">
+  To specify how the TextAnim will break the text.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#effects">effects</a> : *<div class="summaryTableDescription">
+  Are the effect functions that will be called for all blocks, according to the interval specified.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#interval">interval</a> : Number = 100<div class="summaryTableDescription">
+  It is the interval that effects will be dispatched for each block.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#onBlocksCreated">onBlocksCreated</a> : Function<div class="summaryTableDescription">
+  Callback function called when the blocks are created, or recreated.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#onComplete">onComplete</a> : Function<div class="summaryTableDescription">
+  Callback function called when the last effect was dispatched .</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#onProgress">onProgress</a> : Function<div class="summaryTableDescription">
+  Callback function called when each effect dispatch.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#onStart">onStart</a> : Function<div class="summaryTableDescription">
+  Callback function called when the TextAnim start.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#source">source</a> : TextField<div class="summaryTableDescription">
+  The original TextField instance.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#text">text</a> : String<div class="summaryTableDescription">
+  To change the text, then all the blocks will be recreated.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#time">time</a> : Number = 0<div class="summaryTableDescription">
+  Indicates the totalTime of effects dispatches.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#TextAnim()">TextAnim</a>(source:TextField, autoReplace:Boolean = true)</div>
+<div class="summaryTableDescription">
+  Contrutor.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#applyEffect()">applyEffect</a>(blockIndex:int):void</div>
+<div class="summaryTableDescription">
+  To apply the effects to a single block, by the <code>index</code> of the <code>TextAnimBlock</code>.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#applyToAllBlocks()">applyToAllBlocks</a>(act:Function):void</div>
+<div class="summaryTableDescription">
+  Apply a function to all the blocks of this instance.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#dispose()">dispose</a>():void</div>
+<div class="summaryTableDescription">
+  Clear all blocks, internal references, stops the progress and kill the TextAnim instance.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setAnchor()">setAnchor</a>(anchorX:String, anchorY:String):void</div>
+<div class="summaryTableDescription">
+  Modify the registration x and y of all blocks.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#start()">start</a>(delay:Number = 0):void</div>
+<div class="summaryTableDescription">
+  Starts the flow of effects dispatches.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#stop()">stop</a>():void</div>
+<div class="summaryTableDescription">
+  Stops the flow of effects dispatches.</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<table id="summaryTableConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ANCHOR_BOTTOM">ANCHOR_BOTTOM</a> : String = "B"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ANCHOR_CENTER">ANCHOR_CENTER</a> : String = "C"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ANCHOR_LEFT">ANCHOR_LEFT</a> : String = "L"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ANCHOR_RIGHT">ANCHOR_RIGHT</a> : String = "R"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ANCHOR_TOP">ANCHOR_TOP</a> : String = "T"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ANIM_RANDOM">ANIM_RANDOM</a> : String = "random"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ANIM_TO_CENTER">ANIM_TO_CENTER</a> : String = "edgesToCenter"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ANIM_TO_EDGES">ANIM_TO_EDGES</a> : String = "centerToEdges"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ANIM_TO_LEFT">ANIM_TO_LEFT</a> : String = "lastToFirst"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ANIM_TO_RIGHT">ANIM_TO_RIGHT</a> : String = "firstToLast"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#BREAK_IN_LETTERS">BREAK_IN_LETTERS</a> : String = "breakInLetters"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#BREAK_IN_LINES">BREAK_IN_LINES</a> : String = "breakInLines"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#BREAK_IN_WORDS">BREAK_IN_WORDS</a> : String = "breakInWords"<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">TextAnim</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="anchorX"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">anchorX</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var anchorX:String = "C"</code><p>
+  The horizontal registration of each TextAnimBlock.
+    </p><p>It can be <code>TextAnim.ANCHOR_CENTER, TextAnim.ANCHOR_LEFT, TextAnim.ANCHOR_RIGHT</code></p> 
+  <p>The default value is <code>TextAnim.ANCHOR_CENTER;</code>.</p>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">setAnchor</div>
+</div>
+<a name="anchorY"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">anchorY</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var anchorY:String = "C"</code><p>
+  The vertical registration of each TextAnimBlock.
+    </p><p>It can be <code>TextAnim.ANCHOR_CENTER, TextAnim.ANCHOR_TOP, TextAnim.ANCHOR_BOTTOM</code></p> 
+  <p>The default value is <code>TextAnim.ANCHOR_CENTER;</code>.</p>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">setAnchor</div>
+</div>
+<a name="animMode"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">animMode</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var animMode:String = "firstToLast"</code><p>
+  Is the way of the effects dispatches will be occurs.
+   
+  </p><p>Can be <code>ANIM_TO_RIGHT, ANIM_TO_LEFT, ANIM_TO_CENTER, ANIM_TO_EDGES and ANIM_RANDOM</code></p>
+  
+  <p>The default value is <code>TextAnim.ANIM_TO_RIGHT</code>.</p>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">breakMode</div>
+</div>
+<a name="blocks"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">blocks</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var blocks:Array</code><p>
+  It stores the TextAnimBlocks.
+  </p></div>
+<a name="blocksVisible"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">blocksVisible</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>blocksVisible:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+  Sets the visibility of all blocks. 
+  In some animations the blocks must be hidden, to show them gradually.
+  </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get blocksVisible():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set blocksVisible(value:Boolean):void</code>
+<br>
+</div>
+<a name="breakMode"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">breakMode</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>breakMode:String</code>&nbsp;&nbsp;[read-write]<p>
+  To specify how the TextAnim will break the text.
+    </p><p>The text can be broken in letter, word or line blocks.</p> 
+   
+  <span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get breakMode():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set breakMode(value:String):void</code>
+<br>
+</div>
+<a name="effects"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">effects</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var effects:*</code><p>
+  Are the effect functions that will be called for all blocks, according to the interval specified.
+  
+  </p><p>It can be an Array of functions or just one function.</p>
+  <p>Every effect works as a call and must receive a TextAnimBlock as parameter in order to animate as you want.</p>
+  </div>
+<a name="interval"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">interval</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var interval:Number = 100</code><p>
+  It is the interval that effects will be dispatched for each block.
+  
+  </p><p>The default value is <code>100</code>.</p>
+</div>
+<a name="onBlocksCreated"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">onBlocksCreated</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var onBlocksCreated:Function</code><p>
+  Callback function called when the blocks are created, or recreated.
+  
+  </p><p>It occurs when the <code>breakMode</code> or <code>text</code> changes.</p> 
+  </div>
+<a name="onComplete"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">onComplete</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var onComplete:Function</code><p>
+  Callback function called when the last effect was dispatched .
+  </p></div>
+<a name="onProgress"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">onProgress</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var onProgress:Function</code><p>
+  Callback function called when each effect dispatch.
+  </p></div>
+<a name="onStart"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">onStart</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var onStart:Function</code><p>
+  Callback function called when the TextAnim start.
+  </p></div>
+<a name="source"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">source</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var source:TextField</code><p>
+  The original TextField instance.
+  </p><p>That's can be whatever TextField instance, but you need to make sure to embed font. The textanim will preserve all 
+  settings TextFormat of the TextField has.</p>
+  </div>
+<a name="text"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">text</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>text:String</code>&nbsp;&nbsp;[read-write]<p>
+  To change the text, then all the blocks will be recreated.
+    </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get text():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set text(value:String):void</code>
+<br>
+</div>
+<a name="time"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">time</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var time:Number = 0</code><p>
+  Indicates the totalTime of effects dispatches.
+  </p><p>If it has a value different 0 that's overwrites the interval.</p>
+        
+  <p>The default value is <code>0</code>.</p>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="TextAnim()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">TextAnim</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function TextAnim(source:TextField, autoReplace:Boolean = true)</code><p>
+  Contrutor. Receives a TextField instance and instruction to replace that automatically.
+  
+  </p><p>Using <code>autoReplace = false</code>, you must add the TextAnim instance in the displayList manually.
+  By default, autoReplace is <code>true</code>. It means that TextAnim will do the addChild and position settings job.</p>
+    <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">source</span>:TextField</code> &mdash; The TextField instance that TextAnim will be based.
+  </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">autoReplace</span>:Boolean</code> (default = <code>true</code>)<code></code> &mdash; Do a replacement, removing the source and placing this TextAnim instance in the same scope, with same positions. (works only if the source textfield was in display list). 
+  
+  </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="applyEffect()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">applyEffect</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function applyEffect(blockIndex:int):void</code><p>
+  To apply the effects to a single block, by the <code>index</code> of the <code>TextAnimBlock</code>.
+  
+  </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">blockIndex</span>:int</code> &mdash; The index of the target block.
+  </td>
+</tr>
+</table>
+</div>
+<a name="applyToAllBlocks()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">applyToAllBlocks</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function applyToAllBlocks(act:Function):void</code><p>
+  Apply a function to all the blocks of this instance. 
+  
+  </p><p>This method takes a callback function and will call it according to the amount of blocks. 
+  This must receive a callback object of type as a parameter <code>TextAnimBlock</code></p>
+    <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">act</span>:Function</code> &mdash; The function that will be applied to blocks.  
+  </td>
+</tr>
+</table>
+</div>
+<a name="dispose()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">dispose</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function dispose():void</code><p>
+  Clear all blocks, internal references, stops the progress and kill the TextAnim instance.
+  </p></div>
+<a name="setAnchor()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setAnchor</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setAnchor(anchorX:String, anchorY:String):void</code><p>
+  Modify the registration x and y of all blocks.
+  
+  </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">anchorX</span>:String</code> &mdash; The horizontal registration (textAnim.ANCHOR_LEFT, textAnim.ANCHOR_RIGHT and textAnim.CENTER).
+  </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">anchorY</span>:String</code> &mdash; The vertical registration (textAnim.ANCHOR_TOP, textAnim.ANCHOR_BOTTOM and textAnim.CENTER). 
+  </td>
+</tr>
+</table>
+</div>
+<a name="start()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">start</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function start(delay:Number = 0):void</code><p>
+  Starts the flow of effects dispatches.
+    </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">delay</span>:Number</code> (default = <code>0</code>)<code></code> &mdash; Time to wait before the first dispatch, in milliseconds.
+  </td>
+</tr>
+</table>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">stop</div>
+</div>
+<a name="stop()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">stop</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function stop():void</code><p>
+  Stops the flow of effects dispatches.
+  
+  </p><p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">start</div>
+</div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="ANCHOR_BOTTOM"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ANCHOR_BOTTOM</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ANCHOR_BOTTOM:String = "B"</code>
+</div>
+<a name="ANCHOR_CENTER"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ANCHOR_CENTER</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ANCHOR_CENTER:String = "C"</code>
+</div>
+<a name="ANCHOR_LEFT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ANCHOR_LEFT</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ANCHOR_LEFT:String = "L"</code>
+</div>
+<a name="ANCHOR_RIGHT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ANCHOR_RIGHT</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ANCHOR_RIGHT:String = "R"</code>
+</div>
+<a name="ANCHOR_TOP"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ANCHOR_TOP</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ANCHOR_TOP:String = "T"</code>
+</div>
+<a name="ANIM_RANDOM"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ANIM_RANDOM</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ANIM_RANDOM:String = "random"</code>
+</div>
+<a name="ANIM_TO_CENTER"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ANIM_TO_CENTER</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ANIM_TO_CENTER:String = "edgesToCenter"</code>
+</div>
+<a name="ANIM_TO_EDGES"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ANIM_TO_EDGES</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ANIM_TO_EDGES:String = "centerToEdges"</code>
+</div>
+<a name="ANIM_TO_LEFT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ANIM_TO_LEFT</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ANIM_TO_LEFT:String = "lastToFirst"</code>
+</div>
+<a name="ANIM_TO_RIGHT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ANIM_TO_RIGHT</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ANIM_TO_RIGHT:String = "firstToLast"</code>
+</div>
+<a name="BREAK_IN_LETTERS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">BREAK_IN_LETTERS</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const BREAK_IN_LETTERS:String = "breakInLetters"</code>
+</div>
+<a name="BREAK_IN_LINES"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">BREAK_IN_LINES</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const BREAK_IN_LINES:String = "breakInLines"</code>
+</div>
+<a name="BREAK_IN_WORDS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">BREAK_IN_WORDS</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const BREAK_IN_WORDS:String = "breakInWords"</code>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright">(c) Copyright 2009 - MIT LICENSE. All Rights Reserved. http://code.google.com/p/textanim</center>
+</div>
+</body>
+</html>
+<!--(c) Copyright 2009 - MIT LICENSE. All Rights Reserved. http://code.google.com/p/textanim-->
