@@ -51,6 +51,8 @@ package flupie.textanim
 	*		block.scaleY = 2;
 	*	}</code></pre>
 	*
+	* @langversion 3.0
+    * @playerversion Flash 9
 	*/
 	public class TextAnim extends Sprite
 	{
