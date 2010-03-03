@@ -288,7 +288,9 @@ package flupie.textanim
 		
 		public function set text(value:String):void
 		{
+			var format:TextFormat = source.getTextFormat();
 			source.text = value;
+			source.setTextFormat(format);
 			source.height = source.textHeight;
 			createBlocks();
 		}
@@ -306,7 +308,9 @@ package flupie.textanim
 		
 		public function set htmlText(value:String):void
 		{
+			var format:TextFormat = source.getTextFormat();
 			source.htmlText = value.replace(/\r/g, "<br>");
+			source.setTextFormat(format);
 			source.height = source.textHeight;
 			createBlocks();
 		}
