@@ -289,7 +289,7 @@ package flupie.textanim
 		public function set text(value:String):void
 		{
 			var format:TextFormat = source.getTextFormat();
-			source.text = value;
+			source.text = value;	
 			source.setTextFormat(format);
 			source.height = source.textHeight;
 			createBlocks();
@@ -310,7 +310,14 @@ package flupie.textanim
 		{
 			var format:TextFormat = source.getTextFormat();
 			source.htmlText = value.replace(/\r/g, "<br>");
-			source.setTextFormat(format);
+			
+			var i:int = source.text.length;
+			while(i--) {
+				var fmt:TextFormat = source.getTextFormat(i, i+1);
+				fmt.letterSpacing = format.letterSpacing;
+				source.setTextFormat(fmt, i, i+1);
+			}
+			
 			source.height = source.textHeight;
 			createBlocks();
 		}
