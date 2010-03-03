@@ -4,7 +4,7 @@ Here are just some highlights of the life of TextAnim, since when it started unt
 
 This project never had the pretension of being published, it's always been a tool to support "all" projects that passed us, and was becoming increasingly useful and consequent mature and stable, that motivated us to make it public. We take care of all the code to ensure that really improve work day. The only idea is allow that almost all effect/animations with dynamic text be created. And make it little more simple.
 
-*03.02.10* - TextAnim new version, moving linked from branche, stable version rev. 141, AS 3, Flash 9+ (docs + swc + example).
+*03.02.10* - IMPORTANT! TextAnim new version, moving linked from branche, stable version rev. 141, AS 3, Flash 9+ (docs + swc + example).
 
 *02.25.10* - New static method 'create'.
 
