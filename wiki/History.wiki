@@ -1,6 +1,10 @@
 #summary List of changes in TextAnim new versions.
 
-Here are just some highlights of the life of TextAnim, since when it started until today, without many details. Of course, I'll never remember it.
+Here are just some highlights of the life of TextAnim, since when it started until today, without many details. 
+
+Been a long time (2006) we write something to a text animation in the beginning was a method prototype in AS2 numerous limitations, but things have changed at that time was called LetterMotion, but how much time has passed and each project, every crazy idea of trying to make a different animation we were adjusting things in 2007 came the first version of TextAnim in AS3 (abandon the AS2 version and changed the name) and we always argued about the way that the class had to be, what could be done.
+
+But the cool thing is that we have been refining the code every time we thought of doing an effect that was not so easy for some reason, we will review everything to the TextAnim could be as abstract as possible and above all have one goal only - to shoot blocks of text in sequence. Only at the end of 2009 after a huge battery of coffee and cheese rolls discussing, changing and maturing every detail we publish TextAnim.
 
 This project never had the pretension of being published, it's always been a tool to support "all" projects that passed us, and was becoming increasingly useful and consequent mature and stable, that motivated us to make it public. We take care of all the code to ensure that really improve work day. The only idea is allow that almost all effect/animations with dynamic text be created. And make it little more simple.
 
