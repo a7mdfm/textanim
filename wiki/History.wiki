@@ -21,7 +21,6 @@ This project never had the pretension of being published, it's always been a too
 *01.30.10* - IMPORTANT! Change API breakmode, animMode, anchorX and anchorX to separate classes.
 
 *01.30.10* - Create *new branche "linked"* folder structure, bug fix in forEachBlocks loop.
-----
 
 *01.07.10* - New version, with a linked list of blocks
 
