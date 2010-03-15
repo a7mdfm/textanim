@@ -1,0 +1,63 @@
+body, html {
+	margin:0 auto;
+	padding:0px;
+	background: #999;
+	text-align:center;
+	overflow:hidden;
+	height:100%;
+	width:100%;
+	font-family:"Trebuchet MS", Helvetica, Arial, sans-serif;
+	font-size:12px;
+	color:#444;
+}
+
+a { text-decoration:none; color:#111;}
+a:hover {
+	color:#000;
+	text-decoration:underline;
+}
+
+img { border:none; }
+
+/*#content {
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-top:-350px;
+	margin-left:-512px;
+	width:1024px;
+	height:700px;
+	background: #FFF;
+}
+
+#textanim {
+	background: #333;
+	width:955px;
+	height:550px;
+}
+
+#about, #example {
+	padding:10px;
+	text-align:left;
+}
+
+#import {
+	font-size:14px;
+	color:#660000;
+}
+
+#cpright {
+	margin:5px;
+	text-align:center;
+	font-size:11px;
+	color:#333;
+	float:left;
+}
+
+#code {
+	border-left:6px solid #444;
+	background:#EEE;
+	margin:10px;
+	padding:20px;
+	color:#000;
+}*/
