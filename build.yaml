@@ -1,0 +1,16 @@
+---
+default:
+    - debug: true
+      open: public/ta_showclip.swf
+      extra: -use-network=false
+    
+library-path:
+    - source/swc
+
+source-path:
+    - source/classes
+    - ../../trunk/source
+    
+applications:
+    - class: source/classes/ta_showclip.as
+      output: public/ta_showclip.swf
