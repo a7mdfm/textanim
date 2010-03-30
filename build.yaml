@@ -14,3 +14,7 @@ source-path:
 applications:
     - class: source/classes/ta_showclip.as
       output: public/ta_showclip.swf
+      
+    # - class: source/classes/AAShip.as
+    #   output: public/AAShip.swf
+      

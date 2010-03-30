@@ -6,7 +6,7 @@ params = {};
 params.menu = "false";
 params.scale = "noscale";
 params.allowScriptAccess = "always";
-params.bgcolor = "#FAFAFA";
+//params.bgcolor = "#000000";
 
 attributes = {};
 attributes.align = "top";
@@ -19,4 +19,4 @@ for(var i = 0; i < paramPairs.length; i++){
 	flashvars[pair[0]] = pair[1];
 }
 
-swfobject.embedSWF("textanim_maker.swf", "content", "100%", "100%", playerVersion, "expressInstall.swf", flashvars, params, attributes);
+swfobject.embedSWF("ta_showclip.swf", "content", "640", "360", playerVersion, "expressInstall.swf", flashvars, params, attributes);
