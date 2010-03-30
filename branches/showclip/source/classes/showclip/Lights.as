@@ -12,6 +12,7 @@ package showclip
 		public var shape:Sprite;
 		public var border:Sprite;
 		public var colors:Array;
+		public var index:int = 0;
 		
 		public var amount:int = 30;
 		public var padding:Number = 26.5;
@@ -20,12 +21,10 @@ package showclip
 		
 		public function Lights(w:int, h:int)
 		{
-			super();
-			
-			colors = [0x96B492, 0xE49E52, 0xAD70BE, 0x448FC3];
+			colors = [0x888888, 0x96B492, 0xAD70BE, 0xE49E52, 0x448FC3];
 			
 			shape = new Sprite();
-			shape.graphics.beginFill(colors[int(Math.random() * colors.length)]);
+			shape.graphics.beginFill(colors[index]);
 			shape.graphics.drawRect(0, 0, w, h);
 			shape.graphics.endFill();
 			addChild(shape);
@@ -52,10 +51,10 @@ package showclip
 			addChild(brith);
 			
 			border = new Sprite();
-			border.graphics.lineStyle(10, 0x0, 1, false, "normal", "square", "miter", 3);
-			border.graphics.drawRect(diff, diff, w-diff*2, h-diff*2);
+			border.graphics.lineStyle(1, 0x0, 1, false, "normal", "square", "miter", 3);
+			border.graphics.drawRect(0, 0, w-2, h-2);
 			border.graphics.endFill();
-			addChild(border);
+			//addChild(border);
 			
 			effectOut();
 		}
@@ -80,6 +79,23 @@ package showclip
 			
 			Tweener.addTween(this, {onComplete:effectIn, delay:2 + int(Math.random() * 5)});
 		}
+		
+		public function nextColor():void
+		{
+			if (index == colors.length - 1)
+				index = 1;
+			else 
+				index ++;
+				
+			Tweener.addTween(shape, {_color:colors[index], time:1, transition:"easeinoutquint"});
+		}
+		
+		public function endColor():void
+		{
+			Tweener.pauseTweens(shape);
+			Tweener.addTween(shape, {_color:0x444444, time:2, transition:"easeinoutexpo"});
+		}
+		
 		
 	}
 
