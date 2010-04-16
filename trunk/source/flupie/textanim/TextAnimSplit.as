@@ -33,7 +33,7 @@ package flupie.textanim
 	*	<p>To specify how the TextAnim will break the text: in chars, words or lines.</p>
 	*	<p>Everytime split changes, the blocks will be recreated automatically, keeping the text and appearance.</p>
 	*	<code>
-	*	myTextAnim.split = TextAnimSplit.WORD; //this instance will be splitted in words.
+	*	myTextAnim.split = TextAnimSplit.WORDS; //this instance will be splitted in words.
 	*	</code>
 	*/
 	public class TextAnimSplit 
