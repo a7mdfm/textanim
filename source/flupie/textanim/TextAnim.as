@@ -52,7 +52,7 @@ package flupie.textanim
 	*	}</code></pre>
 	*
 	* @langversion 3.0
-    * @playerversion Flash 9
+    * @playerversion Flash 9+
 	*/
 	public class TextAnim extends Sprite
 	{
@@ -264,11 +264,11 @@ package flupie.textanim
 		*	Creates an instance of TextAnim in a fast way.
 		*	<p>If you needs a fast text animation, hit:</p>
 		*	<code>
-		*	TextAnim.create(myTextField, {effects:myEffect, split:TextAnimSplit.WORD}).start();
+		*	TextAnim.create(myTextField, {effects:myEffect, split:TextAnimSplit.WORDS}).start();
 		* 	</code>
 		*	<p>or:</p>
 		*	<pre><code>
-		*	var anim:TextAnim = TextAnim.create(myTextField, {effects:myEffect, interval:50, split:TextAnimSplit.WORD});
+		*	var anim:TextAnim = TextAnim.create(myTextField, {effects:myEffect, interval:50, split:TextAnimSplit.WORDS});
 		*	anim.start(500); //delay to start (in milliseconds)
 		*	</code></pre>
 		*	
@@ -302,7 +302,7 @@ package flupie.textanim
 		*	<p>The first value will be the same of the source's text. 
 		*	If you need use html as text, use <code>htmlText</code>.</p>
 		*	
-		*	@see htmlText
+		*	@see #htmlText
 		*/
 		public function get text():String { return source.text; }
 		
@@ -327,7 +327,7 @@ package flupie.textanim
 		/**
 		*	Sets a html as text. Like <code>text</code>, all the blocks will be recreated.
 		*	
-		*	@see text
+		*	@see #text
 		*/
 		public function get htmlText():String { return source.htmlText; }
 		
@@ -343,7 +343,7 @@ package flupie.textanim
 		*	<p>Everytime split changes, the blocks will be recreated automatically, 
 		*	keeping the text and appearance.</p>
 		*	<p><code>
-		*	myTextAnim.split = TextAnimSplit.WORD; //this instance will be splitted in words.
+		*	myTextAnim.split = TextAnimSplit.WORDS; //this instance will be splitted in words.
 		*	</code>
 		*	</p>
 		*		
@@ -360,8 +360,8 @@ package flupie.textanim
 		* 	
 		*	@param delay The time (in milliseconds) thats TextAnim will wait to execute the first dispatch.
 		* 	
-		*	@see stop
-		*	@see delay
+		*	@see #stop
+		*	@see #delay
 		*/
 		public function start(delay:Number = 0):void
 		{
@@ -375,7 +375,7 @@ package flupie.textanim
 		*	<p>The effects, onProgress and textAnimEvent.PROGRESS dispatches stops.
 		*	The onComplete will not be dispatched, except that animation starts again.</p>
 		* 
-		* 	@see start
+		* 	@see #start
 		*/
 		public function stop():void
 		{
@@ -475,7 +475,7 @@ package flupie.textanim
 		*
 		* 	<p>It can be <code>TextAnimAnchor.CENTER, TextAnimAnchor.LEFT, TextAnimAnchor.RIGHT</code></p>	
 		* 	@default TextAnimAnchor.CENTER;
-		*	@see setAnchor	
+		*	@see #setAnchor	
 		*/
 		public function get anchorX():String { return _anchorX; }
 		
@@ -492,7 +492,7 @@ package flupie.textanim
 		*
 		* 	<p>It can be <code>TextAnimAnchor.CENTER, TextAnimAnchor.TOP, TextAnimAnchor.BOTTOM</code></p>	
 		* 	@default TextAnimAnchor.CENTER;
-		* 	@see setAnchor	
+		* 	@see #setAnchor	
 		*/
 		public function get anchorY():String { return _anchorY; }
 		

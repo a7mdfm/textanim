@@ -45,7 +45,7 @@ package flupie.textanim
 		* 	@param textAnim Instance of TextAnim.
 		* 	@param smooth Allow smooth bitmap.
 		* 
-		* 	@see toVector
+		* 	@see #toVector
 		*/
 		public static function toBitmap(textAnim:TextAnim, smooth:Boolean = false):void
 		{	
@@ -84,7 +84,7 @@ package flupie.textanim
 		*
 		* 	@param textAnim Instance of TextAnim.
 		*	
-		* 	@see toBitmap
+		* 	@see #toBitmap
 		*/
 		public static function toVector(textAnim:TextAnim):void
 		{
