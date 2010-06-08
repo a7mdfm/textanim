@@ -1,7 +1,7 @@
 ---
 default:
     - debug: true
-      open: public/ta_showclip.swf
+      open: public/StyleSheetExample.swf
       extra: -use-network=false
     
 library-path:
@@ -15,6 +15,6 @@ applications:
     - class: source/classes/ta_showclip.as
       output: public/ta_showclip.swf
       
-    # - class: source/classes/AAShip.as
-    #   output: public/AAShip.swf
+    - class: source/classes/StyleSheetExample.as
+      output: public/StyleSheetExample.swf
       
