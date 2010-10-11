@@ -188,7 +188,7 @@ package
 			if (_ta_params.interval != _interval_panel.defaultValue)
 				_ta_code.appendText("interval:"+_ta_params.interval+", ");
 				
-			_ta_code.appendText("effect:myEffect}).start(");
+			_ta_code.appendText("effects:myEffect}).start(");
 			
 			if (_ta_params.delay != _delay_panel.defaultValue) 
 				_ta_code.appendText(_ta_params.delay);
